@@ -25,67 +25,46 @@ call_user_func(function () {
         '@import \'EXT:sf_books/Configuration/TSconfig/NewContentElementWizard.typoscript\''
     );
 
-    if (
-        \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(
-            \TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version()
-        ) < 10000000
-    ) {
-        // @todo remove once TYPO3 9.5.x support is dropped
-        $extensionName = 'Evoweb.SfBooks';
-        $authorController = 'Author';
-        $bookController = 'Book';
-        $categoryController = 'Category';
-        $searchController = 'Search';
-        $seriesController = 'Series';
-    } else {
-        $extensionName = 'SfBooks';
-        $authorController = \Evoweb\SfBooks\Controller\AuthorController::class;
-        $bookController = \Evoweb\SfBooks\Controller\BookController::class;
-        $categoryController = \Evoweb\SfBooks\Controller\CategoryController::class;
-        $searchController = \Evoweb\SfBooks\Controller\SearchController::class;
-        $seriesController = \Evoweb\SfBooks\Controller\SeriesController::class;
-    }
-
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $extensionName,
+        'SfBooks',
         'Book',
         [
-            $bookController => 'list, show',
+            \Evoweb\SfBooks\Controller\BookController::class => 'list, show',
         ]
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $extensionName,
+        'SfBooks',
         'Author',
         [
-            $authorController => 'list, show',
+            \Evoweb\SfBooks\Controller\AuthorController::class => 'list, show',
         ]
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $extensionName,
+        'SfBooks',
         'Category',
         [
-            $categoryController => 'list, show',
+            \Evoweb\SfBooks\Controller\CategoryController::class => 'list, show',
         ]
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $extensionName,
+        'SfBooks',
         'Series',
         [
-            $seriesController => 'list, show',
+            \Evoweb\SfBooks\Controller\SeriesController::class => 'list, show',
         ]
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $extensionName,
+        'SfBooks',
         'Search',
         [
-            $searchController => 'search, startSearch',
+            \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
         ],
         [
-            $searchController => 'search, startSearch',
+            \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
         ]
     );
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -14,6 +16,8 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 
 class AuthorController extends AbstractController
 {
@@ -27,14 +31,16 @@ class AuthorController extends AbstractController
         $this->repository = $repository;
     }
 
-    protected function listAction()
+    protected function listAction(): ResponseInterface
     {
         $authorGroups = $this->repository->findAuthorGroupedByLetters();
 
         $this->view->assign('authorGroups', $authorGroups);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Author $author = null)
+    protected function showAction(\Evoweb\SfBooks\Domain\Model\Author $author = null): ResponseInterface
     {
         if ($author == null) {
             $this->displayError('Author');
@@ -42,9 +48,11 @@ class AuthorController extends AbstractController
 
         $this->setPageTitle($author->getLastname() . ', ' . $author->getFirstname());
         $this->view->assign('author', $author);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function searchAction(string $query, string $searchBy = '')
+    protected function searchAction(string $query, string $searchBy = ''): ResponseInterface
     {
         if (!$searchBy) {
             $searchBy = $this->settings['searchFields'];
@@ -55,5 +63,8 @@ class AuthorController extends AbstractController
 
         $this->view->assign('query', $query);
         $this->view->assign('authors', $authors);
+        $this->addPaginator($authors);
+
+        return new HtmlResponse($this->view->render());
     }
 }

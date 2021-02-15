@@ -19,10 +19,6 @@ return [
         'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_extraslabels.svg',
     ],
 
-    'interface' => [
-        'showRecordFieldList' => 'hidden, label',
-    ],
-
     'columns' => [
         'hidden' => [
             'exclude' => true,

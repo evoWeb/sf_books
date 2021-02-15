@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Repository;
 
 /*
@@ -13,7 +15,10 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class SeriesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
+class SeriesRepository extends Repository
 {
     public function findSeriesGroupedByLetters(): array
     {
@@ -43,7 +48,7 @@ class SeriesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $groupedSeries;
     }
 
-    public function findBySeries(array $series): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+    public function findBySeries(array $series): QueryResultInterface
     {
         $query = $this->createQuery();
 

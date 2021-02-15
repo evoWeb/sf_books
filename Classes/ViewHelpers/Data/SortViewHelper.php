@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\ViewHelpers\Data;
 
 /*
@@ -47,9 +49,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-    /**
-     * Initialize arguments
-     */
     public function initializeArguments()
     {
         $this->registerArgument(
@@ -127,7 +126,6 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
                 }
                 $sorted = $this->sortArray($array);
             } elseif ($subject instanceof \TYPO3\CMS\Extbase\Persistence\QueryResultInterface) {
-                /** @var \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $subject */
                 $sorted = $this->sortArray($subject->toArray());
             } elseif ($subject !== null) {
                 // a NULL value is respected and ignored, but any

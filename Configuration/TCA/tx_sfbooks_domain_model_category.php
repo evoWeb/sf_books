@@ -23,10 +23,6 @@ return [
         'searchFields' => 'uid, title',
     ],
 
-    'interface' => [
-        'showRecordFieldList' => 'hidden, type',
-    ],
-
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -95,7 +91,6 @@ return [
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
                 'foreign_table_where' => 'ORDER BY fe_groups.title',
-                'enableMultiSelectFilterTextfield' => true
             ]
         ],
 

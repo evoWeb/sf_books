@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
 /*
@@ -15,10 +17,7 @@ namespace Evoweb\SfBooks\Domain\Model;
 
 class ExtrasLabels extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label = '';
 
     public function setLabel(string $label)
     {

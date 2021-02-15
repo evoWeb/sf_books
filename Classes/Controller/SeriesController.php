@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -14,6 +16,8 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 
 class SeriesController extends AbstractController
 {
@@ -27,14 +31,16 @@ class SeriesController extends AbstractController
         $this->repository = $repository;
     }
 
-    protected function listAction()
+    protected function listAction(): ResponseInterface
     {
         $seriesGroups = $this->repository->findSeriesGroupedByLetters();
 
         $this->view->assign('seriesGroups', $seriesGroups);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Series $series = null)
+    protected function showAction(\Evoweb\SfBooks\Domain\Model\Series $series = null): ResponseInterface
     {
         if ($series == null) {
             $this->displayError('Series');
@@ -42,5 +48,7 @@ class SeriesController extends AbstractController
 
         $this->setPageTitle($series->getTitle());
         $this->view->assign('series', $series);
+
+        return new HtmlResponse($this->view->render());
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -14,6 +16,8 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\Domain\Repository\CategoryRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
@@ -37,7 +41,7 @@ class CategoryController extends AbstractController
         );
     }
 
-    protected function listAction()
+    protected function listAction(): ResponseInterface
     {
         if (
             count($this->settings['category']) == 0
@@ -50,6 +54,8 @@ class CategoryController extends AbstractController
 
         $categories = $this->removeExcludeCategories($categories);
         $this->view->assign('categories', $categories);
+
+        return new HtmlResponse($this->view->render());
     }
 
     protected function removeExcludeCategories(QueryResultInterface $categories): QueryResultInterface
@@ -70,7 +76,7 @@ class CategoryController extends AbstractController
         return $categories;
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Category $category = null)
+    protected function showAction(\Evoweb\SfBooks\Domain\Model\Category $category = null): ResponseInterface
     {
         if ($category == null) {
             $this->displayError('Category');
@@ -78,5 +84,7 @@ class CategoryController extends AbstractController
 
         $this->setPageTitle($category->getTitle());
         $this->view->assign('category', $category);
+
+        return new HtmlResponse($this->view->render());
     }
 }

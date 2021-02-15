@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
 /*
@@ -13,48 +15,40 @@ namespace Evoweb\SfBooks\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Book>
+     * @var ObjectStorage<Book>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $books;
+    protected ObjectStorage $books;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected string $title = '';
 
-    /**
-     * @var string
-     */
-    protected $capitalLetter;
+    protected string $capitalLetter = '';
 
-    /**
-     * @var string
-     */
-    protected $info;
+    protected string $info = '';
 
-    /**
-     * @var string
-     */
-    protected $description;
+    protected string $description = '';
+
+    public function __construct()
+    {
+        $this->initializeObject();
+    }
 
     public function initializeObject()
     {
-        $this->books = GeneralUtility::makeInstance(ObjectStorage::class);
+        $this->books = new ObjectStorage();
     }
 
-    public function setBooks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $books)
+    public function setBooks(ObjectStorage $books)
     {
         $this->books = $books;
     }
 
-    public function getBooks(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getBooks(): ObjectStorage
     {
         return $this->books;
     }

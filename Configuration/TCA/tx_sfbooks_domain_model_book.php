@@ -25,11 +25,6 @@ return [
         'searchFields' => 'uid, title, subtitle, isbn, description',
     ],
 
-    'interface' => [
-        'showRecordFieldList' => 'hidden,serie,category,number,title,author,isbn,
-        description,extras,cover,cover_large,sample_pdf,location1,location2,location3',
-    ],
-
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -98,7 +93,6 @@ return [
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
                 'foreign_table_where' => 'ORDER BY fe_groups.title',
-                'enableMultiSelectFilterTextfield' => true
             ]
         ],
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -14,15 +16,15 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    /**
-     * @var array
-     */
-    protected $allowedOrderBy = [];
+    protected array $allowedOrderBy = [];
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Repository
@@ -91,5 +93,22 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
             'The page did not exist or was inaccessible. Reason: ' . $type . ' not found'
         );
         die();
+    }
+
+    protected function addPaginator(QueryResultInterface $result)
+    {
+        $currentPage = $this->request->hasArgument('currentPage')
+            ? (int)$this->request->hasArgument('currentPage') : 1;
+
+        $resultPaginator = new QueryResultPaginator($result, $currentPage, (int)$this->settings['limit']);
+        $pagination = new SimplePagination($resultPaginator);
+
+        $this->view->assignMultiple(
+            [
+                'paginator' => $resultPaginator,
+                'pagination' => $pagination,
+                'pages' => range(1, $pagination->getLastPageNumber()),
+            ]
+        );
     }
 }

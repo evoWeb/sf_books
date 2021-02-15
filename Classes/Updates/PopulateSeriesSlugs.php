@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Evoweb\SfBooks\Updates;
+
 /*
  * This file is copied from the TYPO3 CMS install tool package.
  *
@@ -15,8 +17,6 @@ declare(strict_types=1);
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace Evoweb\SfBooks\Updates;
-
 /**
  * Fills tx_sfbooks_domain_model_series.path_segment with a proper value for pages that do not have a slug updater.
  * Does not take "deleted" authors into account, but respects workspace records.
@@ -25,20 +25,11 @@ namespace Evoweb\SfBooks\Updates;
  */
 class PopulateSeriesSlugs extends AbstractPopulateSlugs
 {
-    /**
-     * @var string
-     */
-    protected $table = 'tx_sfbooks_domain_model_series';
+    protected string $table = 'tx_sfbooks_domain_model_series';
 
-    /**
-     * @var string
-     */
-    protected $fieldName = 'path_segment';
+    protected string $fieldName = 'path_segment';
 
-    /**
-     * @var string
-     */
-    protected $identifier = 'sfBooksSeriesSlugs';
+    protected string $identifier = 'sfBooksSeriesSlugs';
 
     /**
      * @return string Title of this updater

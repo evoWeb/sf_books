@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
 /*
@@ -16,27 +18,21 @@ namespace Evoweb\SfBooks\Domain\Model;
 class Extras extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * @var \Evoweb\SfBooks\Domain\Model\ExtrasLabels
+     * @var ?ExtrasLabels
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $label;
+    protected ?ExtrasLabels $label = null;
 
-    /**
-     * @var int
-     */
-    protected $type = 0;
+    protected int $type = 0;
 
-    /**
-     * @var string
-     */
-    protected $content;
+    protected string $content;
 
-    public function setLabel(\Evoweb\SfBooks\Domain\Model\ExtrasLabels $label)
+    public function setLabel(ExtrasLabels $label)
     {
         $this->label = $label;
     }
 
-    public function getLabel(): ?\Evoweb\SfBooks\Domain\Model\ExtrasLabels
+    public function getLabel(): ?ExtrasLabels
     {
         if ($this->label instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
             $this->label = $this->label->_loadRealInstance();
