@@ -29,8 +29,8 @@ class SeriesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
         $groupedSeries = [];
+        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
         foreach ($result as $series) {
             $letter = $series->getCapitalLetter();
             if (!is_array($groupedSeries[$letter])) {

@@ -59,7 +59,7 @@ class CategoryController extends AbstractController
             $this->settings['excludeCategories']
         );
         if (count($excludeCategories)) {
-            /** @var $category \Evoweb\SfBooks\Domain\Model\Category */
+            /** @var \Evoweb\SfBooks\Domain\Model\Category $category */
             foreach ($categories as $category) {
                 if (in_array($category->getUid(), $excludeCategories)) {
                     $categories->offsetUnset($categories->key());

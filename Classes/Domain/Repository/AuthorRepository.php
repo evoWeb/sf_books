@@ -26,12 +26,12 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->addOrderBy('firstname')
             ->getSQL();
 
-        /** @var $query \TYPO3\CMS\Extbase\Persistence\Generic\Query */
+        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
-        /** @var $author \Evoweb\SfBooks\Domain\Model\Author */
         $groupedAuthors = [];
+        /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
         foreach ($result as $author) {
             $letter = $author->getCapitalLetter();
             if (!is_array($groupedAuthors[$letter])) {
