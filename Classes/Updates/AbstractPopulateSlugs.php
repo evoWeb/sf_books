@@ -23,6 +23,7 @@ use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Fills tx_sfbooks_domain_model_author.path_segment with a proper value for pages that do not have a slug updater.
@@ -30,7 +31,7 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
  *
  * @internal This class is only meant to be used within EXT:install and is not part of the TYPO3 Core API.
  */
-abstract class AbstractPopulateSlugs implements \TYPO3\CMS\Install\Updates\UpgradeWizardInterface
+abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
     protected string $table = 'tx_sfbooks_domain_model_author';
 

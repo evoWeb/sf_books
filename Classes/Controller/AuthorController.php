@@ -15,9 +15,11 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AuthorController extends AbstractController
 {
@@ -40,7 +42,7 @@ class AuthorController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Author $author = null): ResponseInterface
+    protected function showAction(Author $author = null): ResponseInterface
     {
         if ($author == null) {
             $this->displayError('Author');
@@ -57,7 +59,7 @@ class AuthorController extends AbstractController
         if (!$searchBy) {
             $searchBy = $this->settings['searchFields'];
         }
-        $searchBy = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchBy, true);
+        $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
         $authors = $this->repository->findBySearch($query, $searchBy);
 

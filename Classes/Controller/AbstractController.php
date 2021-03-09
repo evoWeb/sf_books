@@ -16,18 +16,21 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
+use TYPO3\CMS\Core\Controller\ErrorPageController;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+abstract class AbstractController extends ActionController
 {
     protected array $allowedOrderBy = [];
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Repository
+     * @var Repository
      */
     protected $repository;
 
@@ -87,7 +90,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     protected function displayError(string $type)
     {
         /** @var \TYPO3\CMS\Core\Controller\ErrorPageController $errorController */
-        $errorController = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Controller\ErrorPageController::class);
+        $errorController = GeneralUtility::makeInstance(ErrorPageController::class);
         echo $errorController->errorAction(
             'Page Not Found',
             'The page did not exist or was inaccessible. Reason: ' . $type . ' not found'

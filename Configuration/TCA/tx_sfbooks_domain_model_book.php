@@ -4,7 +4,7 @@ defined('TYPO3') or die();
 
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 $languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
-$languageFileTca = 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:';
+$languageFileTca = 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_sfbooks_domain_model_book');
 

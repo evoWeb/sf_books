@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -17,7 +18,7 @@ namespace Evoweb\SfBooks\Domain\Model;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Author extends AbstractEntity
 {
     /**
      * @var ObjectStorage<Book>

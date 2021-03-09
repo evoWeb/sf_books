@@ -15,6 +15,7 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
@@ -40,7 +41,7 @@ class SeriesController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Series $series = null): ResponseInterface
+    protected function showAction(Series $series = null): ResponseInterface
     {
         if ($series == null) {
             $this->displayError('Series');

@@ -15,9 +15,11 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Category;
 use Evoweb\SfBooks\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
@@ -34,7 +36,7 @@ class CategoryController extends AbstractController
 
     protected function initializeListAction()
     {
-        $this->settings['category'] = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(
+        $this->settings['category'] = GeneralUtility::intExplode(
             ',',
             $this->settings['category'],
             true
@@ -60,7 +62,7 @@ class CategoryController extends AbstractController
 
     protected function removeExcludeCategories(QueryResultInterface $categories): QueryResultInterface
     {
-        $excludeCategories = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(
+        $excludeCategories = GeneralUtility::intExplode(
             ',',
             $this->settings['excludeCategories']
         );
@@ -76,7 +78,7 @@ class CategoryController extends AbstractController
         return $categories;
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Category $category = null): ResponseInterface
+    protected function showAction(Category $category = null): ResponseInterface
     {
         if ($category == null) {
             $this->displayError('Category');

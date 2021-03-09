@@ -15,9 +15,11 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Book;
 use Evoweb\SfBooks\Domain\Repository\BookRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BookController extends AbstractController
 {
@@ -26,9 +28,6 @@ class BookController extends AbstractController
      */
     protected $repository;
 
-    /**
-     * @param BookRepository $repository
-     */
     public function __construct(BookRepository $repository)
     {
         $this->repository = $repository;
@@ -36,7 +35,7 @@ class BookController extends AbstractController
 
     protected function initializeListAction()
     {
-        $this->settings['category'] = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(
+        $this->settings['category'] = GeneralUtility::intExplode(
             ',',
             $this->settings['category'],
             true
@@ -63,7 +62,7 @@ class BookController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Book $book = null): ResponseInterface
+    protected function showAction(Book $book = null): ResponseInterface
     {
         if ($book == null) {
             $this->displayError('Book');
@@ -80,7 +79,7 @@ class BookController extends AbstractController
         if (!$searchBy) {
             $searchBy = $this->settings['searchFields'];
         }
-        $searchBy = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchBy, true);
+        $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
         $books = $this->repository->findBySearch($query, $searchBy);
 

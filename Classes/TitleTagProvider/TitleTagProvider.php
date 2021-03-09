@@ -15,7 +15,9 @@ namespace Evoweb\SfBooks\TitleTagProvider;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class TitleTagProvider extends \TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider
+use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
+
+class TitleTagProvider extends AbstractPageTitleProvider
 {
     public function setTitle(string $title)
     {

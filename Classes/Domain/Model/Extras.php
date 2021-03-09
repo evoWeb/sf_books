@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 /*
  * This file is developed by evoWeb.
  *
@@ -14,8 +16,7 @@ namespace Evoweb\SfBooks\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-class Extras extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Extras extends AbstractEntity
 {
     /**
      * @var ?ExtrasLabels
@@ -34,7 +35,7 @@ class Extras extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     public function getLabel(): ?ExtrasLabels
     {
-        if ($this->label instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+        if ($this->label instanceof LazyLoadingProxy) {
             $this->label = $this->label->_loadRealInstance();
         }
         return $this->label;
