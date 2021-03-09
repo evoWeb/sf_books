@@ -1,5 +1,7 @@
 <?php
 
+defined('TYPO3') or die();
+
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 $languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
 $languageFileTca = 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:';
