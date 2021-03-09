@@ -27,31 +27,20 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 abstract class AbstractController extends ActionController
 {
-    protected array $allowedOrderBy = [];
-
-    /**
-     * @var Repository
-     */
-    protected $repository;
-
-    protected function initializeAction()
+    protected function setDefaultOrderings(Repository $repository): Repository
     {
-        $this->setDefaultOrderings();
-    }
-
-    protected function setDefaultOrderings()
-    {
+        $allowedOrderBy = [];
         if (isset($this->settings['allowedOrderBy'])) {
-            $this->allowedOrderBy = GeneralUtility::trimExplode(',', $this->settings['allowedOrderBy']);
+            $allowedOrderBy = GeneralUtility::trimExplode(',', $this->settings['allowedOrderBy']);
         }
 
         $orderBy = $orderDir = '';
         if (
             $this->request->hasArgument('orderBy')
-            && in_array($this->request->getArgument('orderBy'), $this->allowedOrderBy)
+            && in_array($this->request->getArgument('orderBy'), $allowedOrderBy)
         ) {
             $orderBy = $this->request->getArgument('orderBy');
-        } elseif (in_array($this->settings['orderBy'], $this->allowedOrderBy)) {
+        } elseif (in_array($this->settings['orderBy'], $allowedOrderBy)) {
             $orderBy = $this->settings['orderBy'];
         }
 
@@ -76,8 +65,10 @@ abstract class AbstractController extends ActionController
 
         if ($orderBy) {
             $defaultOrderings = array_merge([$orderBy => $orderDir], (array)$this->settings['orderings']);
-            $this->repository->setDefaultOrderings($defaultOrderings);
+            $repository->setDefaultOrderings($defaultOrderings);
         }
+
+        return $repository;
     }
 
     protected function setPageTitle(string $title)

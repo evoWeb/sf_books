@@ -22,19 +22,21 @@ use TYPO3\CMS\Core\Http\HtmlResponse;
 
 class SeriesController extends AbstractController
 {
-    /**
-     * @var SeriesRepository
-     */
-    protected $repository;
+    protected SeriesRepository $seriesRepository;
 
-    public function __construct(SeriesRepository $repository)
+    public function __construct(SeriesRepository $seriesRepository)
     {
-        $this->repository = $repository;
+        $this->seriesRepository = $seriesRepository;
+    }
+
+    protected function initializeAction()
+    {
+        $this->setDefaultOrderings($this->seriesRepository);
     }
 
     protected function listAction(): ResponseInterface
     {
-        $seriesGroups = $this->repository->findSeriesGroupedByLetters();
+        $seriesGroups = $this->seriesRepository->findSeriesGroupedByLetters();
 
         $this->view->assign('seriesGroups', $seriesGroups);
 

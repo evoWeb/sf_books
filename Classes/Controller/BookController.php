@@ -23,14 +23,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BookController extends AbstractController
 {
-    /**
-     * @var BookRepository
-     */
-    protected $repository;
+    protected BookRepository $bookRepository;
 
-    public function __construct(BookRepository $repository)
+    public function __construct(BookRepository $bookRepository)
     {
-        $this->repository = $repository;
+        $this->bookRepository = $bookRepository;
+    }
+
+    protected function initializeAction()
+    {
+        $this->setDefaultOrderings($this->bookRepository);
     }
 
     protected function initializeListAction()
@@ -51,9 +53,9 @@ class BookController extends AbstractController
                 && reset($this->settings['category']) < 1
             )
         ) {
-            $books = $this->repository->findAll();
+            $books = $this->bookRepository->findAll();
         } else {
-            $books = $this->repository->findByCategories($this->settings['category']);
+            $books = $this->bookRepository->findByCategories($this->settings['category']);
         }
 
         $this->view->assign('books', $books);
@@ -81,7 +83,7 @@ class BookController extends AbstractController
         }
         $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
-        $books = $this->repository->findBySearch($query, $searchBy);
+        $books = $this->bookRepository->findBySearch($query, $searchBy);
 
         $this->view->assign('query', $query);
         $this->view->assign('books', $books);

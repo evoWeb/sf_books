@@ -24,14 +24,16 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
 {
-    /**
-     * @var CategoryRepository
-     */
-    protected $repository;
+    protected CategoryRepository $categoryRepository;
 
-    public function __construct(CategoryRepository $repository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    protected function initializeAction()
+    {
+        $this->setDefaultOrderings($this->categoryRepository);
     }
 
     protected function initializeListAction()
@@ -49,9 +51,9 @@ class CategoryController extends AbstractController
             count($this->settings['category']) == 0
             || (count($this->settings['category']) == 1 && reset($this->settings['category']) < 1)
         ) {
-            $categories = $this->repository->findAll();
+            $categories = $this->categoryRepository->findAll();
         } else {
-            $categories = $this->repository->findByCategories($this->settings['category']);
+            $categories = $this->categoryRepository->findByCategories($this->settings['category']);
         }
 
         $categories = $this->removeExcludeCategories($categories);

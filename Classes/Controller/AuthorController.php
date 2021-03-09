@@ -23,19 +23,21 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AuthorController extends AbstractController
 {
-    /**
-     * @var AuthorRepository
-     */
-    protected $repository;
+    protected AuthorRepository $authorRepository;
 
-    public function __construct(AuthorRepository $repository)
+    public function __construct(AuthorRepository $authorRepository)
     {
-        $this->repository = $repository;
+        $this->authorRepository = $authorRepository;
+    }
+
+    protected function initializeAction()
+    {
+        $this->setDefaultOrderings($this->authorRepository);
     }
 
     protected function listAction(): ResponseInterface
     {
-        $authorGroups = $this->repository->findAuthorGroupedByLetters();
+        $authorGroups = $this->authorRepository->findAuthorGroupedByLetters();
 
         $this->view->assign('authorGroups', $authorGroups);
 
@@ -61,7 +63,7 @@ class AuthorController extends AbstractController
         }
         $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
-        $authors = $this->repository->findBySearch($query, $searchBy);
+        $authors = $this->authorRepository->findBySearch($query, $searchBy);
 
         $this->view->assign('query', $query);
         $this->view->assign('authors', $authors);
