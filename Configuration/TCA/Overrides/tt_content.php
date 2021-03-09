@@ -15,7 +15,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_
     'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_book'
 );
 
-
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['sfbooks_author'] = 'pi_flexform';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_author'] = 'layout,select_key';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -28,7 +27,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_
     'Author',
     'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_author'
 );
-
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['sfbooks_category'] = 'pi_flexform';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_category'] = 'layout,select_key';
@@ -43,7 +41,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_
     'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_category'
 );
 
-
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['sfbooks_series'] = 'pi_flexform';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_series'] = 'layout,select_key';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -56,7 +53,6 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_
     'Series',
     'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_series'
 );
-
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['sfbooks_search'] = 'pi_flexform';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['sfbooks_search'] = 'layout,select_key';

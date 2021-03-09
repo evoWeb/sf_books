@@ -44,8 +44,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * </f:for>
  *
  * @author Claus Due <claus@wildside.dk>, Wildside A/S
- * @package Vhs
- * @subpackage ViewHelpers\Iterator
  */
 class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
