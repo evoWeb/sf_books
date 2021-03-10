@@ -47,6 +47,13 @@
 	},
 
 	"scripts": {
-		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/sf_books"
+		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/sf_books",
+		"prepare-release": [
+			"rm -rf .Build",
+			"rm -rf .github",
+			"rm -rf Tests",
+			"rm .gitignore",
+			"sed -i \"s/version' => '.*'/version' => '$(echo ${GITHUB_REF} | cut -d / -f 3)'/\" ext_emconf.php\n"
+		]
 	}
 }
