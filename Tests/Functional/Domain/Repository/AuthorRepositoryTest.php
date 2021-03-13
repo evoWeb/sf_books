@@ -39,8 +39,15 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
      */
     public function findByUidReturnsOneAuthor()
     {
-        $response = $this->subject->findByUid(1);
-        $properties = $response->_getProperties();
+        $author = $this->subject->findByUid(1);
+        $properties = [
+            'uid' => $author->getUid(),
+            'pid' => $author->getPid(),
+            'lastname' => $author->getLastname(),
+            'firstname' => $author->getFirstname(),
+            'description' => $author->getDescription(),
+            'capitalLetter' => $author->getCapitalLetter(),
+        ];
         unset($properties['books']);
         self::assertEquals(
             [
@@ -49,7 +56,7 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
                 'lastname' => 'Shelley',
                 'firstname' => 'Mary',
                 'description' => 'Test description',
-                'capitalLetter' => null,
+                'capitalLetter' => 'S',
             ],
             $properties
         );
@@ -63,7 +70,14 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
         $response = $this->subject->findAuthorGroupedByLetters();
         /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
         $author = $response['S'][0];
-        $properties = $author->_getProperties();
+        $properties = [
+            'uid' => $author->getUid(),
+            'pid' => $author->getPid(),
+            'lastname' => $author->getLastname(),
+            'firstname' => $author->getFirstname(),
+            'description' => $author->getDescription(),
+            'capitalLetter' => $author->getCapitalLetter(),
+        ];
         unset($properties['books']);
         self::assertEquals(
             [
