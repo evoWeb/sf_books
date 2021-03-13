@@ -1,6 +1,6 @@
-function getNextSibling (element, selector) {
+function getNextSibling(element, selector) {
   // Get the next sibling element
-  var sibling = element.nextElementSibling;
+  let sibling = element.nextElementSibling;
 
   // If there's no selector, return the first sibling
   if (selector) {
@@ -17,18 +17,26 @@ function getNextSibling (element, selector) {
   return sibling;
 }
 
+function emitEvent(element, type) {
+  let event = document.createEvent('HTMLEvents');
+  event.initEvent(type, true, true);
+  element.dispatchEvent(event);
+}
+
 function triggerClickHandler(event) {
   event.preventDefault();
 
-  var trigger = this,
+  let trigger = event.target,
     current = document.querySelector('.trigger_active');
 
   if (trigger === current) {
     current.classList.remove('trigger_active');
     getNextSibling(current, '.toggle_container').classList.add('close');
   } else {
-    current.classList.remove('trigger_active');
-    getNextSibling(current, '.toggle_container').classList.add('close');
+    if (current != null ) {
+      current.classList.remove('trigger_active');
+      getNextSibling(current, '.toggle_container').classList.add('close');
+    }
 
     trigger.classList.add('trigger_active');
     getNextSibling(trigger, '.toggle_container').classList.remove('close');
@@ -36,7 +44,7 @@ function triggerClickHandler(event) {
 }
 
 function initAccordion() {
-  var allTriggers = document.querySelectorAll('.trigger'),
+  let allTriggers = document.querySelectorAll('.trigger'),
     accordionToOpen = null,
     keepOpen;
 
@@ -56,17 +64,17 @@ function initAccordion() {
 function letterClickHandler(event) {
   event.preventDefault();
 
-  var letter = this,
-    trigger = document.querySelector('.trigger' + letter.href);
+  let letter = event.target,
+    trigger = document.querySelector('.trigger' + letter.hash);
 
-  trigger.trigger('click');
+  emitEvent(trigger, 'click');
 
   document.body.scrollBy({ top: trigger.top });
-  window.location.hash = letter.attr('href');
+  window.location.hash = letter.hash;
 }
 
 function initLetters() {
-  var letters = document.querySelectorAll('.tx_sfbooks_author_letters a, .tx_sfbooks_series_letters a');
+  let letters = document.querySelectorAll('.tx-sfbooks .letters a');
 
   letters.forEach(function (letter) {
     letter.addEventListener('click', letterClickHandler);

@@ -1,0 +1,5 @@
+imports:
+    - { resource: "EXT:sf_books/Configuration/Routes/Author.yaml" }
+    - { resource: "EXT:sf_books/Configuration/Routes/Book.yaml" }
+    - { resource: "EXT:sf_books/Configuration/Routes/Category.yaml" }
+    - { resource: "EXT:sf_books/Configuration/Routes/Series.yaml" }

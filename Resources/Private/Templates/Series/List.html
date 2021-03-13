@@ -3,15 +3,15 @@
 <f:layout name="Default"/>
 
 <f:section name="content">
-    <ul class="tx_sfbooks_series_letters">
+    <ul class="letters tx_sfbooks_series_letters">
     <f:for each="{seriesGroups}" as="series" key="letter">
-        <li><a href="#authorsWith{letter}">{letter}</a></li>
+        <li><a href="#seriesWith{letter}">{letter}</a></li>
     </f:for>
     </ul>
 
     <f:for each="{seriesGroups}" as="series" key="letter">
     <div class="seriesGroup">
-        <h2 class="trigger" id="authorsWith{letter}">{letter}</h2>
+        <h2 class="trigger" id="seriesWith{letter}">{letter}</h2>
         <ul class="toggle_container close">
             <f:for each="{series}" as="series">
                 <li><f:link.action action="show" controller="Series" pluginName="series" pageUid="{settings.seriesPageId}"

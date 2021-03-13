@@ -56,7 +56,7 @@ class Series extends AbstractEntity
 
     public function getCapitalLetter(): string
     {
-        return strtoupper($this->capitalLetter);
+        return strtoupper(substr($this->getTitle(), 0, 1));
     }
 
     public function setDescription(string $description)

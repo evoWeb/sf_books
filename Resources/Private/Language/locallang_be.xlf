@@ -12,6 +12,12 @@
 			<trans-unit id="flexform.sheet_general">
 				<source>General Settings</source>
 			</trans-unit>
+			<trans-unit id="flexform.settings.bookPageId">
+				<source>Page with book list plugin</source>
+			</trans-unit>
+			<trans-unit id="flexform.settings.authorPageId">
+				<source>Page with author list plugin</source>
+			</trans-unit>
 			<trans-unit id="flexform.settings.limit">
 				<source>Amount of items in list</source>
 			</trans-unit>

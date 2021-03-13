@@ -111,9 +111,13 @@
 				<source>Additional Informations</source>
 				<target>Zusatzinformationen</target>
 			</trans-unit>
-			<trans-unit id="result_search">
-				<source>Result of your search</source>
-				<target>Ergebnis Ihrer Suche</target>
+			<trans-unit id="book_result_search">
+				<source>Book result of your search</source>
+				<target>Buchergebnis Ihrer Suche</target>
+			</trans-unit>
+			<trans-unit id="author_result_search">
+				<source>Author result of your search</source>
+				<target>Autorergebnis Ihrer Suche</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -56,7 +56,7 @@ class Author extends AbstractEntity
 
     public function getCapitalLetter(): string
     {
-        return strtoupper($this->capitalLetter);
+        return strtoupper(substr($this->getLastname(), 0, 1));
     }
 
     public function setFirstname(string $firstname)

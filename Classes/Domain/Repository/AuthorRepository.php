@@ -28,18 +28,17 @@ class AuthorRepository extends Repository
         $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
         $statement = $queryBuilder
             ->select('*')
-            ->addSelectLiteral('SUBSTR(lastname, 1, 1) AS capital_letter')
             ->from('tx_sfbooks_domain_model_author')
             ->orderBy('lastname')
             ->addOrderBy('firstname')
             ->getSQL();
 
-        /** @var $query \TYPO3\CMS\Extbase\Persistence\Generic\Query */
+        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
-        /** @var $author \Evoweb\SfBooks\Domain\Model\Author */
         $groupedAuthors = [];
+        /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
         foreach ($result as $author) {
             $letter = $author->getCapitalLetter();
             if (!is_array($groupedAuthors[$letter])) {
@@ -74,7 +73,7 @@ class AuthorRepository extends Repository
 
     protected function getQueryBuilderForTable(string $table): QueryBuilder
     {
-        /** @var \TYPO3\CMS\Core\Database\ConnectionPool $pool */
+        /** @var ConnectionPool $pool */
         $pool = GeneralUtility::makeInstance(
             ConnectionPool::class
         );

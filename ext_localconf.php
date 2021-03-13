@@ -62,9 +62,13 @@ call_user_func(function () {
         'Search',
         [
             \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
+            \Evoweb\SfBooks\Controller\BookController::class => 'search',
+            \Evoweb\SfBooks\Controller\AuthorController::class => 'search',
         ],
         [
             \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
+            \Evoweb\SfBooks\Controller\BookController::class => 'search',
+            \Evoweb\SfBooks\Controller\AuthorController::class => 'search',
         ]
     );
 

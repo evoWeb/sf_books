@@ -28,12 +28,12 @@ namespace Evoweb\SfBooks\ViewHelpers\Data;
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Sorts an instance of ObjectStorage, an Iterator implementation,
@@ -96,6 +96,7 @@ class SortViewHelper extends AbstractViewHelper
      */
     public function render()
     {
+        /** @var ?ObjectStorage $subject */
         $subject = $this->arguments['subject'];
         if ($subject === null && !$this->arguments['as']) {
             // this case enables inline usage if the "as" argument
@@ -116,10 +117,7 @@ class SortViewHelper extends AbstractViewHelper
         if (is_array($subject) === true) {
             $sorted = $this->sortArray($subject);
         } else {
-            if (
-                $subject instanceof ObjectStorage ||
-                $subject instanceof LazyObjectStorage
-            ) {
+            if ($subject instanceof ObjectStorage) {
                 $sorted = $this->sortObjectStorage($subject);
             } elseif ($subject instanceof \Iterator) {
                 /** @var \Iterator $subject */

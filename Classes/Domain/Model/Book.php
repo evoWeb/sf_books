@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Model;
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /*
  * This file is developed by evoWeb.
  *
@@ -16,7 +16,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Book extends AbstractEntity

@@ -6,6 +6,7 @@ namespace Evoweb\SfBooks\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+
 /*
  * This file is developed by evoWeb.
  *
@@ -22,11 +23,11 @@ class Extras extends AbstractEntity
      * @var ?ExtrasLabels
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected ?ExtrasLabels $label = null;
+    protected $label = null;
 
     protected int $type = 0;
 
-    protected string $content;
+    protected string $content = '';
 
     public function setLabel(ExtrasLabels $label)
     {

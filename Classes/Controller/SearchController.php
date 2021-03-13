@@ -41,6 +41,11 @@ class SearchController extends AbstractController
                         $pageId = (int)$this->settings['bookPageId'];
                         $controller = 'Book';
                 }
+
+                if (!$pageId) {
+                    $pageId = $this->configurationManager->getContentObject()->data['pid'];
+                }
+
                 $this->redirect('search', $controller, null, $search, $pageId);
             }
             $response = new HtmlResponse($this->view->render());

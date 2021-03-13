@@ -64,12 +64,9 @@ class CategoryController extends AbstractController
 
     protected function removeExcludeCategories(QueryResultInterface $categories): QueryResultInterface
     {
-        $excludeCategories = GeneralUtility::intExplode(
-            ',',
-            $this->settings['excludeCategories']
-        );
+        $excludeCategories = GeneralUtility::intExplode(',', $this->settings['excludeCategories']);
         if (count($excludeCategories)) {
-            /** @var $category \Evoweb\SfBooks\Domain\Model\Category */
+            /** @var \Evoweb\SfBooks\Domain\Model\Category $category */
             foreach ($categories as $category) {
                 if (in_array($category->getUid(), $excludeCategories)) {
                     $categories->offsetUnset($categories->key());

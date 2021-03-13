@@ -28,7 +28,6 @@ class SeriesRepository extends Repository
         $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
         $statement = $queryBuilder
             ->select('*')
-            ->addSelectLiteral('SUBSTR(title, 1, 1) AS capital_letter')
             ->from('tx_sfbooks_domain_model_series')
             ->orderBy('title')
             ->getSQL();
@@ -37,8 +36,8 @@ class SeriesRepository extends Repository
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
         $groupedSeries = [];
+        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
         foreach ($result as $series) {
             $letter = $series->getCapitalLetter();
             if (!is_array($groupedSeries[$letter])) {
@@ -68,7 +67,7 @@ class SeriesRepository extends Repository
 
     protected function getQueryBuilderForTable(string $table): QueryBuilder
     {
-        /** @var \TYPO3\CMS\Core\Database\ConnectionPool $pool */
+        /** @var ConnectionPool $pool */
         $pool = GeneralUtility::makeInstance(
             ConnectionPool::class
         );

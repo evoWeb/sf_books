@@ -6,6 +6,20 @@
 Breaking Changes
 ================
 
+2021.03.13
+''''''''''
+
+Replace pagination widget by pagination API
+-------------------------------------------
+
+Usage of f:widget.paginate is replaced with paginator and pagination objects with usage of Paginator.html partials.
+
+Routes configuration
+--------------------
+
+Routes configuration files are moved from /Configuration/Yaml to /Configuration/Routes
+
+
 2020.05.03
 ''''''''''
 
