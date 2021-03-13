@@ -39,8 +39,15 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
      */
     public function findByUidReturnsOneSeries()
     {
-        $response = $this->subject->findByUid(1);
-        $properties = $response->_getProperties();
+        $series = $this->subject->findByUid(1);
+        $properties = [
+            'uid' => $series->getUid(),
+            'pid' => $series->getPid(),
+            'title' => $series->getTitle(),
+            'info' => $series->getInfo(),
+            'description' => $series->getDescription(),
+            'capitalLetter' => $series->getCapitalLetter(),
+        ];
         unset($properties['books']);
         self::assertEquals(
             [
@@ -49,7 +56,7 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
                 'title' => 'Silberbände',
                 'info' => 'Info',
                 'description' => 'Test description',
-                'capitalLetter' => null,
+                'capitalLetter' => 'S',
             ],
             $properties
         );
@@ -61,9 +68,16 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
     public function findSeriesGroupedByLetters()
     {
         $response = $this->subject->findSeriesGroupedByLetters();
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $serie */
-        $serie = $response['S'][0];
-        $properties = $serie->_getProperties();
+        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
+        $series = $response['S'][0];
+        $properties = [
+            'uid' => $series->getUid(),
+            'pid' => $series->getPid(),
+            'title' => $series->getTitle(),
+            'info' => $series->getInfo(),
+            'description' => $series->getDescription(),
+            'capitalLetter' => $series->getCapitalLetter(),
+        ];
         unset($properties['books']);
         self::assertEquals(
             [
