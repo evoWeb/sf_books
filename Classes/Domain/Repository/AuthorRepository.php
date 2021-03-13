@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Repository;
 
 /*
@@ -13,25 +15,30 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
+class AuthorRepository extends Repository
 {
     public function findAuthorGroupedByLetters(): array
     {
         $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
         $statement = $queryBuilder
             ->select('*')
-            ->addSelectLiteral('SUBSTR(lastname, 1, 1) AS capital_letter')
             ->from('tx_sfbooks_domain_model_author')
             ->orderBy('lastname')
             ->addOrderBy('firstname')
             ->getSQL();
 
-        /** @var $query \TYPO3\CMS\Extbase\Persistence\Generic\Query */
+        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
-        /** @var $author \Evoweb\SfBooks\Domain\Model\Author */
         $groupedAuthors = [];
+        /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
         foreach ($result as $author) {
             $letter = $author->getCapitalLetter();
             if (!is_array($groupedAuthors[$letter])) {
@@ -44,16 +51,14 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $groupedAuthors;
     }
 
-    public function findBySearch(
-        string $searchString,
-        array $searchFields
-    ): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface {
+    public function findBySearch(string $searchString, array $searchFields): QueryResultInterface
+    {
         $query = $this->createQuery();
 
         $searchConstrains = [];
         foreach ($searchFields as $field) {
             if ($field === 'firstname' || $field === 'lastname') {
-                foreach (\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $searchString) as $part) {
+                foreach (GeneralUtility::trimExplode(' ', $searchString) as $part) {
                     $searchConstrains[] = $query->like($field, '%' . $part . '%');
                 }
             } else {
@@ -66,11 +71,11 @@ class AuthorRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $query->execute();
     }
 
-    protected function getQueryBuilderForTable(string $table): \TYPO3\CMS\Core\Database\Query\QueryBuilder
+    protected function getQueryBuilderForTable(string $table): QueryBuilder
     {
-        /** @var \TYPO3\CMS\Core\Database\ConnectionPool $pool */
-        $pool = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Core\Database\ConnectionPool::class
+        /** @var ConnectionPool $pool */
+        $pool = GeneralUtility::makeInstance(
+            ConnectionPool::class
         );
         return $pool->getQueryBuilderForTable($table);
     }

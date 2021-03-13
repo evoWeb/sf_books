@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -13,47 +15,56 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Book;
 use Evoweb\SfBooks\Domain\Repository\BookRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BookController extends AbstractController
 {
-    /**
-     * @var BookRepository
-     */
-    protected $repository;
+    protected BookRepository $bookRepository;
 
-    /**
-     * @param BookRepository $repository
-     */
-    public function __construct(BookRepository $repository)
+    public function __construct(BookRepository $bookRepository)
     {
-        $this->repository = $repository;
+        $this->bookRepository = $bookRepository;
+    }
+
+    protected function initializeAction()
+    {
+        $this->setDefaultOrderings($this->bookRepository);
     }
 
     protected function initializeListAction()
     {
-        $this->settings['category'] = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(
+        $this->settings['category'] = GeneralUtility::intExplode(
             ',',
             $this->settings['category'],
             true
         );
     }
 
-    protected function listAction()
+    protected function listAction(): ResponseInterface
     {
         if (
             count($this->settings['category']) == 0
-            || (count($this->settings['category']) == 1 && reset($this->settings['category']) < 1)
+            || (
+                count($this->settings['category']) == 1
+                && reset($this->settings['category']) < 1
+            )
         ) {
-            $books = $this->repository->findAll();
+            $books = $this->bookRepository->findAll();
         } else {
-            $books = $this->repository->findByCategories($this->settings['category']);
+            $books = $this->bookRepository->findByCategories($this->settings['category']);
         }
 
         $this->view->assign('books', $books);
+        $this->addPaginator($books);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Book $book = null)
+    protected function showAction(Book $book = null): ResponseInterface
     {
         if ($book == null) {
             $this->displayError('Book');
@@ -61,18 +72,23 @@ class BookController extends AbstractController
 
         $this->setPageTitle($book->getTitle());
         $this->view->assign('book', $book);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function searchAction(string $query, string $searchBy = '')
+    protected function searchAction(string $query, string $searchBy = ''): ResponseInterface
     {
         if (!$searchBy) {
             $searchBy = $this->settings['searchFields'];
         }
-        $searchBy = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchBy, true);
+        $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
-        $books = $this->repository->findBySearch($query, $searchBy);
+        $books = $this->bookRepository->findBySearch($query, $searchBy);
 
         $this->view->assign('query', $query);
         $this->view->assign('books', $books);
+        $this->addPaginator($books);
+
+        return new HtmlResponse($this->view->render());
     }
 }

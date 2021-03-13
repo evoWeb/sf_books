@@ -1,20 +1,24 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<ul class="tx_sfbooks_author_letters">
-<f:for each="{authorGroups}" as="authors" key="letter">
-	<li><a href="#authorsWith{letter}">{letter}</a></li>
-</f:for>
-</ul>
+<f:layout name="Default"/>
 
-<f:for each="{authorGroups}" as="authors" key="letter">
-<div class="authorgroup">
-	<h2 class="trigger" id="authorsWith{letter}">{letter}</h2>
-	<ul class="toggle_container">
-		<f:for each="{authors}" as="author">
-			<li><f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname}, {author.firstname}</f:link.action></li>
-		</f:for>
-	</ul>
-</div>
-</f:for>
+<f:section name="content">
+    <ul class="letters tx_sfbooks_author_letters">
+    <f:for each="{authorGroups}" as="authors" key="letter">
+        <li><a href="#authorsWith{letter}">{letter}</a></li>
+    </f:for>
+    </ul>
+
+    <f:for each="{authorGroups}" as="authors" key="letter">
+    <div class="authorgroup">
+        <h2 class="trigger" id="authorsWith{letter}">{letter}</h2>
+        <ul class="toggle_container close">
+            <f:for each="{authors}" as="author">
+                <li><f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname}, {author.firstname}</f:link.action></li>
+            </f:for>
+        </ul>
+    </div>
+    </f:for>
+</f:section>
 
 </html>

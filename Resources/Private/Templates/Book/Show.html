@@ -1,76 +1,72 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<table cellspacing="0" cellpadding="1" width="600" border="0">
-	<tr>
-		<td width="30">&nbsp;</td>
-		<td width="350">&nbsp;</td>
-		<td width="220">&nbsp;</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			<f:for each="{book.author}" as="author">
-				<f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname} {author.firstname}</f:link.action>
-			</f:for>
-		</td>
-		<td rowspan="9" align="center" valign="top">
-			<f:if condition="{book.cover}">
-				<f:for each="{book.cover}" as="cover">
-				<a href="#" data-enlarge-image="{f:uri.image(image: cover, maxWidth: '400', maxHeight: '600')}" data-enlarge-title="{f:translate(key: 'cover')}">
-					<f:image image="{cover}" maxWidth="200" alt="{book.title}"/>
-					<br/>
-					<span>{f:translate(key: 'cover_large')}</span>
-				</a>
-				</f:for>
-			</f:if>
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td class="gross">
-			{book.title}
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			{book.subtitle}
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			{book.number}
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			<f:for each="{book.extras}" as="extra">
-				<f:if condition="{extra.type} == 0">{extra.label.label}: {extra.content}<br/></f:if>
-				<f:if condition="{extra.type} == 1">{extra.label.label}: <f:format.html>{extra.content}</f:format.html><br/></f:if>
-			</f:for>
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			{f:translate(key: 'isbn')} {book.isbn}
-		</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<!--Erscheinungsjahr-->
-		<td>{book.year}</td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			<span class="highlight">{f:translate(key: 'description')}</span><br/><br/>
-			<f:format.html parseFuncTSPath="">{book.description}</f:format.html>
-		</td>
-	</tr>
-</table>
-<f:link.page pageUid="{settings.bookPageId}" class="backlink"><f:translate id="backlink"/></f:link.page>
+<f:layout name="Default"/>
+
+<f:section name="content">
+    <table>
+        <tr>
+            <td width="30">&nbsp;</td>
+            <td width="350">&nbsp;</td>
+            <td width="220">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <f:for each="{book.author}" as="author">
+                    <f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname} {author.firstname}</f:link.action>
+                </f:for>
+            </td>
+            <td rowspan="9" align="center" valign="top">
+                <f:if condition="{book.cover}">
+                    <f:for each="{book.cover}" as="cover">
+                    <a href="#" data-enlarge-image="{f:uri.image(image: cover, maxWidth: '400', maxHeight: '600')}" data-enlarge-title="{f:translate(key: 'cover')}">
+                        <f:image image="{cover}" maxWidth="200" alt="{book.title}"/>
+                        <br/>
+                        <span>{f:translate(key: 'cover_large')}</span>
+                    </a>
+                    </f:for>
+                </f:if>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td class="gross">{book.title}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>{book.subtitle}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>{book.number}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <f:for each="{book.extras}" as="extra">
+                    <f:if condition="{extra.type} == 0">{extra.label.label}: {extra.content}<br/></f:if>
+                    <f:if condition="{extra.type} == 1">{extra.label.label}: <f:format.html>{extra.content}</f:format.html><br/></f:if>
+                </f:for>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>{f:translate(key: 'isbn')} {book.isbn}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <!-- release year -->
+            <td>{book.year}</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <span class="highlight">{f:translate(key: 'description')}</span><br/><br/>
+                <f:format.html parseFuncTSPath="">{book.description}</f:format.html>
+            </td>
+        </tr>
+    </table>
+    <f:link.page pageUid="{settings.bookPageId}" class="backlink"><f:translate id="backlink"/></f:link.page>
+</f:section>
 
 </html>

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Evoweb\SfBooks\Updates;
+
 /*
  * This file is copied from the TYPO3 CMS install tool package.
  *
@@ -15,14 +17,13 @@ declare(strict_types=1);
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace Evoweb\SfBooks\Updates;
-
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Fills tx_sfbooks_domain_model_author.path_segment with a proper value for pages that do not have a slug updater.
@@ -30,22 +31,13 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
  *
  * @internal This class is only meant to be used within EXT:install and is not part of the TYPO3 Core API.
  */
-abstract class AbstractPopulateSlugs implements \TYPO3\CMS\Install\Updates\UpgradeWizardInterface
+abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
-    /**
-     * @var string
-     */
-    protected $table = 'tx_sfbooks_domain_model_author';
+    protected string $table = 'tx_sfbooks_domain_model_author';
 
-    /**
-     * @var string
-     */
-    protected $fieldName = 'path_segment';
+    protected string $fieldName = 'path_segment';
 
-    /**
-     * @var string
-     */
-    protected $identifier = '';
+    protected string $identifier = '';
 
     /**
      * @return string Unique identifier of this updater

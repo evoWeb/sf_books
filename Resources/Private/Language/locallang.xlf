@@ -87,8 +87,11 @@
 			<trans-unit id="label_extras">
 				<source>Additional Information</source>
 			</trans-unit>
-			<trans-unit id="result_search">
-				<source>Result of your search</source>
+			<trans-unit id="book_result_search">
+				<source>Book result of your search</source>
+			</trans-unit>
+			<trans-unit id="author_result_search">
+				<source>Author result of your search</source>
 			</trans-unit>
 		</body>
 	</file>

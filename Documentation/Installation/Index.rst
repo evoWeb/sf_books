@@ -52,4 +52,4 @@ This allows each of the plugins to render seo friendly urls.
 ::
 
 	imports:
-		- { resource: "EXT:sf_books/Configuration/Yaml/Default.yaml" }
+		- { resource: "EXT:sf_books/Configuration/Routes/Default.yaml" }

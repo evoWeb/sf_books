@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -13,55 +16,47 @@ namespace Evoweb\SfBooks\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Author extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Author extends AbstractEntity
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Book>
+     * @var ObjectStorage<Book>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $books;
+    protected ObjectStorage $books;
 
-    /**
-     * @var string
-     */
-    protected $lastname;
+    protected string $lastname = '';
 
-    /**
-     * @var string
-     */
-    protected $firstname;
+    protected string $firstname = '';
 
-    /**
-     * @var string
-     */
-    protected $capitalLetter;
+    protected string $capitalLetter = '';
 
-    /**
-     * @var string
-     */
-    protected $description;
+    protected string $description = '';
+
+    public function __construct()
+    {
+        $this->initializeObject();
+    }
 
     public function initializeObject()
     {
-        $this->books = GeneralUtility::makeInstance(ObjectStorage::class);
+        $this->books = new ObjectStorage();
     }
 
-    public function setBooks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $books)
+    public function setBooks(ObjectStorage $books)
     {
         $this->books = $books;
     }
 
-    public function getBooks(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getBooks(): ObjectStorage
     {
         return $this->books;
     }
 
     public function getCapitalLetter(): string
     {
-        return strtoupper($this->capitalLetter);
+        return strtoupper(substr($this->getLastname(), 0, 1));
     }
 
     public function setFirstname(string $firstname)

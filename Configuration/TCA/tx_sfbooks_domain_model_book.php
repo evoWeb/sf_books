@@ -1,8 +1,10 @@
 <?php
 
+defined('TYPO3') or die();
+
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 $languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
-$languageFileTca = 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:';
+$languageFileTca = 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_sfbooks_domain_model_book');
 
@@ -23,11 +25,6 @@ return [
         ],
         'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_book.svg',
         'searchFields' => 'uid, title, subtitle, isbn, description',
-    ],
-
-    'interface' => [
-        'showRecordFieldList' => 'hidden,serie,category,number,title,author,isbn,
-        description,extras,cover,cover_large,sample_pdf,location1,location2,location3',
     ],
 
     'columns' => [
@@ -98,7 +95,6 @@ return [
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
                 'foreign_table_where' => 'ORDER BY fe_groups.title',
-                'enableMultiSelectFilterTextfield' => true
             ]
         ],
 

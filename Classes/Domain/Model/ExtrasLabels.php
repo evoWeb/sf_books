@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /*
  * This file is developed by evoWeb.
@@ -12,13 +16,9 @@ namespace Evoweb\SfBooks\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-class ExtrasLabels extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class ExtrasLabels extends AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $label;
+    protected string $label = '';
 
     public function setLabel(string $label)
     {

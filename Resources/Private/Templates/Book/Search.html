@@ -1,27 +1,31 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:if condition="{books}">
-	<f:then>
-		<f:widget.paginate objects="{books}" as="paginatedBooks" configuration="{itemsPerPage: settings.limit}">
-			<f:translate id="result_search"/>:<br /><br />
-			<ul id="search-result book">
-				<f:for each="{paginatedBooks}" as="book">
-					<li>
-						<f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book}">{book.title}</f:link.action>
-						<div>{book.isbn} - {book.subtitle}</div>
+<f:layout name="Default"/>
 
-						<f:for each="{book.author}" as="author">
-							<div class="autor"><f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname} {author.firstname}</f:link.action></div>
-						</f:for>
-					</li>
-				</f:for>
-			</ul>
-		</f:widget.paginate>
-	</f:then>
-	<f:else>
-		<div><f:translate id="empty_result" arguments="{query: query}"/></div>
-	</f:else>
-</f:if>
-<f:link.page pageUid="{settings.searchPageId}" class="backlink"><f:translate id="back_to_search"/></f:link.page>
+<f:section name="content">
+    <f:if condition="{books}">
+        <f:then>
+            <f:translate id="book_result_search"/>:<br /><br />
+            <ul id="search-result book">
+                <f:for each="{paginator.paginatedItems}" as="book" iteration="iterator">
+                <li>
+                    <f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book}">{book.title}</f:link.action>
+                    <div>{book.isbn} - {book.subtitle}</div>
+
+                    <f:for each="{book.author}" as="author">
+                        <div class="autor"><f:link.action action="show" controller="Author" pluginName="author" pageUid="{settings.authorPageId}" arguments="{author: author.uid}">{author.lastname} {author.firstname}</f:link.action></div>
+                    </f:for>
+                </li>
+                </f:for>
+            </ul>
+
+            <f:render partial="Paginator" arguments="{pagination: pagination, pages: pages, paginator: paginator}" />
+        </f:then>
+        <f:else>
+            <div><f:translate id="empty_result" arguments="{query: query}"/></div>
+        </f:else>
+    </f:if>
+    <f:link.page pageUid="{settings.searchPageId}" class="backlink"><f:translate id="back_to_search"/></f:link.page>
+</f:section>
 
 </html>

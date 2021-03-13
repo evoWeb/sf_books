@@ -10,6 +10,26 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<settings.bookPageId>
+						<TCEforms>
+							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.bookPageId</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.bookPageId>
+					<settings.authorPageId>
+						<TCEforms>
+							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.authorPageId</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.authorPageId>
 					<settings.limit>
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>

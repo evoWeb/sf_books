@@ -17,11 +17,9 @@
 	],
 
 	"require": {
-		"ext-pdo": "*",
-
-		"typo3/cms-core": "^9.5 || ^10.4",
-		"typo3/cms-extbase": "^9.5 || ^10.4",
-		"typo3/cms-fluid": "^9.5 || ^10.4"
+		"typo3/cms-core": "^11.0",
+		"typo3/cms-extbase": "*",
+		"typo3/cms-fluid": "*"
 	},
 
 	"autoload": {
@@ -47,6 +45,13 @@
 	},
 
 	"scripts": {
-		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/sf_books"
+		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/sf_books",
+		"prepare-release": [
+			"rm -rf .Build",
+			"rm -rf .github",
+			"rm -rf Tests",
+			"rm .gitignore",
+			"sed -i \"s/version' => '.*'/version' => '$(echo ${GITHUB_REF} | cut -d / -f 3)'/\" ext_emconf.php\n"
+		]
 	}
 }

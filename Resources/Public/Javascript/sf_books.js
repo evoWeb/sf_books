@@ -1,64 +1,87 @@
-$(document).ready(function() {
-	initAccordion();
-	initLetters();
-});
+function getNextSibling(element, selector) {
+  // Get the next sibling element
+  let sibling = element.nextElementSibling;
+
+  // If there's no selector, return the first sibling
+  if (selector) {
+    // If the sibling matches our selector, use it
+    // If not, jump to the next sibling and continue the loop
+    while (sibling) {
+      if (sibling.matches(selector)) {
+        break;
+      }
+      sibling = sibling.nextElementSibling
+    }
+  }
+
+  return sibling;
+}
+
+function emitEvent(element, type) {
+  let event = document.createEvent('HTMLEvents');
+  event.initEvent(type, true, true);
+  element.dispatchEvent(event);
+}
+
+function triggerClickHandler(event) {
+  event.preventDefault();
+
+  let trigger = event.target,
+    current = document.querySelector('.trigger_active');
+
+  if (trigger === current) {
+    current.classList.remove('trigger_active');
+    getNextSibling(current, '.toggle_container').classList.add('close');
+  } else {
+    if (current != null ) {
+      current.classList.remove('trigger_active');
+      getNextSibling(current, '.toggle_container').classList.add('close');
+    }
+
+    trigger.classList.add('trigger_active');
+    getNextSibling(trigger, '.toggle_container').classList.remove('close');
+  }
+}
 
 function initAccordion() {
-	var $allTriggers = $('.trigger'),
-		$accordionToOpen = null,
-		$keepOpen;
+  let allTriggers = document.querySelectorAll('.trigger'),
+    accordionToOpen = null,
+    keepOpen;
 
-	$allTriggers.click(function() {
-		var $trigger = $(this),
-			$current = $('.trigger_active').first();
+  allTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', triggerClickHandler);
+  })
 
-		if (this == $current.get(0)) {
-			$trigger
-				.removeClass('trigger_active')
-				.next('.toggle_container')
-					.slideToggle('slow');
-		} else {
-			$current
-				.removeClass('trigger_active')
-				.next('.toggle_container')
-					.slideToggle('slow');
-			$trigger
-				.addClass('trigger_active')
-				.next('.toggle_container')
-					.slideToggle('slow');
-		}
+  if (window.location.hash) {
+    accordionToOpen = document.querySelector('.trigger' + window.location.hash);
 
-		return false;
-	});
+    keepOpen = accordionToOpen != null ? accordionToOpen : allTriggers[0];
+    keepOpen.classList.add('trigger_active');
+    getNextSibling(keepOpen, '.toggle_container').classList.remove('close');
+  }
+}
 
-	if (window.location.hash) {
-		$accordionToOpen = $('.trigger' + window.location.hash).first();
-	}
+function letterClickHandler(event) {
+  event.preventDefault();
 
-	$keepOpen = $accordionToOpen != null && $accordionToOpen.length ? $accordionToOpen : $allTriggers;
-	$keepOpen
-		.first()
-			.addClass('trigger_active');
+  let letter = event.target,
+    trigger = document.querySelector('.trigger' + letter.hash);
 
-	$allTriggers
-		.not('.trigger_active')
-			.next('.toggle_container')
-				.hide();
+  emitEvent(trigger, 'click');
+
+  document.body.scrollBy({ top: trigger.top });
+  window.location.hash = letter.hash;
 }
 
 function initLetters() {
-	$('.tx_sfbooks_author_letters a, .tx_sfbooks_series_letters a').click(function(event) {
-		event.preventDefault();
+  let letters = document.querySelectorAll('.tx-sfbooks .letters a');
 
-		var $letter = $(this);
-		var $trigger = $('.trigger' + $letter.attr('href'));
-		$trigger.first().trigger('click');
-
-		$('html,body').animate({
-				scrollTop: $trigger.offset().top
-			},
-			1500,
-			function () { window.location.hash = $letter.attr('href'); }
-		);
-	});
+  letters.forEach(function (letter) {
+    letter.addEventListener('click', letterClickHandler);
+  });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  initAccordion();
+  initLetters();
+});

@@ -1,23 +1,23 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 <li>
-	<h2><f:link.action action="show" controller="Category" pluginName="category" pageUid="{settings.categoryPageId}" arguments="{category: category.uid}">{category.title}</f:link.action></h2>
+    <h2><f:link.action action="show" controller="Category" pluginName="category" pageUid="{settings.categoryPageId}" arguments="{category: category.uid}">{category.title}</f:link.action></h2>
 
-	<f:if condition="{category.children}">
-		<ul class="categories">
-			<f:for each="{category.children}" as="childCategory">
-				<f:render partial="Category" arguments="{category: childCategory}"/>
-			</f:for>
-		</ul>
-	</f:if>
+    <f:if condition="{category.children}">
+        <ul class="categories">
+            <f:for each="{category.children}" as="childCategory">
+                <f:render partial="Category" arguments="{category: childCategory}"/>
+            </f:for>
+        </ul>
+    </f:if>
 
-	<f:if condition="{category.books}">
-		<ul class="books">
-			<f:for each="{category.books}" as="book">
-				<li><f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book.uid}">{book.title}</f:link.action></li>
-			</f:for>
-		</ul>
-	</f:if>
+    <f:if condition="{category.books}">
+        <ul class="books">
+            <f:for each="{category.books}" as="book">
+                <li><f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book.uid}">{book.title}</f:link.action></li>
+            </f:for>
+        </ul>
+    </f:if>
 </li>
 
 </html>

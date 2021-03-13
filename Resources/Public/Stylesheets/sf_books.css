@@ -1,96 +1,137 @@
+.tx-sfbooks .close {
+    display: none;
+}
+
 .tx-sfbooks-pi1 .singleAction {
-	overflow: hidden;
-	width: 600px;
+    overflow: hidden;
+    width: 600px;
 }
 
 .tx-sfbooks-pi1 .cover { float: right; }
 
 .tx-sfbooks-pi1 .singleAction dl {
-	margin: 0;
-	padding: 0;
-	width: 380px;
+    margin: 0;
+    padding: 0;
+    width: 380px;
 }
 
 .tx-sfbooks-pi1 .singleAction dt {
-	clear: left;
-	float: left;
-	width: 140px;
+    clear: left;
+    float: left;
+    width: 140px;
 }
 
 .tx-sfbooks-pi1 .singleAction dt:after {
-	content: ":";
+    content: ":";
 }
 
 .tx-sfbooks-pi1 .singleAction dd {
-	margin: 0 0 0 150px;
-	padding: 0 0 0.5em 0;
+    margin: 0 0 0 150px;
+    padding: 0 0 0.5em 0;
 }
 
 .tx-sfbooks-pi1 .singleAction ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .tx-sfbooks-pi1 .singleAction li {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* Accordion */
 .tx-sfbooks-pi1 .trigger {
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-moz-box-shadow: 0 1px 1px #fff inset;
-	box-shadow: 0 1px 1px #fff inset;
-	background: #DDDDDD -moz-linear-gradient(center top, #E9E9E9 50%, #DDDDDD 50%);
-	border: 1px solid #ddd;
-	color: #888;
-	cursor: pointer;
-	margin-bottom: 5px;
-	padding: 5px;
-	text-shadow: 0 1px 0 #fff;
-	width: 388px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #fff inset;
+    box-shadow: 0 1px 1px #fff inset;
+    background: #DDDDDD -moz-linear-gradient(center top, #E9E9E9 50%, #DDDDDD 50%);
+    border: 1px solid #ddd;
+    color: #888;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 5px;
+    text-shadow: 0 1px 0 #fff;
+    width: 388px;
 }
 
 .tx-sfbooks-pi1 .trigger_active {
-	color: #333;
+    color: #333;
 }
 
 .tx-sfbooks-pi1 .toggle_container {
-	padding: 5px 10px;
-	width: 380px;
+    padding: 5px 10px;
+    width: 380px;
 }
 
 /* Paginator */
-.tx-sfbooks-pi1 .widget-paginator {
-	margin: 0;
-	overflow: auto;
-	padding: 0;
-	text-align: center;
-}
-.tx-sfbooks-pi1 .below .widget-paginator {
-	margin: 20px 0 0 0;
+.tx-sfbooks .pagination li {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
 }
 
-.tx-sfbooks-pi1 .widget-paginator li {
-	list-style: none;
-	display: inline-block;
-	padding: 2px 5px;
+.tx-sfbooks .pagination li a {
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.tx-sfbooks .pagination li.active a {
+    color: #fff;
+}
+
+.tx-sfbooks .pagination li.active {
+    background-color: #ee6e73;
+}
+
+.tx-sfbooks .pagination li.disabled a {
+    cursor: default;
+    color: #999;
+}
+
+.tx-sfbooks .pagination li i {
+    font-size: 2rem;
+}
+
+.tx-sfbooks .pagination li.pages ul li {
+    display: inline-block;
+    float: none;
+}
+
+@media only screen and (max-width: 992px) {
+    .tx-sfbooks .pagination {
+        width: 100%;
+    }
+    .tx-sfbooks .pagination li.prev,
+    .tx-sfbooks .pagination li.next {
+        width: 10%;
+    }
+    .tx-sfbooks .pagination li.pages {
+        width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 
 /* Author letter navigation */
 .tx_sfbooks_author_letters,
 .tx_sfbooks_series_letters {
-	margin: 0 0 20px 0;
-	overflow: auto;
-	padding: 0;
+    margin: 0 0 20px 0;
+    overflow: auto;
+    padding: 0;
 }
 
 .tx_sfbooks_author_letters li,
 .tx_sfbooks_series_letters li {
-	list-style: none;
-	float: left;
-	display: block;
-	padding: 2px 5px;
+    list-style: none;
+    float: left;
+    display: block;
+    padding: 2px 5px;
 }

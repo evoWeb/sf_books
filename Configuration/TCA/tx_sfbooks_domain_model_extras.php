@@ -1,5 +1,7 @@
 <?php
 
+defined('TYPO3') or die();
+
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_sfbooks_domain_model_extras');
@@ -24,10 +26,6 @@ return [
         'type' => 'type',
         'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_extras.svg',
         'searchFields' => 'uid,label,content',
-    ],
-
-    'interface' => [
-        'showRecordFieldList' => 'hidden,label,content',
     ],
 
     'columns' => [
@@ -98,7 +96,6 @@ return [
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
                 'foreign_table_where' => 'ORDER BY fe_groups.title',
-                'enableMultiSelectFilterTextfield' => true
             ]
         ],
 

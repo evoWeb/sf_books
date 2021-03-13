@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -13,28 +15,36 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AuthorController extends AbstractController
 {
-    /**
-     * @var AuthorRepository
-     */
-    protected $repository;
+    protected AuthorRepository $authorRepository;
 
-    public function __construct(AuthorRepository $repository)
+    public function __construct(AuthorRepository $authorRepository)
     {
-        $this->repository = $repository;
+        $this->authorRepository = $authorRepository;
     }
 
-    protected function listAction()
+    protected function initializeAction()
     {
-        $authorGroups = $this->repository->findAuthorGroupedByLetters();
+        $this->setDefaultOrderings($this->authorRepository);
+    }
+
+    protected function listAction(): ResponseInterface
+    {
+        $authorGroups = $this->authorRepository->findAuthorGroupedByLetters();
 
         $this->view->assign('authorGroups', $authorGroups);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(\Evoweb\SfBooks\Domain\Model\Author $author = null)
+    protected function showAction(Author $author = null): ResponseInterface
     {
         if ($author == null) {
             $this->displayError('Author');
@@ -42,18 +52,23 @@ class AuthorController extends AbstractController
 
         $this->setPageTitle($author->getLastname() . ', ' . $author->getFirstname());
         $this->view->assign('author', $author);
+
+        return new HtmlResponse($this->view->render());
     }
 
-    protected function searchAction(string $query, string $searchBy = '')
+    protected function searchAction(string $query, string $searchBy = ''): ResponseInterface
     {
         if (!$searchBy) {
             $searchBy = $this->settings['searchFields'];
         }
-        $searchBy = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchBy, true);
+        $searchBy = GeneralUtility::trimExplode(',', $searchBy, true);
 
-        $authors = $this->repository->findBySearch($query, $searchBy);
+        $authors = $this->authorRepository->findBySearch($query, $searchBy);
 
         $this->view->assign('query', $query);
         $this->view->assign('authors', $authors);
+        $this->addPaginator($authors);
+
+        return new HtmlResponse($this->view->render());
     }
 }

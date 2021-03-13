@@ -1,4 +1,5 @@
 <?php
+
 namespace Evoweb\SfBooks\Tests\Functional;
 
 /**
@@ -42,11 +43,8 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
      */
     protected $fixturePath = 'typo3conf/ext/sf_books/Tests/Functional/Fixtures/';
 
-
     /**
      * Sets up this test suite.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -56,19 +54,14 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
 
     /**
      * Tears down this test case.
-     *
-     * @return void
      */
     protected function tearDown(): void
     {
         $this->assertNoLogEntries();
     }
 
-
     /**
      * Assert that no sys_log entries had been written.
-     *
-     * @return void
      */
     protected function assertNoLogEntries()
     {
@@ -77,9 +70,9 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
         if (count($logEntries) > $this->expectedLogEntries) {
             var_dump(array_values($logEntries));
             ob_flush();
-            $this->fail('The sys_log table contains unexpected entries.');
+            self::fail('The sys_log table contains unexpected entries.');
         } elseif (count($logEntries) < $this->expectedLogEntries) {
-            $this->fail('Expected count of sys_log entries no reached.');
+            self::fail('Expected count of sys_log entries no reached.');
         }
     }
 

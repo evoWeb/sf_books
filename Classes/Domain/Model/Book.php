@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /*
  * This file is developed by evoWeb.
  *
@@ -13,170 +16,148 @@ namespace Evoweb\SfBooks\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Book extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Book extends AbstractEntity
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Author>
+     * @var ObjectStorage<Author>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $author;
+    protected ObjectStorage $author;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Category>
+     * @var ObjectStorage<Category>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $category;
+    protected ObjectStorage $category;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Extras>
+     * @var ObjectStorage<Extras>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $extras;
+    protected ObjectStorage $extras;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @var ObjectStorage<FileReference>
      */
-    protected $cover;
+    protected ObjectStorage $cover;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @var ObjectStorage<FileReference>
      */
-    protected $coverLarge;
+    protected ObjectStorage $coverLarge;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @var ObjectStorage<FileReference>
      */
-    protected $samplePdf;
+    protected ObjectStorage $samplePdf;
 
     /**
-     * @var \Evoweb\SfBooks\Domain\Model\Series
+     * @var ?Series
      */
-    protected $series;
+    protected ?Series $series = null;
 
-    /**
-     * @var string
-     */
-    protected $number;
+    protected string $number = '';
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected string $title = '';
 
-    /**
-     * @var string
-     */
-    protected $subtitle;
+    protected string $subtitle = '';
 
-    /**
-     * @var string
-     */
-    protected $isbn;
+    protected string $isbn = '';
 
-    /**
-     * @var string
-     */
-    protected $year;
+    protected string $year = '';
 
-    /**
-     * @var string
-     */
-    protected $description;
+    protected string $description = '';
 
-    /**
-     * @var integer
-     */
-    protected $location1;
+    protected int $location1 = 0;
 
-    /**
-     * @var integer
-     */
-    protected $location2;
+    protected int $location2 = 0;
 
-    /**
-     * @var integer
-     */
-    protected $location3;
+    protected int $location3 = 0;
+
+    public function __construct()
+    {
+        $this->initializeObject();
+    }
 
     public function initializeObject()
     {
-        $this->author = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->category = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->extras = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->cover = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->coverLarge = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->samplePdf = GeneralUtility::makeInstance(ObjectStorage::class);
+        $this->author = new ObjectStorage();
+        $this->category = new ObjectStorage();
+        $this->extras = new ObjectStorage();
+        $this->cover = new ObjectStorage();
+        $this->coverLarge = new ObjectStorage();
+        $this->samplePdf = new ObjectStorage();
     }
 
-    public function setAuthor(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $author)
+    public function setAuthor(ObjectStorage $author)
     {
         $this->author = $author;
     }
 
-    public function getAuthor(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getAuthor(): ObjectStorage
     {
         return $this->author;
     }
 
-    public function setCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $category)
+    public function setCategory(ObjectStorage $category)
     {
         $this->category = $category;
     }
 
-    public function getCategory(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getCategory(): ObjectStorage
     {
         return $this->category;
     }
 
-    public function setExtras(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $extras)
+    public function setExtras(ObjectStorage $extras)
     {
         $this->extras = $extras;
     }
 
-    public function getExtras(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getExtras(): ObjectStorage
     {
         return $this->extras;
     }
 
-    public function setCover(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $cover)
+    public function setCover(ObjectStorage $cover)
     {
         $this->cover = $cover;
     }
 
-    public function getCover(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getCover(): ObjectStorage
     {
         return $this->cover;
     }
 
-    public function setCoverLarge(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverLarge)
+    public function setCoverLarge(ObjectStorage $coverLarge)
     {
         $this->coverLarge = $coverLarge;
     }
 
-    public function getCoverLarge(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getCoverLarge(): ObjectStorage
     {
         return $this->coverLarge;
     }
 
-    public function setSamplePdf(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $samplePdf)
+    public function setSamplePdf(ObjectStorage $samplePdf)
     {
         $this->samplePdf = $samplePdf;
     }
 
-    public function getSamplePdf(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getSamplePdf(): ObjectStorage
     {
         return $this->samplePdf;
     }
 
-    public function setSeries(\Evoweb\SfBooks\Domain\Model\Series $series)
+    public function setSeries(Series $series)
     {
         $this->series = $series;
     }
 
-    public function getSeries(): ?\Evoweb\SfBooks\Domain\Model\Series
+    public function getSeries(): ?Series
     {
         return $this->series;
     }

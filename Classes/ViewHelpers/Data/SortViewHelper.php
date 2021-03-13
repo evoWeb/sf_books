@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\ViewHelpers\Data;
 
 /*
@@ -26,7 +28,12 @@ namespace Evoweb\SfBooks\ViewHelpers\Data;
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Sorts an instance of ObjectStorage, an Iterator implementation,
@@ -42,14 +49,9 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * </f:for>
  *
  * @author Claus Due <claus@wildside.dk>, Wildside A/S
- * @package Vhs
- * @subpackage ViewHelpers\Iterator
  */
-class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+class SortViewHelper extends AbstractViewHelper
 {
-    /**
-     * Initialize arguments
-     */
     public function initializeArguments()
     {
         $this->registerArgument(
@@ -94,6 +96,7 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
      */
     public function render()
     {
+        /** @var ?ObjectStorage $subject */
         $subject = $this->arguments['subject'];
         if ($subject === null && !$this->arguments['as']) {
             // this case enables inline usage if the "as" argument
@@ -114,10 +117,7 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
         if (is_array($subject) === true) {
             $sorted = $this->sortArray($subject);
         } else {
-            if (
-                $subject instanceof ObjectStorage ||
-                $subject instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage
-            ) {
+            if ($subject instanceof ObjectStorage) {
                 $sorted = $this->sortObjectStorage($subject);
             } elseif ($subject instanceof \Iterator) {
                 /** @var \Iterator $subject */
@@ -126,8 +126,7 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
                     $array[$index] = $item;
                 }
                 $sorted = $this->sortArray($array);
-            } elseif ($subject instanceof \TYPO3\CMS\Extbase\Persistence\QueryResultInterface) {
-                /** @var \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $subject */
+            } elseif ($subject instanceof QueryResultInterface) {
                 $sorted = $this->sortArray($subject->toArray());
             } elseif ($subject !== null) {
                 // a NULL value is respected and ignored, but any
@@ -200,7 +199,7 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
         }
 
         /** @var ObjectStorage $storage */
-        $storage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectStorage::class);
+        $storage = GeneralUtility::makeInstance(ObjectStorage::class);
         foreach ($sorted as $item) {
             $storage->attach($item);
         }
@@ -218,7 +217,7 @@ class SortViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelpe
     protected function getSortValue($object)
     {
         $field = $this->arguments['sortBy'];
-        $value = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $field);
+        $value = ObjectAccess::getProperty($object, $field);
         if ($value instanceof \DateTime) {
             $value = $value->format('U');
         } elseif ($value instanceof ObjectStorage) {

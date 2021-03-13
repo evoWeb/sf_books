@@ -1,20 +1,25 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<ul class="tx_sfbooks_series_letters">
-<f:for each="{seriesGroups}" as="series" key="letter">
-	<li><a href="#authorsWith{letter}">{letter}</a></li>
-</f:for>
-</ul>
+<f:layout name="Default"/>
 
-<f:for each="{seriesGroups}" as="series" key="letter">
-<div class="seriesGroup">
-	<h2 class="trigger" id="authorsWith{letter}">{letter}</h2>
-	<ul class="toggle_container">
-		<f:for each="{series}" as="series">
-			<li><f:link.action action="show" controller="Series" pluginName="series" pageUid="{settings.seriesPageId}" arguments="{series: series.uid}">{series.title}</f:link.action></li>
-		</f:for>
-	</ul>
-</div>
-</f:for>
+<f:section name="content">
+    <ul class="letters tx_sfbooks_series_letters">
+    <f:for each="{seriesGroups}" as="series" key="letter">
+        <li><a href="#seriesWith{letter}">{letter}</a></li>
+    </f:for>
+    </ul>
+
+    <f:for each="{seriesGroups}" as="series" key="letter">
+    <div class="seriesGroup">
+        <h2 class="trigger" id="seriesWith{letter}">{letter}</h2>
+        <ul class="toggle_container close">
+            <f:for each="{series}" as="series">
+                <li><f:link.action action="show" controller="Series" pluginName="series" pageUid="{settings.seriesPageId}"
+                                   arguments="{series: series.uid}">{series.title}</f:link.action></li>
+            </f:for>
+        </ul>
+    </div>
+    </f:for>
+</f:section>
 
 </html>

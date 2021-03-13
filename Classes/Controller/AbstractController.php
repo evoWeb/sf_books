@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -14,39 +16,31 @@ namespace Evoweb\SfBooks\Controller;
  */
 
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
+use TYPO3\CMS\Core\Controller\ErrorPageController;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+abstract class AbstractController extends ActionController
 {
-    /**
-     * @var array
-     */
-    protected $allowedOrderBy = [];
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Repository
-     */
-    protected $repository;
-
-    protected function initializeAction()
+    protected function setDefaultOrderings(Repository $repository): Repository
     {
-        $this->setDefaultOrderings();
-    }
-
-    protected function setDefaultOrderings()
-    {
+        $allowedOrderBy = [];
         if (isset($this->settings['allowedOrderBy'])) {
-            $this->allowedOrderBy = GeneralUtility::trimExplode(',', $this->settings['allowedOrderBy']);
+            $allowedOrderBy = GeneralUtility::trimExplode(',', $this->settings['allowedOrderBy']);
         }
 
         $orderBy = $orderDir = '';
         if (
             $this->request->hasArgument('orderBy')
-            && in_array($this->request->getArgument('orderBy'), $this->allowedOrderBy)
+            && in_array($this->request->getArgument('orderBy'), $allowedOrderBy)
         ) {
             $orderBy = $this->request->getArgument('orderBy');
-        } elseif (in_array($this->settings['orderBy'], $this->allowedOrderBy)) {
+        } elseif (in_array($this->settings['orderBy'], $allowedOrderBy)) {
             $orderBy = $this->settings['orderBy'];
         }
 
@@ -71,8 +65,10 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 
         if ($orderBy) {
             $defaultOrderings = array_merge([$orderBy => $orderDir], (array)$this->settings['orderings']);
-            $this->repository->setDefaultOrderings($defaultOrderings);
+            $repository->setDefaultOrderings($defaultOrderings);
         }
+
+        return $repository;
     }
 
     protected function setPageTitle(string $title)
@@ -85,11 +81,28 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     protected function displayError(string $type)
     {
         /** @var \TYPO3\CMS\Core\Controller\ErrorPageController $errorController */
-        $errorController = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Controller\ErrorPageController::class);
+        $errorController = GeneralUtility::makeInstance(ErrorPageController::class);
         echo $errorController->errorAction(
             'Page Not Found',
             'The page did not exist or was inaccessible. Reason: ' . $type . ' not found'
         );
         die();
+    }
+
+    protected function addPaginator(QueryResultInterface $result)
+    {
+        $currentPage = $this->request->hasArgument('currentPage')
+            ? (int)$this->request->hasArgument('currentPage') : 1;
+
+        $resultPaginator = new QueryResultPaginator($result, $currentPage, (int)$this->settings['limit']);
+        $pagination = new SimplePagination($resultPaginator);
+
+        $this->view->assignMultiple(
+            [
+                'paginator' => $resultPaginator,
+                'pagination' => $pagination,
+                'pages' => range(1, $pagination->getLastPageNumber()),
+            ]
+        );
     }
 }

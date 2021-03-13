@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -13,71 +16,69 @@ namespace Evoweb\SfBooks\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Category extends AbstractEntity
 {
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Category>
+     * @var ObjectStorage<Category>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $children;
+    protected ObjectStorage $children;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Evoweb\SfBooks\Domain\Model\Book>
+     * @var ObjectStorage<Book>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $books;
+    protected ObjectStorage $books;
 
     /**
-     * @var \Evoweb\SfBooks\Domain\Model\Category
+     * @var ?Category
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $parent;
+    protected ?Category $parent = null;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected string $title = '';
 
-    /**
-     * @var string
-     */
-    protected $description;
+    protected string $description = '';
+
+    public function __construct()
+    {
+        $this->initializeObject();
+    }
 
     public function initializeObject()
     {
-        $this->children = GeneralUtility::makeInstance(ObjectStorage::class);
-        $this->books = GeneralUtility::makeInstance(ObjectStorage::class);
+        $this->children = new ObjectStorage();
+        $this->books = new ObjectStorage();
     }
 
-    public function setChildren(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $children)
+    public function setChildren(ObjectStorage $children)
     {
         $this->children = $children;
     }
 
-    public function getChildren(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getChildren(): ObjectStorage
     {
         return $this->children;
     }
 
-    public function setBooks(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $books)
+    public function setBooks(ObjectStorage $books)
     {
         $this->books = $books;
     }
 
-    public function getBooks(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getBooks(): ObjectStorage
     {
         return $this->books;
     }
 
-    public function setParent(\Evoweb\SfBooks\Domain\Model\Category $parent)
+    public function setParent(Category $parent)
     {
         $this->parent = $parent;
     }
 
-    public function getParent(): ?\Evoweb\SfBooks\Domain\Model\Category
+    public function getParent(): ?Category
     {
         return $this->parent;
     }

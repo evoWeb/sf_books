@@ -1,33 +1,37 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:form action="startSearch" name="search" object="{search}">
-	<f:form.hidden property="searchFor" value="author"/>
-	<f:form.hidden property="searchBy" value="firstname,lastname"/>
-	<div>
-		<label><f:translate id="search_in_author"/>:</label>
-		<f:form.textfield property="query"/>
-		<f:form.submit name="author" value="{f:translate(key: 'search')}"/>
-	</div>
-</f:form>
+<f:layout name="Default"/>
 
-<f:form action="startSearch" name="search" object="{search}">
-	<f:form.hidden property="searchFor" value="book"/>
-	<f:form.hidden property="searchBy" value="title"/>
-	<div>
-		<label><f:translate id="search_in_book"/> (<f:translate id="listHeader_title"/>):</label>
-		<f:form.textfield property="query"/>
-		<f:form.submit name="book" value="{f:translate(key: 'search')}"/>
-	</div>
-</f:form>
+<f:section name="content">
+    <f:form action="startSearch" name="search" object="{search}">
+        <f:form.hidden property="searchFor" value="author"/>
+        <f:form.hidden property="searchBy" value="firstname,lastname"/>
+        <div>
+            <label><f:translate id="search_in_author"/>:</label>
+            <f:form.textfield property="query"/>
+            <f:form.submit name="author" value="{f:translate(key: 'search')}"/>
+        </div>
+    </f:form>
 
-<f:form action="startSearch" name="search" object="{search}">
-	<f:form.hidden property="searchFor" value="book"/>
-	<f:form.hidden property="searchBy" value="isbn"/>
-	<div>
-		<label><f:translate id="search_in_book"/> (<f:translate id="listHeader_isbn"/>):</label>
-		<f:form.textfield property="query"/>
-		<f:form.submit name="book" value="{f:translate(key: 'search')}"/>
-	</div>
-</f:form>
+    <f:form action="startSearch" name="search" object="{search}">
+        <f:form.hidden property="searchFor" value="book"/>
+        <f:form.hidden property="searchBy" value="title"/>
+        <div>
+            <label><f:translate id="search_in_book"/> (<f:translate id="listHeader_title"/>):</label>
+            <f:form.textfield property="query"/>
+            <f:form.submit name="book" value="{f:translate(key: 'search')}"/>
+        </div>
+    </f:form>
+
+    <f:form action="startSearch" name="search" object="{search}">
+        <f:form.hidden property="searchFor" value="book"/>
+        <f:form.hidden property="searchBy" value="isbn"/>
+        <div>
+            <label><f:translate id="search_in_book"/> (<f:translate id="listHeader_isbn"/>):</label>
+            <f:form.textfield property="query"/>
+            <f:form.submit name="book" value="{f:translate(key: 'search')}"/>
+        </div>
+    </f:form>
+</f:section>
 
 </html>

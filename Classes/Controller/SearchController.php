@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Evoweb\SfBooks\Controller;
 
 /*
@@ -13,31 +15,44 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
+
 class SearchController extends AbstractController
 {
-    public function searchAction()
+    public function searchAction(): ResponseInterface
     {
+        return new HtmlResponse($this->view->render());
     }
 
-    /**
-     * @param array $search
-     */
-    public function startSearchAction(array $search)
+    public function startSearchAction(array $search): ResponseInterface
     {
         if (is_array($search) && isset($search['query']) && $search['query'] != '') {
             if (isset($search['searchBy'])) {
                 switch ((string)$search['searchFor']) {
                     case 'author':
-                        $this->redirect('search', 'Author', null, $search, $this->settings['authorPageId']);
+                        $controller = 'Author';
+                        $pageId = (int)$this->settings['authorPageId'];
                         break;
 
                     case 'book':
                     default:
-                        $this->redirect('search', 'Book', null, $search, $this->settings['bookPageId']);
+                        $pageId = (int)$this->settings['bookPageId'];
+                        $controller = 'Book';
                 }
+
+                if (!$pageId) {
+                    $pageId = $this->configurationManager->getContentObject()->data['pid'];
+                }
+
+                $this->redirect('search', $controller, null, $search, $pageId);
             }
+            $response = new HtmlResponse($this->view->render());
         } else {
-            $this->forward('search');
+            $response = new ForwardResponse('search');
         }
+
+        return $response;
     }
 }

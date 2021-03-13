@@ -1,4 +1,5 @@
 <?php
+
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
 /**
@@ -11,7 +12,6 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTestCase
 {
     /**
@@ -42,7 +42,7 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
         $response = $this->subject->findByUid(1);
         $properties = $response->_getProperties();
         unset($properties['books']);
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,
@@ -65,7 +65,7 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
         $author = $response['S'][0];
         $properties = $author->_getProperties();
         unset($properties['books']);
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,

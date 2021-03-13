@@ -1,5 +1,0 @@
-imports:
-    - { resource: "EXT:sf_books/Configuration/Yaml/Author.yaml" }
-    - { resource: "EXT:sf_books/Configuration/Yaml/Book.yaml" }
-    - { resource: "EXT:sf_books/Configuration/Yaml/Category.yaml" }
-    - { resource: "EXT:sf_books/Configuration/Yaml/Series.yaml" }

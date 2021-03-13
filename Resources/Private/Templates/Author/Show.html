@@ -1,26 +1,30 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<h2>{author.firstname} {author.lastname}</h2>
+<f:layout name="Default"/>
 
-<div>
-	{author.description -> f:format.raw()}
+<f:section name="content">
+    <h2>{author.firstname} {author.lastname}</h2>
 
-	<f:for each="{author.books}" as="book">
-		<div class="book">
-			<div class="author"><f:for each="{book.author}" as="bookauthor" iteration="iteration">
-				<f:if condition="{iteration.total} > 1">
-					<f:if condition="{iteration.isLast}">
-						<f:then/>
-						<f:else>/</f:else>
-					</f:if>
-				</f:if>
-			</f:for>
-			</div>
-			<strong class="written-label"><f:translate id="written_books"/></strong>
-			<h3><f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book}">{book.title}</f:link.action></h3>
-		</div>
-	</f:for>
-	<f:link.page pageUid="{settings.authorPageId}" class="backlink"><f:translate id="backlink"/></f:link.page>
-</div>
+    <div>
+        {author.description -> f:format.raw()}
+
+        <f:for each="{author.books}" as="book">
+            <div class="book">
+                <div class="author"><f:for each="{book.author}" as="bookauthor" iteration="iteration">
+                    <f:if condition="{iteration.total} > 1">
+                        <f:if condition="{iteration.isLast}">
+                            <f:then/>
+                            <f:else>/</f:else>
+                        </f:if>
+                    </f:if>
+                </f:for>
+                </div>
+                <strong class="written-label"><f:translate id="written_books"/></strong>
+                <h3><f:link.action action="show" controller="Book" pluginName="book" pageUid="{settings.bookPageId}" arguments="{book: book}">{book.title}</f:link.action></h3>
+            </div>
+        </f:for>
+        <f:link.page pageUid="{settings.authorPageId}" class="backlink"><f:translate id="backlink"/></f:link.page>
+    </div>
+</f:section>
 
 </html>

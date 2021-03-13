@@ -1,5 +1,7 @@
 <?php
 
+defined('TYPO3') or die();
+
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_sfbooks_domain_model_extraslabels');
@@ -17,10 +19,6 @@ return [
             'disabled' => 'hidden',
         ],
         'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_extraslabels.svg',
-    ],
-
-    'interface' => [
-        'showRecordFieldList' => 'hidden, label',
     ],
 
     'columns' => [
