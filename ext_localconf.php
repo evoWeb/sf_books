@@ -50,7 +50,7 @@ call_user_func(function () {
         $extensionName,
         'Book',
         [
-            $bookController => 'list, show',
+            $bookController => 'list, show, search',
         ]
     );
 
@@ -58,7 +58,7 @@ call_user_func(function () {
         $extensionName,
         'Author',
         [
-            $authorController => 'list, show',
+            $authorController => 'list, show, search',
         ]
     );
 
