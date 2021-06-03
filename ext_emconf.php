@@ -11,7 +11,7 @@ books and to search easily information about each book.',
     'author_company' => 'evoWeb',
     'state' => 'stable',
     'clearCacheOnLoad' => 1,
-    'version' => '6.1.0',
+    'version' => '6.1.1',
     'constraints' => [
         'depends' => [
             'typo3' => '9.5.0-10.4.99',
