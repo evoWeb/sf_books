@@ -17,6 +17,8 @@ namespace Evoweb\SfBooks\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
 class SearchController extends AbstractController
@@ -46,7 +48,7 @@ class SearchController extends AbstractController
                     $pageId = $this->configurationManager->getContentObject()->data['pid'];
                 }
 
-                $this->redirect('search', $controller, null, $search, $pageId);
+                $this->redirect('search', $controller, null, $search, $pageId, $controller);
             }
             $response = new HtmlResponse($this->view->render());
         } else {
@@ -54,5 +56,29 @@ class SearchController extends AbstractController
         }
 
         return $response;
+    }
+
+    protected function redirect(
+        $actionName,
+        $controllerName = null,
+        $extensionName = null,
+        array $arguments = null,
+        $pageUid = null,
+        $delay = 0,
+        $statusCode = 303,
+        $pluginName = null
+    ) {
+        if ($controllerName === null) {
+            $controllerName = $this->request->getControllerName();
+        }
+        $this->uriBuilder->reset()->setCreateAbsoluteUri(true);
+        if (MathUtility::canBeInterpretedAsInteger($pageUid)) {
+            $this->uriBuilder->setTargetPageUid((int)$pageUid);
+        }
+        if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+            $this->uriBuilder->setAbsoluteUriScheme('https');
+        }
+        $uri = $this->uriBuilder->uriFor($actionName, $arguments, $controllerName, $extensionName, $pluginName);
+        $this->redirectToUri($uri, $delay, $statusCode);
     }
 }

@@ -29,7 +29,7 @@ call_user_func(function () {
         'SfBooks',
         'Book',
         [
-            \Evoweb\SfBooks\Controller\BookController::class => 'list, show',
+            \Evoweb\SfBooks\Controller\BookController::class => 'list, show, search',
         ]
     );
 
@@ -37,7 +37,7 @@ call_user_func(function () {
         'SfBooks',
         'Author',
         [
-            \Evoweb\SfBooks\Controller\AuthorController::class => 'list, show',
+            \Evoweb\SfBooks\Controller\AuthorController::class => 'list, show, search',
         ]
     );
 
