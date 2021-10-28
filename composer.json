@@ -45,7 +45,7 @@
 	},
 
 	"scripts": {
-		"post-autoload-dump": "mkdir -p .Build/Web/typo3conf/ext/ && ln -snf ../../../.. .Build/Web/typo3conf/ext/sf_books",
+		"post-autoload-dump": "ln -snf ../../. .Build/Web/sf_books",
 		"prepare-release": [
 			"rm -rf .Build",
 			"rm -rf .github",
@@ -53,5 +53,8 @@
 			"rm .gitignore",
 			"sed -i \"s/version' => '.*'/version' => '$(echo ${GITHUB_REF} | cut -d / -f 3)'/\" ext_emconf.php\n"
 		]
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^6.11.3"
 	}
 }

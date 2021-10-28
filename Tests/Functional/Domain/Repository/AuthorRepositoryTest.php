@@ -12,10 +12,16 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTestCase
+
+use Evoweb\SfBooks\Domain\Model\Author;
+use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
+use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+class AuthorRepositoryTest extends AbstractTestCase
 {
     /**
-     * @var \Evoweb\SfBooks\Domain\Repository\AuthorRepository
+     * @var AuthorRepository
      */
     private $subject;
 
@@ -24,14 +30,13 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-        $this->importDataSet(ORIGINAL_ROOT . $this->fixturePath . 'tx_sfbooks_domain_model_author.xml');
+        $GLOBALS['PAGES_TYPES']['default']['allowedTables'] = '';
 
-        /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager */
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Extbase\Object\ObjectManager::class
-        );
-        $this->subject = $objectManager->get(\Evoweb\SfBooks\Domain\Repository\AuthorRepository::class);
+        parent::setUp();
+
+        $this->subject = GeneralUtility::makeInstance(AuthorRepository::class);
+
+        $this->importDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.xml');
     }
 
     /**
@@ -48,7 +53,6 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        unset($properties['books']);
         self::assertEquals(
             [
                 'uid' => 1,
@@ -68,7 +72,7 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
     public function findAuthorGroupedByLetters()
     {
         $response = $this->subject->findAuthorGroupedByLetters();
-        /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
+        /** @var Author $author */
         $author = $response['S'][0];
         $properties = [
             'uid' => $author->getUid(),
@@ -78,7 +82,6 @@ class AuthorRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        unset($properties['books']);
         self::assertEquals(
             [
                 'uid' => 1,

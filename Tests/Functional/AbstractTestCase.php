@@ -15,33 +15,19 @@ namespace Evoweb\SfBooks\Tests\Functional;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * Functional test for the DataHandler
+ * Functional test for the repositories
  */
-abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+abstract class AbstractTestCase extends FunctionalTestCase
 {
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = [
-        'typo3conf/ext/sf_books',
-    ];
+    protected $testExtensionsToLoad = ['sf_books'];
 
-    /**
-     * @var int
-     */
-    protected $expectedLogEntries = 0;
-
-    /**
-     * @var string
-     */
-    protected $backendUserFixture = 'typo3conf/ext/sf_books/Tests/Functional/Fixtures/be_users.xml';
-
-    /**
-     * @var string
-     */
-    protected $fixturePath = 'typo3conf/ext/sf_books/Tests/Functional/Fixtures/';
+    protected int $expectedLogEntries = 0;
 
     /**
      * Sets up this test suite.
@@ -49,7 +35,6 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
     protected function setUp(): void
     {
         parent::setUp();
-        \TYPO3\CMS\Core\Core\Bootstrap::initializeLanguageObject();
     }
 
     /**
@@ -72,15 +57,10 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
             ob_flush();
             self::fail('The sys_log table contains unexpected entries.');
         } elseif (count($logEntries) < $this->expectedLogEntries) {
-            self::fail('Expected count of sys_log entries no reached.');
+            self::fail('Expected count of sys_log entries not reached.');
         }
     }
 
-    /**
-     * Gets log entries from the sys_log
-     *
-     * @return array
-     */
     protected function getLogEntries()
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_log');
@@ -94,7 +74,7 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
                 )
             )
             ->execute()
-            ->fetchAll();
-        return $result;
+            ->fetchAssociative();
+        return is_array($result) ? $result : [];
     }
 }

@@ -12,10 +12,16 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTestCase
+
+use Evoweb\SfBooks\Domain\Model\Series;
+use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
+use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+class SeriesRepositoryTest extends AbstractTestCase
 {
     /**
-     * @var \Evoweb\SfBooks\Domain\Repository\SeriesRepository
+     * @var SeriesRepository
      */
     private $subject;
 
@@ -25,13 +31,10 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
     protected function setUp(): void
     {
         parent::setUp();
-        $this->importDataSet(ORIGINAL_ROOT . $this->fixturePath . 'tx_sfbooks_domain_model_series.xml');
 
-        /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager */
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Extbase\Object\ObjectManager::class
-        );
-        $this->subject = $objectManager->get(\Evoweb\SfBooks\Domain\Repository\SeriesRepository::class);
+        $this->subject = GeneralUtility::makeInstance(SeriesRepository::class);
+
+        $this->importDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_series.xml');
     }
 
     /**
@@ -48,7 +51,6 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
             'description' => $series->getDescription(),
             'capitalLetter' => $series->getCapitalLetter(),
         ];
-        unset($properties['books']);
         self::assertEquals(
             [
                 'uid' => 1,
@@ -68,7 +70,7 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
     public function findSeriesGroupedByLetters()
     {
         $response = $this->subject->findSeriesGroupedByLetters();
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
+        /** @var Series $series */
         $series = $response['S'][0];
         $properties = [
             'uid' => $series->getUid(),
@@ -78,7 +80,6 @@ class SeriesRepositoryTest extends \Evoweb\SfBooks\Tests\Functional\AbstractTest
             'description' => $series->getDescription(),
             'capitalLetter' => $series->getCapitalLetter(),
         ];
-        unset($properties['books']);
         self::assertEquals(
             [
                 'uid' => 1,
