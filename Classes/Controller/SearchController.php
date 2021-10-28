@@ -30,9 +30,9 @@ class SearchController extends AbstractController
 
     public function startSearchAction(array $search): ResponseInterface
     {
-        if (is_array($search) && isset($search['query']) && $search['query'] != '') {
+        if (isset($search['query']) && $search['query'] != '') {
             if (isset($search['searchBy'])) {
-                switch ((string)$search['searchFor']) {
+                switch ((string)$search['searchFor'] ?? '') {
                     case 'author':
                         $controller = 'Author';
                         $pageId = (int)$this->settings['authorPageId'];
@@ -40,8 +40,8 @@ class SearchController extends AbstractController
 
                     case 'book':
                     default:
-                        $pageId = (int)$this->settings['bookPageId'];
                         $controller = 'Book';
+                        $pageId = (int)$this->settings['bookPageId'];
                 }
 
                 if (!$pageId) {
@@ -64,10 +64,9 @@ class SearchController extends AbstractController
         $extensionName = null,
         array $arguments = null,
         $pageUid = null,
-        $delay = 0,
-        $statusCode = 303,
-        $pluginName = null
-    ) {
+        $_ = null,
+        $statusCode = 303
+    ): void {
         if ($controllerName === null) {
             $controllerName = $this->request->getControllerName();
         }
@@ -78,7 +77,7 @@ class SearchController extends AbstractController
         if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
             $this->uriBuilder->setAbsoluteUriScheme('https');
         }
-        $uri = $this->uriBuilder->uriFor($actionName, $arguments, $controllerName, $extensionName, $pluginName);
-        $this->redirectToUri($uri, $delay, $statusCode);
+        $uri = $this->uriBuilder->uriFor($actionName, $arguments, $controllerName, $extensionName, $controllerName);
+        $this->redirectToUri($uri, null, $statusCode);
     }
 }
