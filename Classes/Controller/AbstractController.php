@@ -17,9 +17,12 @@ namespace Evoweb\SfBooks\Controller;
 
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
 use TYPO3\CMS\Core\Controller\ErrorPageController;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -71,6 +74,25 @@ abstract class AbstractController extends ActionController
         return $repository;
     }
 
+    protected function initializeView(ViewInterface $view)
+    {
+        if (method_exists($view, 'getTemplateRootPaths') && method_exists($view, 'setTemplateRootPaths')) {
+            $paths = $view->getTemplateRootPaths();
+            foreach ($paths as &$path) {
+                if (strpos($path, ':/') !== false) {
+                    preg_match('@(?<folder>[\d]+:/.+)@', $path, $matches);
+                    if (!empty($matches['folder'] ?? '')) {
+                        /** @var ResourceFactory $resourceFactory */
+                        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                        $folder = $resourceFactory->getFolderObjectFromCombinedIdentifier($matches['folder']);
+                        $path = Environment::getPublicPath() . $folder->getPublicUrl();
+                    }
+                }
+            }
+            $view->setTemplateRootPaths($paths);
+        }
+    }
+
     protected function setPageTitle(string $title)
     {
         /** @var TitleTagProvider $provider */
@@ -80,11 +102,11 @@ abstract class AbstractController extends ActionController
 
     protected function displayError(string $type)
     {
-        /** @var \TYPO3\CMS\Core\Controller\ErrorPageController $errorController */
+        /** @var ErrorPageController $errorController */
         $errorController = GeneralUtility::makeInstance(ErrorPageController::class);
         echo $errorController->errorAction(
             'Page Not Found',
-            'The page did not exist or was inaccessible. Reason: ' . $type . ' not found'
+            'The page did not exist or was inaccessible.' . ($type ? ' Reason: ' . $type : ' not found!')
         );
         die();
     }
