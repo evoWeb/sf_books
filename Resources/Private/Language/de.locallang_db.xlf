@@ -7,25 +7,29 @@
 				<source>Books management</source>
 				<target>Bücherverwaltung</target>
 			</trans-unit>
+			<trans-unit id="tt_content.list_type_group">
+				<source>Book Library</source>
+				<target>Bücher Bibliothek</target>
+			</trans-unit>
 			<trans-unit id="tt_content.list_type_book">
-				<source>Book Library - Book</source>
-				<target>Bücher Bibliothek - Bücher</target>
+				<source>Book</source>
+				<target>Bücher</target>
 			</trans-unit>
 			<trans-unit id="tt_content.list_type_author">
-				<source>Book Library - Author</source>
-				<target>Bücher Bibliothek - Autoren</target>
+				<source>Author</source>
+				<target>Autoren</target>
 			</trans-unit>
 			<trans-unit id="tt_content.list_type_category">
-				<source>Book Library - Category</source>
-				<target>Bücher Bibliothek - Kategorien</target>
+				<source>Category</source>
+				<target>Kategorien</target>
 			</trans-unit>
 			<trans-unit id="tt_content.list_type_search">
-				<source>Book Library - Search</source>
-				<target>Bücher Bibliothek - Suche</target>
+				<source>Search</source>
+				<target>Suche</target>
 			</trans-unit>
 			<trans-unit id="tt_content.list_type_series">
-				<source>Book Library - Series</source>
-				<target>Bücher Bibliothek - Buchreihen</target>
+				<source>Series</source>
+				<target>Buchreihen</target>
 			</trans-unit>
 			<trans-unit id="tx_sfbooks_domain_model_book">
 				<source>Book</source>

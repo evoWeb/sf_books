@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -16,15 +13,20 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Author extends AbstractEntity
 {
     /**
-     * @var ObjectStorage<Book>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Book>
      */
-    protected ObjectStorage $books;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $books;
 
     protected string $lastname = '';
 
@@ -39,12 +41,12 @@ class Author extends AbstractEntity
         $this->initializeObject();
     }
 
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->books = new ObjectStorage();
     }
 
-    public function setBooks(ObjectStorage $books)
+    public function setBooks(ObjectStorage $books): void
     {
         $this->books = $books;
     }
@@ -59,7 +61,7 @@ class Author extends AbstractEntity
         return strtoupper(substr($this->getLastname(), 0, 1));
     }
 
-    public function setFirstname(string $firstname)
+    public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
     }
@@ -69,7 +71,7 @@ class Author extends AbstractEntity
         return $this->firstname;
     }
 
-    public function setLastname(string $lastname)
+    public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
     }
@@ -79,7 +81,7 @@ class Author extends AbstractEntity
         return $this->lastname;
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }

@@ -10,7 +10,6 @@ return [
         'sortby' => 'sorting',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'title' => $languageFile . 'tx_sfbooks_domain_model_category',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -19,8 +18,13 @@ return [
             'endtime' => 'endtime',
             'fe_group' => 'fe_group',
         ],
-        'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_category.svg',
-        'searchFields' => 'uid, title',
+        'typeicon_classes' => [
+            'default' => 'sf-books-author',
+        ],
+        'searchFields' => 'title, description',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
 
     'columns' => [
@@ -32,39 +36,34 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'label' => '',
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
         'starttime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0
+                'type' => 'datetime',
+                'default' => 0,
             ],
             'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly'
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
-                ]
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
+                ],
             ],
             'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly'
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'fe_group' => [
             'exclude' => true,
@@ -76,22 +75,21 @@ return [
                 'maxitems' => 20,
                 'items' => [
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        -1
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
+                        'value' => -1,
                     ],
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        -2
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
+                        'value' => -2,
                     ],
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        '--div--'
-                    ]
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
+                        'value' => '--div--',
+                    ],
                 ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
-                'foreign_table_where' => 'ORDER BY fe_groups.title',
-            ]
+            ],
         ],
 
         'title' => [
@@ -101,7 +99,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 150,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'path_segment' => [
@@ -173,7 +171,7 @@ return [
                                 'readOnly' => true,
                                 'size' => 30,
                                 'max' => 100,
-                                'eval' => 'required',
+                                'required' => true,
                             ],
                         ],
                     ],
@@ -205,7 +203,6 @@ return [
             'label' => $languageFile . 'tx_sfbooks_domain_model_author.books',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_sfbooks_domain_model_book',
                 'foreign_table' => 'tx_sfbooks_domain_model_book',
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',

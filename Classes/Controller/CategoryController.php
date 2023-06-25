@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Controller;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,6 +13,8 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Controller;
+
 use Evoweb\SfBooks\Domain\Model\Category;
 use Evoweb\SfBooks\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
@@ -24,19 +24,16 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
 {
-    protected CategoryRepository $categoryRepository;
-
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(protected CategoryRepository $categoryRepository)
     {
-        $this->categoryRepository = $categoryRepository;
     }
 
-    protected function initializeAction()
+    protected function initializeAction(): void
     {
         $this->setDefaultOrderings($this->categoryRepository);
     }
 
-    protected function initializeListAction()
+    protected function initializeListAction(): void
     {
         $this->settings['category'] = GeneralUtility::intExplode(
             ',',
@@ -66,7 +63,7 @@ class CategoryController extends AbstractController
     {
         $excludeCategories = GeneralUtility::intExplode(',', $this->settings['excludeCategories']);
         if (count($excludeCategories)) {
-            /** @var \Evoweb\SfBooks\Domain\Model\Category $category */
+            /** @var Category $category */
             foreach ($categories as $category) {
                 if (in_array($category->getUid(), $excludeCategories)) {
                     $categories->offsetUnset($categories->key());

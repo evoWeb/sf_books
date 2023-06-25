@@ -10,11 +10,10 @@ books and to search easily information about each book.',
     'author_email' => 'typo3@evoweb.de',
     'author_company' => 'evoWeb',
     'state' => 'stable',
-    'clearCacheOnLoad' => 1,
-    'version' => '7.0.1',
+    'version' => '8.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.0.0-11.9.99',
+            'typo3' => '12.0.0-12.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _introduction:
 
@@ -11,11 +11,11 @@ This Documentation was written for version 5.0.x of the extension.
 
 
 What does it do?
-----------------
+================
 
 
 Managing your books:
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Purpose of this extension is to manage few to a lot of books. There is a list-
 and a singleview for the frontend. In listview a pagebrowser and a searchfield

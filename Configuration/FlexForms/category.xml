@@ -52,8 +52,7 @@
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.templatePath</label>
 							<config>
-								<type>group</type>
-								<internal_type>folder</internal_type>
+								<type>folder</type>
 								<size>1</size>
 							</config>
 						</TCEforms>

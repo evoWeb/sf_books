@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Controller;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,6 +13,8 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Controller;
+
 use Evoweb\SfBooks\Domain\Model\Book;
 use Evoweb\SfBooks\Domain\Repository\BookRepository;
 use Psr\Http\Message\ResponseInterface;
@@ -23,19 +23,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BookController extends AbstractController
 {
-    protected BookRepository $bookRepository;
-
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(protected BookRepository $bookRepository)
     {
-        $this->bookRepository = $bookRepository;
     }
 
-    protected function initializeAction()
+    protected function initializeAction(): void
     {
         $this->setDefaultOrderings($this->bookRepository);
     }
 
-    protected function initializeListAction()
+    protected function initializeListAction(): void
     {
         $this->settings['category'] = GeneralUtility::intExplode(
             ',',

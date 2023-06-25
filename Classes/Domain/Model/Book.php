@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Model;
-
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /*
  * This file is developed by evoWeb.
  *
@@ -16,28 +13,33 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Book extends AbstractEntity
 {
     /**
-     * @var ObjectStorage<Author>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Author>
      */
-    protected ObjectStorage $author;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $author;
 
     /**
-     * @var ObjectStorage<Category>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Category>
      */
-    protected ObjectStorage $category;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $category;
 
     /**
-     * @var ObjectStorage<Extras>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Extras>
      */
-    protected ObjectStorage $extras;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $extras;
 
     /**
      * @var ObjectStorage<FileReference>
@@ -54,9 +56,6 @@ class Book extends AbstractEntity
      */
     protected ObjectStorage $samplePdf;
 
-    /**
-     * @var ?Series
-     */
     protected ?Series $series = null;
 
     protected string $number = '';
@@ -82,7 +81,7 @@ class Book extends AbstractEntity
         $this->initializeObject();
     }
 
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->author = new ObjectStorage();
         $this->category = new ObjectStorage();
@@ -92,7 +91,7 @@ class Book extends AbstractEntity
         $this->samplePdf = new ObjectStorage();
     }
 
-    public function setAuthor(ObjectStorage $author)
+    public function setAuthor(ObjectStorage $author): void
     {
         $this->author = $author;
     }
@@ -102,7 +101,7 @@ class Book extends AbstractEntity
         return $this->author;
     }
 
-    public function setCategory(ObjectStorage $category)
+    public function setCategory(ObjectStorage $category): void
     {
         $this->category = $category;
     }
@@ -112,7 +111,7 @@ class Book extends AbstractEntity
         return $this->category;
     }
 
-    public function setExtras(ObjectStorage $extras)
+    public function setExtras(ObjectStorage $extras): void
     {
         $this->extras = $extras;
     }
@@ -122,7 +121,7 @@ class Book extends AbstractEntity
         return $this->extras;
     }
 
-    public function setCover(ObjectStorage $cover)
+    public function setCover(ObjectStorage $cover): void
     {
         $this->cover = $cover;
     }
@@ -132,7 +131,7 @@ class Book extends AbstractEntity
         return $this->cover;
     }
 
-    public function setCoverLarge(ObjectStorage $coverLarge)
+    public function setCoverLarge(ObjectStorage $coverLarge): void
     {
         $this->coverLarge = $coverLarge;
     }
@@ -142,7 +141,7 @@ class Book extends AbstractEntity
         return $this->coverLarge;
     }
 
-    public function setSamplePdf(ObjectStorage $samplePdf)
+    public function setSamplePdf(ObjectStorage $samplePdf): void
     {
         $this->samplePdf = $samplePdf;
     }
@@ -152,7 +151,7 @@ class Book extends AbstractEntity
         return $this->samplePdf;
     }
 
-    public function setSeries(Series $series)
+    public function setSeries(Series $series): void
     {
         $this->series = $series;
     }
@@ -162,7 +161,7 @@ class Book extends AbstractEntity
         return $this->series;
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -172,7 +171,7 @@ class Book extends AbstractEntity
         return $this->description;
     }
 
-    public function setYear(string $year)
+    public function setYear(string $year): void
     {
         $this->year = $year;
     }
@@ -182,7 +181,7 @@ class Book extends AbstractEntity
         return $this->year;
     }
 
-    public function setIsbn(string $isbn)
+    public function setIsbn(string $isbn): void
     {
         $this->isbn = $isbn;
     }
@@ -192,7 +191,7 @@ class Book extends AbstractEntity
         return $this->isbn;
     }
 
-    public function setLocation1(int $location1)
+    public function setLocation1(int $location1): void
     {
         $this->location1 = $location1;
     }
@@ -202,7 +201,7 @@ class Book extends AbstractEntity
         return $this->location1;
     }
 
-    public function setLocation2(int $location2)
+    public function setLocation2(int $location2): void
     {
         $this->location2 = $location2;
     }
@@ -212,7 +211,7 @@ class Book extends AbstractEntity
         return $this->location2;
     }
 
-    public function setLocation3(int $location3)
+    public function setLocation3(int $location3): void
     {
         $this->location3 = $location3;
     }
@@ -222,7 +221,7 @@ class Book extends AbstractEntity
         return $this->location3;
     }
 
-    public function setNumber(string $number)
+    public function setNumber(string $number): void
     {
         $this->number = $number;
     }
@@ -232,7 +231,7 @@ class Book extends AbstractEntity
         return $this->number;
     }
 
-    public function setSubtitle(string $subtitle)
+    public function setSubtitle(string $subtitle): void
     {
         $this->subtitle = $subtitle;
     }
@@ -242,7 +241,7 @@ class Book extends AbstractEntity
         return $this->subtitle;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }

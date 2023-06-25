@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\TitleTagProvider;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,11 +13,13 @@ namespace Evoweb\SfBooks\TitleTagProvider;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\TitleTagProvider;
+
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 
 class TitleTagProvider extends AbstractPageTitleProvider
 {
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }

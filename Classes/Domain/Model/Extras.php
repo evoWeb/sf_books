@@ -2,11 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -17,19 +12,23 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+
 class Extras extends AbstractEntity
 {
-    /**
-     * @var ?ExtrasLabels
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected $label = null;
+    #[Extbase\ORM\Lazy]
+    protected null|LazyLoadingProxy|ExtrasLabels $label = null;
 
     protected int $type = 0;
 
     protected string $content = '';
 
-    public function setLabel(ExtrasLabels $label)
+    public function setLabel(ExtrasLabels $label): void
     {
         $this->label = $label;
     }
@@ -42,7 +41,7 @@ class Extras extends AbstractEntity
         return $this->label;
     }
 
-    public function setType(int $type)
+    public function setType(int $type): void
     {
         $this->type = $type;
     }
@@ -52,7 +51,7 @@ class Extras extends AbstractEntity
         return $this->type;
     }
 
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }

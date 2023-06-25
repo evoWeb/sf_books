@@ -11,7 +11,6 @@ return [
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'title' => $languageFile . 'tx_sfbooks_domain_model_book',
         'delete' => 'deleted',
         'default_sortby' => 'ORDER BY title',
@@ -21,8 +20,13 @@ return [
             'endtime' => 'endtime',
             'fe_group' => 'fe_group',
         ],
-        'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_book.svg',
-        'searchFields' => 'uid, title, subtitle, isbn, description',
+        'typeicon_classes' => [
+            'default' => 'sf-books-book',
+        ],
+        'searchFields' => 'title, subtitle, isbn, description',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
 
     'columns' => [
@@ -34,39 +38,34 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'label' => '',
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
         'starttime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0
+                'type' => 'datetime',
+                'default' => 0,
             ],
             'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly'
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
-                ]
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
+                ],
             ],
             'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly'
+            'l10n_display' => 'defaultAsReadonly',
         ],
         'fe_group' => [
             'exclude' => true,
@@ -78,22 +77,21 @@ return [
                 'maxitems' => 20,
                 'items' => [
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        -1
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
+                        'value' => -1,
                     ],
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        -2
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
+                        'value' => -2,
                     ],
                     [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        '--div--'
-                    ]
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
+                        'value' => '--div--',
+                    ],
                 ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
-                'foreign_table_where' => 'ORDER BY fe_groups.title',
-            ]
+            ],
         ],
 
         'title' => [
@@ -102,7 +100,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'path_segment' => [
@@ -136,7 +134,6 @@ return [
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.author',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_sfbooks_domain_model_author',
                 'foreign_table' => 'tx_sfbooks_domain_model_author',
                 'MM' => 'tx_sfbooks_domain_model_book_author_mm',
@@ -168,7 +165,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'allowed' => 'tx_sfbooks_domain_model_series',
                 'foreign_table' => 'tx_sfbooks_domain_model_series',
@@ -232,8 +229,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $languageFile . 'tx_sfbooks_domain_model_book.location1.I.0',
-                        0,
+                        'label' => $languageFile . 'tx_sfbooks_domain_model_book.location1.I.0',
+                        'value' => 0,
                     ],
                 ],
             ],
@@ -248,8 +245,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $languageFile . 'tx_sfbooks_domain_model_book.location2.I.0',
-                        0,
+                        'label' => $languageFile . 'tx_sfbooks_domain_model_book.location2.I.0',
+                        'value' => 0,
                     ],
                 ],
             ],
@@ -263,8 +260,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $languageFile . 'tx_sfbooks_domain_model_book.location3.I.0',
-                        0,
+                        'label' => $languageFile . 'tx_sfbooks_domain_model_book.location3.I.0',
+                        'value' => 0,
                     ],
                 ],
             ],
@@ -322,9 +319,12 @@ return [
         ],
         'cover' => [
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('cover', [
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => $languageFileTtc . 'images.addFileReference'
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
                 // to use the imageoverlayPalette instead of the basicoverlayPalette
@@ -333,43 +333,46 @@ return [
                         '0' => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
-                        ]
+                                --palette--;;filePalette',
+                        ],
                     ],
                 ],
-            ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+            ],
         ],
         'cover_large' => [
             'exclude' => 1,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover_large',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('cover_large', [
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => $languageFileTtc . 'images.addFileReference'
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
                 // to use the imageoverlayPalette instead of the basicoverlayPalette
@@ -378,43 +381,46 @@ return [
                         '0' => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
-                        ]
+                                --palette--;;filePalette',
+                        ],
                     ],
                 ],
-            ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+            ],
         ],
         'sample_pdf' => [
             'exclude' => 1,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.sample_pdf',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('sample_pdf', [
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'pdf',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => $languageFileTtc . 'images.addFileReference'
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
                 // to use the imageoverlayPalette instead of the basicoverlayPalette
@@ -423,36 +429,36 @@ return [
                         '0' => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
-                                --palette--;;filePalette'
+                                --palette--;;filePalette',
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
-                                --palette--;;filePalette'
-                        ]
+                                --palette--;;filePalette',
+                        ],
                     ],
                 ],
-            ], 'pdf')
+            ],
         ],
     ],
 

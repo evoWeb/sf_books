@@ -9,14 +9,18 @@ return [
         'label' => 'label',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'title' => $languageFile . 'tx_sfbooks_domain_model_extraslabels',
         'delete' => 'deleted',
         'default_sortby' => 'ORDER BY crdate',
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:sf_books/Resources/Public/Icons/tx_sfbooks_domain_model_extraslabels.svg',
+        'typeicon_classes' => [
+            'default' => 'sf-books-extraslabels',
+        ],
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
 
     'columns' => [
@@ -28,12 +32,11 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'label' => '',
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
 
         'label' => [
@@ -42,7 +45,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
     ],

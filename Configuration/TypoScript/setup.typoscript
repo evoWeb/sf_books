@@ -56,14 +56,3 @@ plugin.tx_comments_pi1 {
   showUidMap.tx_sfbooks_book = book
   prefixToTableMap.tx_sfbooks_book = tx_sfbooks_domain_model_book
 }
-
-
-# Add resources to frontend rendering
-page.includeJSlibs {
-  jQuery = https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
-  jQuery.external = 1
-
-  sf_books = EXT:sf_books/Resources/Public/Javascript/sf_books.js
-}
-
-page.includeCSS.sf_books = EXT:sf_books/Resources/Public/Stylesheets/sf_books.css

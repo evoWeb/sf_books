@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Controller;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,6 +13,8 @@ namespace Evoweb\SfBooks\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Controller;
+
 use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
@@ -22,14 +22,11 @@ use TYPO3\CMS\Core\Http\HtmlResponse;
 
 class SeriesController extends AbstractController
 {
-    protected SeriesRepository $seriesRepository;
-
-    public function __construct(SeriesRepository $seriesRepository)
+    public function __construct(protected SeriesRepository $seriesRepository)
     {
-        $this->seriesRepository = $seriesRepository;
     }
 
-    protected function initializeAction()
+    protected function initializeAction(): void
     {
         $this->setDefaultOrderings($this->seriesRepository);
     }

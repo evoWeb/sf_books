@@ -1,6 +1,10 @@
-.idea
-.Build/bin/**
-.Build/vendor/**
-.Build/Web/**
-composer.*
-!composer.json
+.cache/
+.idea/
+Build/
+bin/
+Documentation-GENERATED-temp/
+typo3temp/
+var/
+public/
+vendor/
+composer.lock

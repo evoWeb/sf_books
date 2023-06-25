@@ -7,3 +7,15 @@ services:
 
   Evoweb\SfBooks\:
     resource: '../Classes/*'
+
+  Evoweb\SfBooks\Updates\PopulateAuthorSlugs:
+    public: true
+
+  Evoweb\SfBooks\Updates\PopulateBookSlugs:
+    public: true
+
+  Evoweb\SfBooks\Updates\PopulateCategorySlugs:
+    public: true
+
+  Evoweb\SfBooks\Updates\PopulateSeriesSlugs:
+    public: true

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Repository;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -14,6 +12,8 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Evoweb\SfBooks\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -28,7 +28,7 @@ class BookRepository extends Repository
         foreach ($categories as $category) {
             $categoryConstraints[] = $query->contains('category', $category);
         }
-        $constraint = $query->logicalOr($categoryConstraints);
+        $constraint = $query->logicalOr(...$categoryConstraints);
 
         $query->matching($constraint);
 
@@ -44,7 +44,7 @@ class BookRepository extends Repository
             $searchConstrains[] = $query->like($field, '%' . $searchString . '%');
         }
 
-        $query->matching($query->logicalOr($searchConstrains));
+        $query->matching($query->logicalOr(...$searchConstrains));
 
         return $query->execute();
     }

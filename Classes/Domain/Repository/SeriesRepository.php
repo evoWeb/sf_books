@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Repository;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,9 +13,12 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Repository;
+
+use Evoweb\SfBooks\Domain\Model\Series;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Utility\ClassNamingUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -26,14 +27,11 @@ class SeriesRepository extends Repository
 {
     protected ConnectionPool $connectionPool;
 
-    /**
-     * Constructs a new Repository
-     */
     public function __construct(PersistenceManagerInterface $persistenceManager, ConnectionPool $connectionPool)
     {
         $this->persistenceManager = $persistenceManager;
         $this->connectionPool = $connectionPool;
-        $this->objectType = ClassNamingUtility::translateRepositoryNameToModelName($this->getRepositoryClassName());
+        parent::__construct();
     }
 
     public function findSeriesGroupedByLetters(): array
@@ -45,12 +43,12 @@ class SeriesRepository extends Repository
             ->orderBy('title')
             ->getSQL();
 
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
+        /** @var Query $query */
         $query = $this->createQuery();
         $result = $query->statement($statement)->execute();
 
         $groupedSeries = [];
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
+        /** @var Series $series */
         foreach ($result as $series) {
             $letter = $series->getCapitalLetter();
             if (!isset($groupedSeries[$letter]) || !is_array($groupedSeries[$letter])) {
@@ -71,7 +69,7 @@ class SeriesRepository extends Repository
         foreach ($series as $serie) {
             $seriesConstraints[] = $query->equals('uid', $serie);
         }
-        $constraint = $query->logicalOr($seriesConstraints);
+        $constraint = $query->logicalOr(...$seriesConstraints);
 
         $query->matching($constraint);
 

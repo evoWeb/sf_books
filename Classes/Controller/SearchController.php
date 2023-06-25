@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Controller;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -14,6 +12,8 @@ namespace Evoweb\SfBooks\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Evoweb\SfBooks\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
@@ -45,7 +45,7 @@ class SearchController extends AbstractController
                 }
 
                 if (!$pageId) {
-                    $pageId = $this->configurationManager->getContentObject()->data['pid'];
+                    $pageId = $this->request->getAttribute('currentContentObject')->data['pid'];
                 }
 
                 $this->redirect('search', $controller, null, $search, $pageId, $controller);
@@ -66,7 +66,7 @@ class SearchController extends AbstractController
         $pageUid = null,
         $_ = null,
         $statusCode = 303
-    ): void {
+    ): ResponseInterface {
         if ($controllerName === null) {
             $controllerName = $this->request->getControllerName();
         }
@@ -78,6 +78,6 @@ class SearchController extends AbstractController
             $this->uriBuilder->setAbsoluteUriScheme('https');
         }
         $uri = $this->uriBuilder->uriFor($actionName, $arguments, $controllerName, $extensionName, $controllerName);
-        $this->redirectToUri($uri, null, $statusCode);
+        return $this->redirectToUri($uri, null, $statusCode);
     }
 }

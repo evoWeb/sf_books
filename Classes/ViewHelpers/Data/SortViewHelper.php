@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\ViewHelpers\Data;
-
 /*
  *  Copyright notice
  *
@@ -28,10 +26,10 @@ namespace Evoweb\SfBooks\ViewHelpers\Data;
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
+namespace Evoweb\SfBooks\ViewHelpers\Data;
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -90,11 +88,8 @@ class SortViewHelper extends AbstractViewHelper
     /**
      * "Render" method - sorts a target list-type target. Either $array or
      * $objectStorage must be specified. If both are, ObjectStorage takes precedence.
-     *
-     * @throws \Exception
-     * @return mixed
      */
-    public function render()
+    public function render(): array|null|ObjectStorage
     {
         /** @var ?ObjectStorage $subject */
         $subject = $this->arguments['subject'];
@@ -126,8 +121,6 @@ class SortViewHelper extends AbstractViewHelper
                     $array[$index] = $item;
                 }
                 $sorted = $this->sortArray($array);
-            } elseif ($subject instanceof QueryResultInterface) {
-                $sorted = $this->sortArray($subject->toArray());
             } elseif ($subject !== null) {
                 // a NULL value is respected and ignored, but any
                 // unrecognized value other than this is considered a
@@ -140,10 +133,11 @@ class SortViewHelper extends AbstractViewHelper
             }
         }
         if ($this->arguments['as']) {
-            if ($this->templateVariableContainer->exists($this->arguments['as'])) {
-                $this->templateVariableContainer->remove($this->arguments['as']);
+            $as = $this->arguments['as'];
+            if ($this->templateVariableContainer->exists($as)) {
+                $this->templateVariableContainer->remove($as);
             }
-            $this->templateVariableContainer->add($this->arguments['as'], $sorted);
+            $this->templateVariableContainer->add($as, $sorted);
 
             return $this->renderChildren();
         }
@@ -173,13 +167,9 @@ class SortViewHelper extends AbstractViewHelper
     }
 
     /**
-     * Sort a \TYPO3\CMS\Extbase\Persistence\ObjectStorage instance
-     *
-     * @param ObjectStorage|\TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage $storage
-     *
-     * @return ObjectStorage
+     * Sort a ObjectStorage instance
      */
-    protected function sortObjectStorage($storage): ObjectStorage
+    protected function sortObjectStorage(ObjectStorage $storage): ObjectStorage
     {
         $sorted = [];
         foreach ($storage as $index => $item) {
@@ -209,12 +199,8 @@ class SortViewHelper extends AbstractViewHelper
 
     /**
      * Gets the value to use as sorting value from $object
-     *
-     * @param mixed $object
-     *
-     * @return mixed
      */
-    protected function getSortValue($object)
+    protected function getSortValue(mixed $object): mixed
     {
         $field = $this->arguments['sortBy'];
         $value = ObjectAccess::getProperty($object, $field);
