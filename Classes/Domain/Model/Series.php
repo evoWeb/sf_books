@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -16,15 +13,20 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Series extends AbstractEntity
 {
     /**
-     * @var ObjectStorage<Book>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Book>
      */
-    protected ObjectStorage $books;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $books;
 
     protected string $title = '';
 
@@ -39,12 +41,12 @@ class Series extends AbstractEntity
         $this->initializeObject();
     }
 
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->books = new ObjectStorage();
     }
 
-    public function setBooks(ObjectStorage $books)
+    public function setBooks(ObjectStorage $books): void
     {
         $this->books = $books;
     }
@@ -59,7 +61,7 @@ class Series extends AbstractEntity
         return strtoupper(substr($this->getTitle(), 0, 1));
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -69,7 +71,7 @@ class Series extends AbstractEntity
         return $this->description;
     }
 
-    public function setInfo(string $info)
+    public function setInfo(string $info): void
     {
         $this->info = $info;
     }
@@ -79,7 +81,7 @@ class Series extends AbstractEntity
         return $this->info;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }

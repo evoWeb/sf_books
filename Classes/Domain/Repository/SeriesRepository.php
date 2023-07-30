@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Repository;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,32 +13,50 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Repository;
+
+use Evoweb\SfBooks\Domain\Model\Series;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class SeriesRepository extends Repository
 {
+    public function __construct(
+        protected ConnectionPool $connectionPool,
+        PersistenceManagerInterface $persistenceManager
+    ) {
+        $this->persistenceManager = $persistenceManager;
+        parent::__construct();
+    }
+
     public function findSeriesGroupedByLetters(): array
     {
-        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
-        $statement = $queryBuilder
-            ->select('*')
-            ->from('tx_sfbooks_domain_model_series')
-            ->orderBy('title')
-            ->getSQL();
-
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
         $query = $this->createQuery();
-        $result = $query->statement($statement)->execute();
+
+        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
+        $queryBuilder
+            ->select('*')
+            ->from('tx_sfbooks_domain_model_series');
+
+        $storagePageIds = $query->getQuerySettings()->getStoragePageIds();
+        if ($query->getQuerySettings()->getRespectStoragePage() && count($storagePageIds)) {
+            $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
+        }
+
+        foreach ($query->getOrderings() as $fieldName => $direction) {
+            $queryBuilder->addOrderBy($fieldName, $direction);
+        }
+
+        $result = $query->statement($queryBuilder)->execute();
 
         $groupedSeries = [];
-        /** @var \Evoweb\SfBooks\Domain\Model\Series $series */
+        /** @var Series $series */
         foreach ($result as $series) {
             $letter = $series->getCapitalLetter();
-            if (!is_array($groupedSeries[$letter])) {
+            if (!isset($groupedSeries[$letter]) || !is_array($groupedSeries[$letter])) {
                 $groupedSeries[$letter] = [];
             }
 
@@ -58,7 +74,7 @@ class SeriesRepository extends Repository
         foreach ($series as $serie) {
             $seriesConstraints[] = $query->equals('uid', $serie);
         }
-        $constraint = $query->logicalOr($seriesConstraints);
+        $constraint = $query->logicalOr(...$seriesConstraints);
 
         $query->matching($constraint);
 
@@ -67,10 +83,6 @@ class SeriesRepository extends Repository
 
     protected function getQueryBuilderForTable(string $table): QueryBuilder
     {
-        /** @var ConnectionPool $pool */
-        $pool = GeneralUtility::makeInstance(
-            ConnectionPool::class
-        );
-        return $pool->getQueryBuilderForTable($table);
+        return $this->connectionPool->getQueryBuilderForTable($table);
     }
 }

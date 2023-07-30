@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /*
  * This file is developed by evoWeb.
  *
@@ -16,27 +13,30 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Category extends AbstractEntity
 {
     /**
-     * @var ObjectStorage<Category>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Category>
      */
-    protected ObjectStorage $children;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $children;
 
     /**
-     * @var ObjectStorage<Book>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage|LazyObjectStorage<Book>
      */
-    protected ObjectStorage $books;
+    #[Extbase\ORM\Lazy]
+    protected ObjectStorage|LazyObjectStorage $books;
 
-    /**
-     * @var ?Category
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected ?Category $parent = null;
+    #[Extbase\ORM\Lazy]
+    protected null|LazyLoadingProxy|Category $parent = null;
 
     protected string $title = '';
 
@@ -47,13 +47,13 @@ class Category extends AbstractEntity
         $this->initializeObject();
     }
 
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->children = new ObjectStorage();
         $this->books = new ObjectStorage();
     }
 
-    public function setChildren(ObjectStorage $children)
+    public function setChildren(ObjectStorage $children): void
     {
         $this->children = $children;
     }
@@ -63,7 +63,7 @@ class Category extends AbstractEntity
         return $this->children;
     }
 
-    public function setBooks(ObjectStorage $books)
+    public function setBooks(ObjectStorage $books): void
     {
         $this->books = $books;
     }
@@ -73,7 +73,7 @@ class Category extends AbstractEntity
         return $this->books;
     }
 
-    public function setParent(Category $parent)
+    public function setParent(Category $parent): void
     {
         $this->parent = $parent;
     }
@@ -83,7 +83,7 @@ class Category extends AbstractEntity
         return $this->parent;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -93,7 +93,7 @@ class Category extends AbstractEntity
         return $this->title;
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }

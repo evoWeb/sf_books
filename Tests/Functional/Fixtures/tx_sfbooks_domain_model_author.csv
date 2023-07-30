@@ -1,0 +1,3 @@
+"tx_sfbooks_domain_model_author"
+,"uid","pid","tstamp","crdate","deleted","hidden","lastname","firstname","description","books","starttime","endtime","fe_group"
+,1,2,3,4,0,0,"Shelley","Mary","Test description",0,0,0,0

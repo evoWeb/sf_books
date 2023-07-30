@@ -5,8 +5,12 @@ routeEnhancers:
     plugin: Series
     defaultController: 'Series::list'
     routes:
-      - { routePath: '/', _controller: 'Series::list' }
-      - { routePath: '/{seriestitle}', _controller: 'Series::show', _arguments: { 'seriestitle': 'series' } }
+      - routePath: '/'
+        _controller: 'Series::list'
+      - routePath: '/{seriestitle}'
+        _controller: 'Series::show'
+        _arguments:
+          seriestitle: 'series'
     aspects:
       seriestitle:
         type: PersistedPatternMapper

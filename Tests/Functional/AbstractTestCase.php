@@ -15,46 +15,17 @@ namespace Evoweb\SfBooks\Tests\Functional;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * Functional test for the DataHandler
+ * Abstract functional test for the repositories
  */
-abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\FunctionalTestCase
+abstract class AbstractTestCase extends FunctionalTestCase
 {
-    /**
-     * @var array
-     */
-    protected $testExtensionsToLoad = [
-        'typo3conf/ext/sf_books',
-    ];
+    protected array $testExtensionsToLoad = ['sf_books'];
 
-    /**
-     * @var int
-     */
-    protected $expectedLogEntries = 0;
+    protected int $expectedLogEntries = 0;
 
-    /**
-     * @var string
-     */
-    protected $backendUserFixture = 'typo3conf/ext/sf_books/Tests/Functional/Fixtures/be_users.xml';
-
-    /**
-     * @var string
-     */
-    protected $fixturePath = 'typo3conf/ext/sf_books/Tests/Functional/Fixtures/';
-
-    /**
-     * Sets up this test suite.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        \TYPO3\CMS\Core\Core\Bootstrap::initializeLanguageObject();
-    }
-
-    /**
-     * Tears down this test case.
-     */
     protected function tearDown(): void
     {
         $this->assertNoLogEntries();
@@ -63,7 +34,7 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
     /**
      * Assert that no sys_log entries had been written.
      */
-    protected function assertNoLogEntries()
+    protected function assertNoLogEntries(): void
     {
         $logEntries = $this->getLogEntries();
 
@@ -72,16 +43,11 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
             ob_flush();
             self::fail('The sys_log table contains unexpected entries.');
         } elseif (count($logEntries) < $this->expectedLogEntries) {
-            self::fail('Expected count of sys_log entries no reached.');
+            self::fail('Expected count of sys_log entries not reached.');
         }
     }
 
-    /**
-     * Gets log entries from the sys_log
-     *
-     * @return array
-     */
-    protected function getLogEntries()
+    protected function getLogEntries(): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_log');
         $result = $queryBuilder
@@ -93,8 +59,8 @@ abstract class AbstractTestCase extends \TYPO3\TestingFramework\Core\Functional\
                     [1, 2]
                 )
             )
-            ->execute()
-            ->fetchAll();
-        return $result;
+            ->executeQuery()
+            ->fetchAllAssociative();
+        return is_array($result) ? $result : [];
     }
 }

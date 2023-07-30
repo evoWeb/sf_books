@@ -2,80 +2,74 @@
 
 defined('TYPO3') or die();
 
+use Evoweb\SfBooks\Controller\AuthorController;
+use Evoweb\SfBooks\Controller\BookController;
+use Evoweb\SfBooks\Controller\CategoryController;
+use Evoweb\SfBooks\Controller\SearchController;
+use Evoweb\SfBooks\Controller\SeriesController;
+use Evoweb\SfBooks\Updates\PopulateAuthorSlugs;
+use Evoweb\SfBooks\Updates\PopulateBookSlugs;
+use Evoweb\SfBooks\Updates\PopulateCategorySlugs;
+use Evoweb\SfBooks\Updates\PopulateSeriesSlugs;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 call_user_func(function () {
-    $icons = [
-        'book',
-        'author',
-        'category',
-        'search',
-        'series',
-    ];
-
-    /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
-    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-    foreach ($icons as $icon) {
-        $iconRegistry->registerIcon(
-            'content-plugin-sfbooks-' . $icon,
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:sf_books/Resources/Public/Icons/Extension.svg']
-        );
-    }
-
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+    ExtensionManagementUtility::addPageTSConfig(
         '@import \'EXT:sf_books/Configuration/TSconfig/NewContentElementWizard.typoscript\''
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'SfBooks',
         'Book',
         [
-            \Evoweb\SfBooks\Controller\BookController::class => 'list, show',
+            BookController::class => 'list, show, search',
         ]
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'SfBooks',
         'Author',
         [
-            \Evoweb\SfBooks\Controller\AuthorController::class => 'list, show',
+            AuthorController::class => 'list, show, search',
         ]
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'SfBooks',
         'Category',
         [
-            \Evoweb\SfBooks\Controller\CategoryController::class => 'list, show',
+            CategoryController::class => 'list, show',
         ]
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'SfBooks',
         'Series',
         [
-            \Evoweb\SfBooks\Controller\SeriesController::class => 'list, show',
+            SeriesController::class => 'list, show',
         ]
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'SfBooks',
         'Search',
         [
-            \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
-            \Evoweb\SfBooks\Controller\BookController::class => 'search',
-            \Evoweb\SfBooks\Controller\AuthorController::class => 'search',
+            SearchController::class => 'search, startSearch',
+            BookController::class => 'search',
+            AuthorController::class => 'search',
         ],
         [
-            \Evoweb\SfBooks\Controller\SearchController::class => 'search, startSearch',
-            \Evoweb\SfBooks\Controller\BookController::class => 'search',
-            \Evoweb\SfBooks\Controller\AuthorController::class => 'search',
+            SearchController::class => 'search, startSearch',
+            BookController::class => 'search',
+            AuthorController::class => 'search',
         ]
     );
 
     /**
      * Register Title Provider
      */
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+    ExtensionManagementUtility::addTypoScriptSetup(
         trim(
             '
     config.pageTitleProviders {
@@ -88,13 +82,4 @@ call_user_func(function () {
 '
         )
     );
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksAuthorsSlugs']
-        = \Evoweb\SfBooks\Updates\PopulateAuthorSlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksBooksSlugs']
-        = \Evoweb\SfBooks\Updates\PopulateBookSlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksCategoriesSlugs']
-        = \Evoweb\SfBooks\Updates\PopulateCategorySlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksSeriesSlugs']
-        = \Evoweb\SfBooks\Updates\PopulateSeriesSlugs::class;
 });

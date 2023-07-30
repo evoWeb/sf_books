@@ -10,7 +10,7 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.limit>
+					<settings.itemsPerPage>
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
 							<config>
@@ -19,7 +19,7 @@
 								<default>5</default>
 							</config>
 						</TCEforms>
-					</settings.limit>
+					</settings.itemsPerPage>
 					<settings.category>
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.category</label>
@@ -52,19 +52,8 @@
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.templatePath</label>
 							<config>
-								<type>input</type>
-								<renderType>inputLink</renderType>
-								<eval>trim</eval>
-								<fieldControl>
-									<linkPopup>
-										<options>
-											<title>Template</title>
-											<allowedExtensions>html</allowedExtensions>
-											<blindLinkFields>class, target, title, params</blindLinkFields>
-											<blindLinkOptions>mail,page,url,folder</blindLinkOptions>
-										</options>
-									</linkPopup>
-								</fieldControl>
+								<type>folder</type>
+								<size>1</size>
 							</config>
 						</TCEforms>
 					</view.templateRootPaths.200>

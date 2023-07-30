@@ -1,6 +1,4 @@
-.. include:: Includes.txt
-
-.. _start:
+.. include:: /Includes.rst.txt
 
 =====================================
 sf_books: Managing books the easy way
@@ -22,13 +20,14 @@ sf_books: Managing books the easy way
     forIntegrators
 
 :Copyright:
-    2004-2019
+    2004-2023
 
 :Author:
-    evoWeb
+    Sebastian Fischer
 
 :License:
-    Open Content License available from http://www.opencontent.org/opl.shtml
+   This document is published under the
+   `Open Publication License <https://www.opencontent.org/openpub/>`__.
 
 :Rendered:
     |today|
@@ -36,18 +35,13 @@ sf_books: Managing books the easy way
 The content of this document is related to TYPO3,
 a GNU/GPL CMS/Framework available from http://typo3.org
 
-.. only:: html
-
-   .. tip::
-
-      :ref: `Sitemap`
+----
 
 **Table of Contents**
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :titlesonly:
-   :glob:
 
    Introduction/Index
    Installation/Index
@@ -55,3 +49,11 @@ a GNU/GPL CMS/Framework available from http://typo3.org
    BreakingChanges/Index
    Updating/Index
    Testing/Index
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap
+   genindex

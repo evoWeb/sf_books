@@ -5,8 +5,12 @@ routeEnhancers:
     plugin: Category
     defaultController: 'Category::list'
     routes:
-      - { routePath: '/', _controller: 'Category::list' }
-      - { routePath: '/{categorytitle}', _controller: 'Category::show', _arguments: { 'categorytitle': 'category' } }
+      - routePath: '/'
+        _controller: 'Category::list'
+      - routePath: '/{categorytitle}'
+        _controller: 'Category::show'
+        _arguments:
+          categorytitle: 'category'
     aspects:
       categorytitle:
         type: PersistedPatternMapper

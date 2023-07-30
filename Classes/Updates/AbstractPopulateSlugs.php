@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Updates;
-
 /*
  * This file is copied from the TYPO3 CMS install tool package.
  *
@@ -17,7 +15,11 @@ namespace Evoweb\SfBooks\Updates;
  * The TYPO3 project - inspiring people to share!
  */
 
+namespace Evoweb\SfBooks\Updates;
+
+use Doctrine\DBAL\Result;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
@@ -26,55 +28,22 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
- * Fills tx_sfbooks_domain_model_author.path_segment with a proper value for pages that do not have a slug updater.
+ * Fills [table].path_segment with a proper value for pages that do not have a slug updater.
  * Does not take "deleted" authors into account, but respects workspace records.
- *
- * @internal This class is only meant to be used within EXT:install and is not part of the TYPO3 Core API.
  */
 abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
-    protected string $table = 'tx_sfbooks_domain_model_author';
+    protected string $table = '';
 
     protected string $fieldName = 'path_segment';
 
-    protected string $identifier = '';
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return $this->identifier;
+    public function __construct(protected ConnectionPool $connectionPool) {
     }
 
-    /**
-     * @return string Title of this updater
-     */
     abstract public function getTitle(): string;
 
-    /**
-     * @return string Longer description of this updater
-     */
     abstract public function getDescription(): string;
 
-    /**
-     * Checks whether updates are required.
-     *
-     * @return bool Whether an update is required (TRUE) or not (FALSE)
-     */
-    public function updateNecessary(): bool
-    {
-        $updateNeeded = false;
-        // Check if the database table even exists
-        if ($this->checkIfWizardIsRequired()) {
-            $updateNeeded = true;
-        }
-        return $updateNeeded;
-    }
-
-    /**
-     * @return string[] All new fields and tables must exist
-     */
     public function getPrerequisites(): array
     {
         return [
@@ -82,104 +51,97 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
         ];
     }
 
-    /**
-     * Performs the accordant updates.
-     *
-     * @return bool Whether everything went smoothly or not
-     */
-    public function executeUpdate(): bool
+    public function updateNecessary(): bool
     {
-        $this->populateSlugs();
-        return true;
+        return $this->hasRecordsToUpdate();
     }
 
-    /**
-     * Fills the database table "pages" with slugs based on the page title and its configuration.
-     * But also checks "legacy" functionality.
-     */
-    protected function populateSlugs()
+    public function executeUpdate(): bool
     {
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($this->table);
-        $queryBuilder = $connection->createQueryBuilder();
-        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
-        $statement = $queryBuilder
-            ->select('*')
-            ->from($this->table)
-            ->where(
-                $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->createNamedParameter('')),
-                    $queryBuilder->expr()->isNull($this->fieldName)
-                )
-            )
-            // Ensure that all pages are run through "per parent page" field, and in the correct sorting values
-            ->addOrderBy('pid', 'asc')
-            ->execute();
+        $connection = $this->connectionPool->getConnectionForTable($this->table);
 
         $fieldConfig = $GLOBALS['TCA'][$this->table]['columns'][$this->fieldName]['config'];
         $evalInfo = !empty($fieldConfig['eval']) ? GeneralUtility::trimExplode(',', $fieldConfig['eval'], true) : [];
+        $hasToBeUniqueInDb = in_array('unique', $evalInfo, true);
         $hasToBeUniqueInSite = in_array('uniqueInSite', $evalInfo, true);
         $hasToBeUniqueInPid = in_array('uniqueInPid', $evalInfo, true);
-        $slugHelper = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
-        while ($record = $statement->fetch()) {
-            $recordId = (int)$record['uid'];
-            $pid = (int)$record['pid'];
 
-            $slug = $slugHelper->generate($record, $pid);
+        /** @var SlugHelper $slug */
+        $slug = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
+
+        $records = $this->getRecordsToUpdate();
+        while ($recordData = $records->fetchAssociative()) {
+            $recordId = (int)$recordData['uid'];
+            $pid = (int)$recordData['pid'];
+
+            $proposal = $slug->generate($recordData, $pid);
 
             $state = RecordStateFactory::forName($this->table)
-                ->fromArray($record, $pid, $recordId);
-            if ($hasToBeUniqueInSite && !$slugHelper->isUniqueInSite($slug, $state)) {
-                $slug = $slugHelper->buildSlugForUniqueInSite($slug, $state);
+                ->fromArray($recordData, $pid, $recordId);
+            if ($hasToBeUniqueInDb && !$slug->isUniqueInTable($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInTable($proposal, $state);
             }
-            if ($hasToBeUniqueInPid && !$slugHelper->isUniqueInPid($slug, $state)) {
-                $slug = $slugHelper->buildSlugForUniqueInPid($slug, $state);
+            if ($hasToBeUniqueInSite && !$slug->isUniqueInSite($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInSite($proposal, $state);
+            }
+            if ($hasToBeUniqueInPid && !$slug->isUniqueInPid($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInPid($proposal, $state);
             }
 
             $connection->update(
                 $this->table,
-                [$this->fieldName => $slug],
+                [$this->fieldName => $proposal],
                 ['uid' => $recordId]
             );
         }
+        return true;
     }
 
-    /**
-     * Check if there are record within "pages" database table with an empty "slug" field.
-     *
-     * @return bool
-     * @throws \InvalidArgumentException
-     */
-    protected function checkIfWizardIsRequired(): bool
+    protected function hasRecordsToUpdate(): bool
     {
-        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-        $queryBuilder = $connectionPool->getQueryBuilderForTable($this->table);
-        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
-
-        $numberOfEntries = $queryBuilder
+        $queryBuilder = $this->getPreparedQueryBuilder();
+        $expression = $queryBuilder->expr();
+        return $queryBuilder
             ->count('uid')
-            ->from($this->table)
             ->where(
-                $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->createNamedParameter('')),
-                    $queryBuilder->expr()->isNull($this->fieldName)
+                $expression->or(
+                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
+                    $expression->isNull($this->fieldName)
                 )
             )
-            ->execute()
-            ->fetchColumn();
-        return $numberOfEntries > 0;
+            ->executeQuery()
+            ->fetchOne() > 0;
     }
 
-    /**
-     * Check if given table exists
-     *
-     * @param string $table
-     * @return bool
-     */
-    protected function checkIfTableExists(string $table): bool
+    protected function getRecordsToUpdate(): Result
     {
-        return GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable($table)
-            ->getSchemaManager()
-            ->tablesExist([$table]);
+        $queryBuilder = $this->getPreparedQueryBuilder();
+        $expression = $queryBuilder->expr();
+        return $queryBuilder
+            ->select('*')
+            ->where(
+                $expression->or(
+                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
+                    $expression->isNull($this->fieldName)
+                )
+            )
+            // Ensure that all pages are run through "per parent page" field, and in the correct sorting values
+            ->addOrderBy('pid', 'asc')
+            ->executeQuery();
+    }
+
+    protected function getPreparedQueryBuilder(): QueryBuilder
+    {
+        $queryBuilder = $this
+            ->connectionPool
+            ->getQueryBuilderForTable($this->table);
+        $queryBuilder
+            ->getRestrictions()
+            ->removeAll()
+            ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+        $queryBuilder
+            ->from($this->table);
+
+        return $queryBuilder;
     }
 }

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Evoweb\SfBooks\Domain\Repository;
-
 /*
  * This file is developed by evoWeb.
  *
@@ -15,33 +13,51 @@ namespace Evoweb\SfBooks\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Evoweb\SfBooks\Domain\Repository;
+
+use Evoweb\SfBooks\Domain\Model\Author;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class AuthorRepository extends Repository
 {
+    public function __construct(
+        protected ConnectionPool $connectionPool,
+        PersistenceManagerInterface $persistenceManager
+    ) {
+        $this->persistenceManager = $persistenceManager;
+        parent::__construct();
+    }
+
     public function findAuthorGroupedByLetters(): array
     {
-        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
-        $statement = $queryBuilder
-            ->select('*')
-            ->from('tx_sfbooks_domain_model_author')
-            ->orderBy('lastname')
-            ->addOrderBy('firstname')
-            ->getSQL();
-
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Query $query */
         $query = $this->createQuery();
-        $result = $query->statement($statement)->execute();
+
+        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
+        $queryBuilder
+            ->select('*')
+            ->from('tx_sfbooks_domain_model_author');
+
+        $storagePageIds = $query->getQuerySettings()->getStoragePageIds();
+        if ($query->getQuerySettings()->getRespectStoragePage() && count($storagePageIds)) {
+            $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
+        }
+
+        foreach ($query->getOrderings() as $fieldName => $direction) {
+            $queryBuilder->addOrderBy($fieldName, $direction);
+        }
+
+        $result = $query->statement($queryBuilder)->execute();
 
         $groupedAuthors = [];
-        /** @var \Evoweb\SfBooks\Domain\Model\Author $author */
+        /** @var Author $author */
         foreach ($result as $author) {
             $letter = $author->getCapitalLetter();
-            if (!is_array($groupedAuthors[$letter])) {
+            if (!isset($groupedAuthors[$letter]) || !is_array($groupedAuthors[$letter])) {
                 $groupedAuthors[$letter] = [];
             }
 
@@ -58,7 +74,7 @@ class AuthorRepository extends Repository
         $searchConstrains = [];
         foreach ($searchFields as $field) {
             if ($field === 'firstname' || $field === 'lastname') {
-                foreach (GeneralUtility::trimExplode(' ', $searchString) as $part) {
+                foreach (GeneralUtility::trimExplode(' ', $searchString, true) as $part) {
                     $searchConstrains[] = $query->like($field, '%' . $part . '%');
                 }
             } else {
@@ -66,17 +82,13 @@ class AuthorRepository extends Repository
             }
         }
 
-        $query->matching($query->logicalOr($searchConstrains));
+        $query->matching($query->logicalOr(...$searchConstrains));
 
         return $query->execute();
     }
 
     protected function getQueryBuilderForTable(string $table): QueryBuilder
     {
-        /** @var ConnectionPool $pool */
-        $pool = GeneralUtility::makeInstance(
-            ConnectionPool::class
-        );
-        return $pool->getQueryBuilderForTable($table);
+        return $this->connectionPool->getQueryBuilderForTable($table);
     }
 }
