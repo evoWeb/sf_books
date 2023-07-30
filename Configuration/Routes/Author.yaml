@@ -5,8 +5,12 @@ routeEnhancers:
     plugin: Author
     defaultController: 'Author::list'
     routes:
-      - { routePath: '/', _controller: 'Author::list' }
-      - { routePath: '/{bookauthor}', _controller: 'Author::show', _arguments: { 'bookauthor': 'author' } }
+      - routePath: '/'
+        _controller: 'Author::list'
+      - routePath: '/{bookauthor}'
+        _controller: 'Author::show'
+        _arguments:
+          bookauthor: 'author'
     aspects:
       bookauthor:
         type: PersistedPatternMapper

@@ -33,7 +33,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
  */
 abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
-    protected string $table = 'tx_sfbooks_domain_model_author';
+    protected string $table = '';
 
     protected string $fieldName = 'path_segment';
 
@@ -62,30 +62,35 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 
         $fieldConfig = $GLOBALS['TCA'][$this->table]['columns'][$this->fieldName]['config'];
         $evalInfo = !empty($fieldConfig['eval']) ? GeneralUtility::trimExplode(',', $fieldConfig['eval'], true) : [];
+        $hasToBeUniqueInDb = in_array('unique', $evalInfo, true);
         $hasToBeUniqueInSite = in_array('uniqueInSite', $evalInfo, true);
         $hasToBeUniqueInPid = in_array('uniqueInPid', $evalInfo, true);
-        /** @var SlugHelper $slugHelper */
-        $slugHelper = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
 
-        $statement = $this->getRecordsToUpdate();
-        while ($record = $statement->fetchAssociative()) {
-            $recordId = (int)$record['uid'];
-            $pid = (int)$record['pid'];
+        /** @var SlugHelper $slug */
+        $slug = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
 
-            $slug = $slugHelper->generate($record, $pid);
+        $records = $this->getRecordsToUpdate();
+        while ($recordData = $records->fetchAssociative()) {
+            $recordId = (int)$recordData['uid'];
+            $pid = (int)$recordData['pid'];
+
+            $proposal = $slug->generate($recordData, $pid);
 
             $state = RecordStateFactory::forName($this->table)
-                ->fromArray($record, $pid, $recordId);
-            if ($hasToBeUniqueInSite && !$slugHelper->isUniqueInSite($slug, $state)) {
-                $slug = $slugHelper->buildSlugForUniqueInSite($slug, $state);
+                ->fromArray($recordData, $pid, $recordId);
+            if ($hasToBeUniqueInDb && !$slug->isUniqueInTable($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInTable($proposal, $state);
             }
-            if ($hasToBeUniqueInPid && !$slugHelper->isUniqueInPid($slug, $state)) {
-                $slug = $slugHelper->buildSlugForUniqueInPid($slug, $state);
+            if ($hasToBeUniqueInSite && !$slug->isUniqueInSite($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInSite($proposal, $state);
+            }
+            if ($hasToBeUniqueInPid && !$slug->isUniqueInPid($proposal, $state)) {
+                $proposal = $slug->buildSlugForUniqueInPid($proposal, $state);
             }
 
             $connection->update(
                 $this->table,
-                [$this->fieldName => $slug],
+                [$this->fieldName => $proposal],
                 ['uid' => $recordId]
             );
         }
@@ -95,27 +100,29 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
     protected function hasRecordsToUpdate(): bool
     {
         $queryBuilder = $this->getPreparedQueryBuilder();
-        return (bool)$queryBuilder
+        $expression = $queryBuilder->expr();
+        return $queryBuilder
             ->count('uid')
             ->where(
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->quote('')),
-                    $queryBuilder->expr()->isNull($this->fieldName)
+                $expression->or(
+                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
+                    $expression->isNull($this->fieldName)
                 )
             )
             ->executeQuery()
-            ->fetchOne();
+            ->fetchOne() > 0;
     }
 
     protected function getRecordsToUpdate(): Result
     {
         $queryBuilder = $this->getPreparedQueryBuilder();
+        $expression = $queryBuilder->expr();
         return $queryBuilder
             ->select('*')
             ->where(
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->quote('')),
-                    $queryBuilder->expr()->isNull($this->fieldName)
+                $expression->or(
+                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
+                    $expression->isNull($this->fieldName)
                 )
             )
             // Ensure that all pages are run through "per parent page" field, and in the correct sorting values

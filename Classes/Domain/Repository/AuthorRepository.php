@@ -19,35 +19,39 @@ use Evoweb\SfBooks\Domain\Model\Author;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class AuthorRepository extends Repository
 {
-    protected ConnectionPool $connectionPool;
-
-    public function __construct(PersistenceManagerInterface $persistenceManager, ConnectionPool $connectionPool)
-    {
+    public function __construct(
+        protected ConnectionPool $connectionPool,
+        PersistenceManagerInterface $persistenceManager
+    ) {
         $this->persistenceManager = $persistenceManager;
-        $this->connectionPool = $connectionPool;
         parent::__construct();
     }
 
     public function findAuthorGroupedByLetters(): array
     {
-        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
-        $statement = $queryBuilder
-            ->select('*')
-            ->from('tx_sfbooks_domain_model_author')
-            ->orderBy('lastname')
-            ->addOrderBy('firstname')
-            ->getSQL();
-
-        /** @var Query $query */
         $query = $this->createQuery();
-        $result = $query->statement($statement)->execute();
+
+        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
+        $queryBuilder
+            ->select('*')
+            ->from('tx_sfbooks_domain_model_author');
+
+        $storagePageIds = $query->getQuerySettings()->getStoragePageIds();
+        if ($query->getQuerySettings()->getRespectStoragePage() && count($storagePageIds)) {
+            $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
+        }
+
+        foreach ($query->getOrderings() as $fieldName => $direction) {
+            $queryBuilder->addOrderBy($fieldName, $direction);
+        }
+
+        $result = $query->statement($queryBuilder)->execute();
 
         $groupedAuthors = [];
         /** @var Author $author */
@@ -70,7 +74,7 @@ class AuthorRepository extends Repository
         $searchConstrains = [];
         foreach ($searchFields as $field) {
             if ($field === 'firstname' || $field === 'lastname') {
-                foreach (GeneralUtility::trimExplode(' ', $searchString) as $part) {
+                foreach (GeneralUtility::trimExplode(' ', $searchString, true) as $part) {
                     $searchConstrains[] = $query->like($field, '%' . $part . '%');
                 }
             } else {

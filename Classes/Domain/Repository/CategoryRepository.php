@@ -15,31 +15,15 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class CategoryRepository extends Repository
 {
-    /**
-     * @var array
-     */
-    protected $defaultOrderings = [
-        'sorting' => QueryInterface::ORDER_ASCENDING,
-    ];
-
-    public function findByCategories(array $categories): QueryResultInterface
+    public function findByUids(array $categories): QueryResultInterface
     {
         $query = $this->createQuery();
-
-        $categoryConstraints = [];
-        foreach ($categories as $category) {
-            $categoryConstraints[] = $query->equals('uid', $category);
-        }
-        $constraint = $query->logicalOr(...$categoryConstraints);
-
-        $query->matching($constraint);
-
+        $query->matching($query->in('uid', $categories));
         return $query->execute();
     }
 }

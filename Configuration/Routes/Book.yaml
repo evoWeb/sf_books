@@ -5,8 +5,12 @@ routeEnhancers:
     plugin: Book
     defaultController: 'Book::list'
     routes:
-      - { routePath: '/', _controller: 'Book::list' }
-      - { routePath: '/{booktitle}', _controller: 'Book::show', _arguments: { 'booktitle': 'book' } }
+      - routePath: '/'
+        _controller: 'Book::list'
+      - routePath: '/{booktitle}'
+        _controller: 'Book::show'
+        _arguments:
+          booktitle: 'book'
     aspects:
       booktitle:
         type: PersistedPatternMapper

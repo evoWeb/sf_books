@@ -34,11 +34,7 @@ class BookController extends AbstractController
 
     protected function initializeListAction(): void
     {
-        $this->settings['category'] = GeneralUtility::intExplode(
-            ',',
-            $this->settings['category'],
-            true
-        );
+        $this->settings['category'] = GeneralUtility::intExplode(',', $this->settings['category'], true);
     }
 
     protected function listAction(): ResponseInterface
@@ -56,7 +52,7 @@ class BookController extends AbstractController
         }
 
         $this->view->assign('books', $books);
-        $this->addPaginator($books);
+        $this->addPaginatorToView($books);
 
         return new HtmlResponse($this->view->render());
     }
@@ -84,7 +80,7 @@ class BookController extends AbstractController
 
         $this->view->assign('query', $query);
         $this->view->assign('books', $books);
-        $this->addPaginator($books);
+        $this->addPaginatorToView($books);
 
         return new HtmlResponse($this->view->render());
     }

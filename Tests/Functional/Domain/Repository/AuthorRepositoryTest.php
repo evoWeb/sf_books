@@ -16,32 +16,27 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
 use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 class AuthorRepositoryTest extends AbstractTestCase
 {
-    /**
-     * @var AuthorRepository
-     */
-    private $subject;
+    private AuthorRepository $subject;
 
-    /**
-     * Sets up this test suite.
-     */
     protected function setUp(): void
     {
-        $GLOBALS['PAGES_TYPES']['default']['allowedTables'] = '';
-
         parent::setUp();
 
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setStoragePageIds([2]);
         $this->subject = GeneralUtility::makeInstance(AuthorRepository::class);
+        $this->subject->setDefaultQuerySettings($querySettings);
 
-        $this->importDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.xml');
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.csv');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidReturnsOneAuthor()
     {
         $author = $this->subject->findByUid(1);
@@ -66,14 +61,12 @@ class AuthorRepositoryTest extends AbstractTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAuthorGroupedByLetters()
     {
-        $response = $this->subject->findAuthorGroupedByLetters();
+        $result = $this->subject->findAuthorGroupedByLetters();
         /** @var Author $author */
-        $author = $response['S'][0];
+        $author = $result['S'][0];
         $properties = [
             'uid' => $author->getUid(),
             'pid' => $author->getPid(),

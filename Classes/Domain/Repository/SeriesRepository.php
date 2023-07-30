@@ -18,34 +18,39 @@ namespace Evoweb\SfBooks\Domain\Repository;
 use Evoweb\SfBooks\Domain\Model\Series;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class SeriesRepository extends Repository
 {
-    protected ConnectionPool $connectionPool;
-
-    public function __construct(PersistenceManagerInterface $persistenceManager, ConnectionPool $connectionPool)
-    {
+    public function __construct(
+        protected ConnectionPool $connectionPool,
+        PersistenceManagerInterface $persistenceManager
+    ) {
         $this->persistenceManager = $persistenceManager;
-        $this->connectionPool = $connectionPool;
         parent::__construct();
     }
 
     public function findSeriesGroupedByLetters(): array
     {
-        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
-        $statement = $queryBuilder
-            ->select('*')
-            ->from('tx_sfbooks_domain_model_series')
-            ->orderBy('title')
-            ->getSQL();
-
-        /** @var Query $query */
         $query = $this->createQuery();
-        $result = $query->statement($statement)->execute();
+
+        $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
+        $queryBuilder
+            ->select('*')
+            ->from('tx_sfbooks_domain_model_series');
+
+        $storagePageIds = $query->getQuerySettings()->getStoragePageIds();
+        if ($query->getQuerySettings()->getRespectStoragePage() && count($storagePageIds)) {
+            $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
+        }
+
+        foreach ($query->getOrderings() as $fieldName => $direction) {
+            $queryBuilder->addOrderBy($fieldName, $direction);
+        }
+
+        $result = $query->statement($queryBuilder)->execute();
 
         $groupedSeries = [];
         /** @var Series $series */

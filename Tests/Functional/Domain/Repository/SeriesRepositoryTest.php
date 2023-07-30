@@ -16,30 +16,27 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 class SeriesRepositoryTest extends AbstractTestCase
 {
-    /**
-     * @var SeriesRepository
-     */
-    private $subject;
+    private SeriesRepository $subject;
 
-    /**
-     * Sets up this test suite.
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setStoragePageIds([2]);
         $this->subject = GeneralUtility::makeInstance(SeriesRepository::class);
+        $this->subject->setDefaultQuerySettings($querySettings);
 
-        $this->importDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_series.xml');
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_series.csv');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidReturnsOneSeries()
     {
         $series = $this->subject->findByUid(1);
@@ -64,14 +61,12 @@ class SeriesRepositoryTest extends AbstractTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findSeriesGroupedByLetters()
     {
-        $response = $this->subject->findSeriesGroupedByLetters();
+        $result = $this->subject->findSeriesGroupedByLetters();
         /** @var Series $series */
-        $series = $response['S'][0];
+        $series = $result['S'][0];
         $properties = [
             'uid' => $series->getUid(),
             'pid' => $series->getPid(),

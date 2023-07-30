@@ -10,7 +10,7 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.limit>
+					<settings.itemsPerPage>
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
 							<config>
@@ -19,7 +19,7 @@
 								<default>5</default>
 							</config>
 						</TCEforms>
-					</settings.limit>
+					</settings.itemsPerPage>
 					<view.templateRootPaths.200>
 						<TCEforms>
 							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.templatePath</label>

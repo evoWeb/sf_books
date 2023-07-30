@@ -30,7 +30,7 @@ class SearchController extends AbstractController
 
     public function startSearchAction(array $search): ResponseInterface
     {
-        if (isset($search['query']) && $search['query'] != '') {
+        if (($search['query'] ?? '') != '') {
             if (isset($search['searchBy'])) {
                 switch ((string)$search['searchFor'] ?? '') {
                     case 'author':

@@ -5,6 +5,10 @@ plugin.tx_sfbooks {
     categoryPageId = {$plugin.tx_sfbooks_book.categoryPageId}
     searchPageId = {$plugin.tx_sfbooks_book.searchPageId}
     seriesPageId = {$plugin.tx_sfbooks_book.seriesPageId}
+
+    pagination =
+    itemsPerPage = 10
+    numberOfLinks = 5
   }
 
   _LOCAL_LANG.de {
@@ -16,6 +20,10 @@ plugin.tx_sfbooks_book {
   settings {
     searchFields = title, subtitle, description, isbn, author
     allowedOrderBy = title, subtitle, isbn, year
+
+    orderings {
+      title = ASC
+    }
   }
 }
 
@@ -24,6 +32,13 @@ plugin.tx_sfbooks_author {
   settings {
     searchFields = lastname, firstname, description
     allowedOrderBy = lastname, firstname
+
+    groupAuthors = 1
+
+    orderings {
+      lastname = ASC
+      firstname = ASC
+    }
   }
 }
 
@@ -32,6 +47,10 @@ plugin.tx_sfbooks_category {
   settings {
     excludeCategories = {$plugin.tx_sfbooks_book.excludeCategories}
     allowedOrderBy = title, sorting
+
+    orderings {
+      sorting = ASC
+    }
   }
 }
 
@@ -39,6 +58,12 @@ plugin.tx_sfbooks_category {
 plugin.tx_sfbooks_series {
   settings {
     allowedOrderBy = title
+
+    groupSeries = 1
+
+    orderings {
+      title = ASC
+    }
   }
 }
 

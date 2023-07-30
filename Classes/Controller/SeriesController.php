@@ -33,9 +33,14 @@ class SeriesController extends AbstractController
 
     protected function listAction(): ResponseInterface
     {
-        $seriesGroups = $this->seriesRepository->findSeriesGroupedByLetters();
+        if ($this->settings['groupSeries'] ?? false) {
+            $series = $this->seriesRepository->findSeriesGroupedByLetters();
+        } else {
+            $series = $this->seriesRepository->findAll();
+        }
 
-        $this->view->assign('seriesGroups', $seriesGroups);
+        $this->view->assign('seriesGroups', $series);
+        $this->addPaginatorToView($series);
 
         return new HtmlResponse($this->view->render());
     }

@@ -1,6 +1,6 @@
 .. include:: /Includes.rst.txt
 
-.. _installation:
+.. _updating:
 
 ========
 Updating

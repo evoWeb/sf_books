@@ -34,9 +34,14 @@ class AuthorController extends AbstractController
 
     protected function listAction(): ResponseInterface
     {
-        $authorGroups = $this->authorRepository->findAuthorGroupedByLetters();
+        if ($this->settings['groupAuthors'] ?? false) {
+            $authors = $this->authorRepository->findAuthorGroupedByLetters();
+        } else {
+            $authors = $this->authorRepository->findAll();
+        }
 
-        $this->view->assign('authorGroups', $authorGroups);
+        $this->view->assign('authorGroups', $authors);
+        $this->addPaginatorToView($authors);
 
         return new HtmlResponse($this->view->render());
     }
@@ -64,7 +69,7 @@ class AuthorController extends AbstractController
 
         $this->view->assign('query', $query);
         $this->view->assign('authors', $authors);
-        $this->addPaginator($authors);
+        $this->addPaginatorToView($authors);
 
         return new HtmlResponse($this->view->render());
     }

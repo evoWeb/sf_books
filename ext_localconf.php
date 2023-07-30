@@ -82,13 +82,4 @@ call_user_func(function () {
 '
         )
     );
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksAuthorsSlugs']
-        = PopulateAuthorSlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksBooksSlugs']
-        = PopulateBookSlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksCategoriesSlugs']
-        = PopulateCategorySlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksSeriesSlugs']
-        = PopulateSeriesSlugs::class;
 });

@@ -35,11 +35,7 @@ class CategoryController extends AbstractController
 
     protected function initializeListAction(): void
     {
-        $this->settings['category'] = GeneralUtility::intExplode(
-            ',',
-            $this->settings['category'],
-            true
-        );
+        $this->settings['category'] = GeneralUtility::intExplode(',', $this->settings['category'], true);
     }
 
     protected function listAction(): ResponseInterface
@@ -50,18 +46,19 @@ class CategoryController extends AbstractController
         ) {
             $categories = $this->categoryRepository->findAll();
         } else {
-            $categories = $this->categoryRepository->findByCategories($this->settings['category']);
+            $categories = $this->categoryRepository->findByUids($this->settings['category']);
         }
 
         $categories = $this->removeExcludeCategories($categories);
         $this->view->assign('categories', $categories);
+        $this->addPaginatorToView($categories);
 
         return new HtmlResponse($this->view->render());
     }
 
     protected function removeExcludeCategories(QueryResultInterface $categories): QueryResultInterface
     {
-        $excludeCategories = GeneralUtility::intExplode(',', $this->settings['excludeCategories']);
+        $excludeCategories = GeneralUtility::intExplode(',', $this->settings['excludeCategories'], true);
         if (count($excludeCategories)) {
             /** @var Category $category */
             foreach ($categories as $category) {

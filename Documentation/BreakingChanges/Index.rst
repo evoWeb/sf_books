@@ -6,6 +6,19 @@
 Breaking Changes
 ================
 
+28. July 2023
+=============
+
+Change typoscript parameter
+---------------------------
+Rename TypoScript parameter settings.limit into settings.itemsPerPage.
+This also relates to the plugin settings where limit is renamed into itemsPerPage to.
+
+Drop ViewHelper
+---------------
+As of version 8.x the SortViewHelper is dropped because its never used.
+
+
 13. March 2021
 ==============
 

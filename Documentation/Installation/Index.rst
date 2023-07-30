@@ -19,20 +19,12 @@ install the extension by hitting the action for that.
 Download via Composer
 =====================
 
-Add evoweb/extender to the require in your composer.json like in the following
-example and run 'composer install'.
+Add evoweb/extender to the require in your composer.json.
 
-.. code-block:: typoscript
-   :caption: composer.json
-	{
-		"require": {
-			"typo3/cms-core": "^12.4",
-			"evoweb/sf-books": "*",
-		}
-	}
+.. code-block:: bash
+   :caption: Enter on shell
 
-Alternatively if you have an existing project with a configured composer.json you
-can add extender with the command by running 'composer require evoweb/sf-books'.
+   composer require evoweb/sf-books
 
 
 Include TypoScript

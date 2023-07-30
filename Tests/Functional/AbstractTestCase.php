@@ -18,28 +18,14 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * Functional test for the repositories
+ * Abstract functional test for the repositories
  */
 abstract class AbstractTestCase extends FunctionalTestCase
 {
-    /**
-     * @var array
-     */
-    protected $testExtensionsToLoad = ['sf_books'];
+    protected array $testExtensionsToLoad = ['sf_books'];
 
     protected int $expectedLogEntries = 0;
 
-    /**
-     * Sets up this test suite.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    /**
-     * Tears down this test case.
-     */
     protected function tearDown(): void
     {
         $this->assertNoLogEntries();
@@ -48,7 +34,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
     /**
      * Assert that no sys_log entries had been written.
      */
-    protected function assertNoLogEntries()
+    protected function assertNoLogEntries(): void
     {
         $logEntries = $this->getLogEntries();
 
@@ -61,7 +47,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
         }
     }
 
-    protected function getLogEntries()
+    protected function getLogEntries(): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_log');
         $result = $queryBuilder
@@ -73,8 +59,8 @@ abstract class AbstractTestCase extends FunctionalTestCase
                     [1, 2]
                 )
             )
-            ->execute()
-            ->fetchAssociative();
+            ->executeQuery()
+            ->fetchAllAssociative();
         return is_array($result) ? $result : [];
     }
 }
