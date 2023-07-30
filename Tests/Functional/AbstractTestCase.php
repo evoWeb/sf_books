@@ -25,7 +25,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
     /**
      * @var array
      */
-    protected $testExtensionsToLoad = ['sf_books'];
+    protected $testExtensionsToLoad = ['typo3conf/ext/sf_books'];
 
     protected int $expectedLogEntries = 0;
 
