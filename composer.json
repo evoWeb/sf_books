@@ -13,7 +13,7 @@
 	"support" : {
 		"source" : "https://github.com/evoWeb/sf_books",
 		"issues" : "https://github.com/evoWeb/sf_books/issues",
-		"docs": "https://docs.typo3.org/p/evoweb/sf-books/master/en-us/"
+		"docs": "https://docs.typo3.org/p/evoweb/sf-books/main/en-us/"
 	},
 	"config": {
 		"bin-dir": "bin",
