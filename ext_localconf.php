@@ -7,10 +7,6 @@ use Evoweb\SfBooks\Controller\BookController;
 use Evoweb\SfBooks\Controller\CategoryController;
 use Evoweb\SfBooks\Controller\SearchController;
 use Evoweb\SfBooks\Controller\SeriesController;
-use Evoweb\SfBooks\Updates\PopulateAuthorSlugs;
-use Evoweb\SfBooks\Updates\PopulateBookSlugs;
-use Evoweb\SfBooks\Updates\PopulateCategorySlugs;
-use Evoweb\SfBooks\Updates\PopulateSeriesSlugs;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
@@ -65,9 +61,7 @@ call_user_func(function () {
     /**
      * Register Title Provider
      */
-    ExtensionManagementUtility::addTypoScriptSetup(
-        trim(
-            '
+    ExtensionManagementUtility::addTypoScriptSetup(trim('
     config.pageTitleProviders {
         books {
             provider = Evoweb\SfBooks\TitleTagProvider\TitleTagProvider
@@ -75,7 +69,5 @@ call_user_func(function () {
             after = altPageTitle
         }
     }
-'
-        )
-    );
+    '));
 });
