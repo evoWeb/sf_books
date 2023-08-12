@@ -15,10 +15,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 call_user_func(function () {
-    ExtensionManagementUtility::addPageTSConfig(
-        '@import \'EXT:sf_books/Configuration/TSconfig/NewContentElementWizard.typoscript\''
-    );
-
     ExtensionUtility::configurePlugin(
         'SfBooks',
         'Book',
