@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [ 7.x, main ]
+    branches: [ 7.x ]
     tags: [ '*' ]
   pull_request:
     branches: [ 7.x ]
