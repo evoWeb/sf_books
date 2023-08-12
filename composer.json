@@ -30,10 +30,10 @@
 		"typo3/cms-core": "^12.4 || dev-main",
 		"typo3/cms-extbase": "^12.4 || dev-main",
 		"typo3/cms-fluid": "^12.4 || dev-main",
-		"typo3/cms-install": "^12.4 || dev-main",
-		"typo3/testing-framework": "^8.0.2 || dev-main"
+		"typo3/cms-install": "^12.4 || dev-main"
 	},
 	"require-dev": {
+		"typo3/testing-framework": "^8.0.2 || dev-main",
 		"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "dev-main"
 	},
 	"extra": {
