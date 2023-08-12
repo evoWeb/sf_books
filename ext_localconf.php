@@ -75,9 +75,7 @@ call_user_func(function () {
     /**
      * Register Title Provider
      */
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
-        trim(
-            '
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
     config.pageTitleProviders {
         books {
             provider = Evoweb\SfBooks\TitleTagProvider\TitleTagProvider
@@ -85,9 +83,7 @@ call_user_func(function () {
             after = altPageTitle
         }
     }
-'
-        )
-    );
+    '));
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sfBooksAuthorsSlugs']
         = \Evoweb\SfBooks\Updates\PopulateAuthorSlugs::class;
