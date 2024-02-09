@@ -27,10 +27,12 @@
 		}
 	},
 	"require": {
-		"typo3/cms-core": "^12.4 || dev-main",
-		"typo3/cms-extbase": "^12.4 || dev-main",
-		"typo3/cms-fluid": "^12.4 || dev-main",
-		"typo3/cms-install": "^12.4 || dev-main"
+		"typo3/cms-core": "^12.4 || 12.4.x-dev || dev-main",
+		"typo3/cms-extbase": "^12.4 || 12.4.x-dev || dev-main",
+		"typo3/cms-fluid": "^12.4 || 12.4.x-dev || dev-main",
+		"typo3/cms-install": "^12.4 || 12.4.x-dev || dev-main",
+		"psr/http-message": "^1.1 || ^2.0",
+		"doctrine/dbal": "^3.7.2"
 	},
 	"require-dev": {
 		"typo3/testing-framework": "^8.0.2 || dev-main",
