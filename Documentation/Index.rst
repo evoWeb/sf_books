@@ -7,6 +7,9 @@ sf_books: Managing books the easy way
 :Extension key:
     sf_books
 
+:Package name:
+   evoweb/sf-books
+
 :Version:
     |release|
 
@@ -16,21 +19,21 @@ sf_books: Managing books the easy way
 :Description:
     Helps managing books in your library by providing organization options
 
-:Keywords:
-    forIntegrators
-
 :Copyright:
-    2004-2023
+    2004-2024
 
 :Author:
     Sebastian Fischer
 
 :License:
    This document is published under the
-   `Open Publication License <https://www.opencontent.org/openpub/>`__.
+   `Open Publication <https://www.opencontent.org/openpub/>`__.
+   license.
 
 :Rendered:
     |today|
+
+----
 
 The content of this document is related to TYPO3,
 a GNU/GPL CMS/Framework available from http://typo3.org
@@ -56,4 +59,3 @@ a GNU/GPL CMS/Framework available from http://typo3.org
    :hidden:
 
    Sitemap
-   genindex

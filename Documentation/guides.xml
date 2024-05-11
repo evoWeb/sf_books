@@ -13,6 +13,7 @@
                edit-on-github="evoWeb/sf_books"
                edit-on-github-directory="Documentation/"
                typo3-core-preferred="stable"
+               interlink-shortcode="evoweb/sf-books"
     />
     <project title="sf_books"
              release="7.0.1"
