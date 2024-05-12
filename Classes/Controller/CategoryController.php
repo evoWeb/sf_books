@@ -42,7 +42,10 @@ class CategoryController extends AbstractController
     {
         if (
             count($this->settings['category']) == 0
-            || (count($this->settings['category']) == 1 && reset($this->settings['category']) < 1)
+            || (
+                count($this->settings['category']) == 1
+                && reset($this->settings['category']) < 1
+            )
         ) {
             $categories = $this->categoryRepository->findAll();
         } else {

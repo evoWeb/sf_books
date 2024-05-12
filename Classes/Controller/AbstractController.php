@@ -138,7 +138,7 @@ abstract class AbstractController extends ActionController
 
         $paginatorClass = is_array($result) ? ArrayPaginator::class : QueryResultPaginator::class;
 
-        /** @var QueryResultPaginator $resultPaginator */
+        /** @var PaginatorInterface $resultPaginator */
         $resultPaginator = GeneralUtility::makeInstance(
             $paginatorClass,
             $result,

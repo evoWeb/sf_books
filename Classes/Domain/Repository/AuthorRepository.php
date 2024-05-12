@@ -43,7 +43,7 @@ class AuthorRepository extends Repository
             ->from('tx_sfbooks_domain_model_author');
 
         $storagePageIds = $query->getQuerySettings()->getStoragePageIds();
-        if ($query->getQuerySettings()->getRespectStoragePage() && count($storagePageIds)) {
+        if (count($storagePageIds) && $query->getQuerySettings()->getRespectStoragePage()) {
             $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
         }
 

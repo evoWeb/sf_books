@@ -37,7 +37,8 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 
     protected string $fieldName = 'path_segment';
 
-    public function __construct(protected ConnectionPool $connectionPool) {
+    public function __construct(protected ConnectionPool $connectionPool)
+    {
     }
 
     abstract public function getTitle(): string;
