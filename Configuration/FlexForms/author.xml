@@ -1,36 +1,30 @@
 <T3DataStructure>
-	<meta>
-		<langDisable>1</langDisable>
-	</meta>
-	<sheets>
-		<sDEF>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.sheet_general</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.itemsPerPage>
-						<TCEforms>
-							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
-							<config>
-								<type>input</type>
-								<eval>int</eval>
-								<default>5</default>
-							</config>
-						</TCEforms>
-					</settings.itemsPerPage>
-					<view.templateRootPaths.200>
-						<TCEforms>
-							<label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.templatePath</label>
-							<config>
-								<type>folder</type>
-								<size>1</size>
-							</config>
-						</TCEforms>
-					</view.templateRootPaths.200>
-				</el>
-			</ROOT>
-		</sDEF>
-	</sheets>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT type="array">
+                <sheetTitle>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.sheet_general</sheetTitle>
+                <type>array</type>
+                <el type="array">
+                    <settings.itemsPerPage>
+                        <label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
+                        <config type="array">
+                            <type>input</type>
+                            <eval>int</eval>
+                            <default>5</default>
+                        </config>
+                    </settings.itemsPerPage>
+                    <view.templateRootPaths.200>
+                        <label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.templatePath</label>
+                        <config type="array">
+                            <type>folder</type>
+                            <size>1</size>
+                        </config>
+                    </view.templateRootPaths.200>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
 </T3DataStructure>
