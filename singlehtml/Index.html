@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title> documentation</title>
+
+    
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="phpdocumentor/guides" name="generator">
+<meta content="" name="docsearch:name">
+<meta content="" name="docsearch:package_type">
+<meta content="" name="docsearch:release">
+<meta content="" name="docsearch:version">
+<meta content="2024-05-19T17:42:54+00:00" name="docsearch:modified">
+<meta content="2024-05-19T17:42:54+00:00" name="dc.modified">
+<meta content="2024-05-19T17:42:54+00:00" property="article:modified_time">
+    <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
+<link href="../_resources/css/theme.css" rel="stylesheet">
+<link href="https://docs.typo3.org/search/" rel="search" title="Search">
+<script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+                </head>
+<body>
+<div class="page">
+    
+<header>
+    <div class="page-topbar">
+        <div class="page-topbar-inner">
+            <typo3-universe active="documentation">
+                <div style="display: block; height: 44px; background-color: #313131;"></div>
+            </typo3-universe>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="row">
+                <div class="col-sm-3 col-md-4 col-lg-6">
+                    <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
+                        <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
+                    </a>
+                </div>
+                <div class="col-sm-9 col-md-8 col-lg-6">
+                    <search role="search">
+                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+			                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                            <div class="input-group mb-3 mt-sm-3">
+                                <select class="form-select search__scope" id="searchscope" name="scope">
+                                    <option value="">Search all</option>
+                                </select>
+                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                            </div>
+                        </form>
+                    </search>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    <main class="page-main">
+        <div class="page-main-inner">
+            <div class="page-main-navigation">
+                <nav>
+                    <input class="toc-checkbox" id="toggleToc" type="checkbox">
+
+                    
+<div class="toc-header">
+    <div class="toc-title">
+        <a class="toc-title-project" href="#"></a>
+            </div>
+    <div class="toc-actions">
+        <label class="toc-toggle" for="toggleToc">
+            Menu
+        </label>
+    </div>
+</div>                    <div class="toc-collapse">
+                                                <div aria-label="main navigation" class="toc" role="navigation">
+                                                                                </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="page-main-content">
+                <div class="rst-content">                                                                <!-- content start -->
+    <article>
+            
+<section class="section" id="sf-books-managing-books-the-easy-way">
+            <h1>sf_books: Managing books the easy way<a class="headerlink" href="#sf-books-managing-books-the-easy-way" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <dl class="field-list simple ">
+            <dt class="field-odd">Extension key</dt>
+
+        <dd class="field-odd">
+            
+    <p>sf_books</p>
+        </dd>
+            <dt class="field-odd">Package name</dt>
+
+        <dd class="field-odd">
+            
+    <p>evoweb/sf-books</p>
+        </dd>
+            <dt class="field-odd">Version</dt>
+
+        <dd class="field-odd">
+            
+        </dd>
+            <dt class="field-odd">Language</dt>
+
+        <dd class="field-odd">
+            
+    <p>en</p>
+        </dd>
+            <dt class="field-odd">Description</dt>
+
+        <dd class="field-odd">
+            
+    <p>Helps managing books in your library by providing organization options</p>
+        </dd>
+            <dt class="field-odd">Copyright</dt>
+
+        <dd class="field-odd">
+            
+    <p>2004-2024</p>
+        </dd>
+            <dt class="field-odd">Author</dt>
+
+        <dd class="field-odd">
+            
+    <p>Sebastian Fischer</p>
+        </dd>
+            <dt class="field-odd">License</dt>
+
+        <dd class="field-odd">
+            
+    <p>This document is published under the
+<a href="https://www.opencontent.org/openpub/">Open Publication</a>.
+license.</p>
+        </dd>
+            <dt class="field-odd">Rendered</dt>
+
+        <dd class="field-odd">
+            
+    <p>Sun, 19 May 2024 17:42:54 +0000</p>
+        </dd>
+    </dl>
+            <hr />
+            
+    <p>The content of this document is related to TYPO3,
+a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.org</a></p>
+
+            <hr />
+            
+    <p><strong>Table of Contents</strong></p>
+
+            <div class="toctree-wrapper compound">
+    <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#introduction-1">Introduction</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#installation-1">Installation</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#configuration-1">Configuration</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#breaking-changes-1">Breaking Changes</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#updating-1">Updating</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#testing-1">Testing</a>
+
+
+</li>
+    </ul>
+</div>
+            
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="sf-books-managing-books-the-easy-way">
+            <h1>sf_books: Managing books the easy way<a class="headerlink" href="#sf-books-managing-books-the-easy-way" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <dl class="field-list simple ">
+            <dt class="field-odd">Extension key</dt>
+
+        <dd class="field-odd">
+            
+    <p>sf_books</p>
+        </dd>
+            <dt class="field-odd">Package name</dt>
+
+        <dd class="field-odd">
+            
+    <p>evoweb/sf-books</p>
+        </dd>
+            <dt class="field-odd">Version</dt>
+
+        <dd class="field-odd">
+            
+        </dd>
+            <dt class="field-odd">Language</dt>
+
+        <dd class="field-odd">
+            
+    <p>en</p>
+        </dd>
+            <dt class="field-odd">Description</dt>
+
+        <dd class="field-odd">
+            
+    <p>Helps managing books in your library by providing organization options</p>
+        </dd>
+            <dt class="field-odd">Copyright</dt>
+
+        <dd class="field-odd">
+            
+    <p>2004-2024</p>
+        </dd>
+            <dt class="field-odd">Author</dt>
+
+        <dd class="field-odd">
+            
+    <p>Sebastian Fischer</p>
+        </dd>
+            <dt class="field-odd">License</dt>
+
+        <dd class="field-odd">
+            
+    <p>This document is published under the
+<a href="https://www.opencontent.org/openpub/">Open Publication</a>.
+license.</p>
+        </dd>
+            <dt class="field-odd">Rendered</dt>
+
+        <dd class="field-odd">
+            
+    <p>Sun, 19 May 2024 17:42:54 +0000</p>
+        </dd>
+    </dl>
+            <hr />
+            
+    <p>The content of this document is related to TYPO3,
+a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.org</a></p>
+
+            <hr />
+            
+    <p><strong>Table of Contents</strong></p>
+
+            <div class="toctree-wrapper compound">
+    <ul class="menu-level">
+    <li class="toc-item">
+    <a href="#introduction-1">Introduction</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#installation-1">Installation</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#configuration-1">Configuration</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#breaking-changes-1">Breaking Changes</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#updating-1">Updating</a>
+
+
+</li>
+    <li class="toc-item">
+    <a href="#testing-1">Testing</a>
+
+
+</li>
+    </ul>
+</div>
+            
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="introduction-1" data-rst-anchor="introduction">
+            <a id="introduction"></a>
+            <h1>Introduction<a class="headerlink" href="#introduction-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            
+    <p>This Documentation was written for version 5.0.x of the extension.</p>
+
+            <section class="section" id="what-does-it-do">
+            <h2>What does it do?<a class="headerlink" href="#what-does-it-do" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <section class="section" id="managing-your-books">
+            <h3>Managing your books:<a class="headerlink" href="#managing-your-books" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>Purpose of this extension is to manage few to a lot of books. There is a list-
+and a singleview for the frontend. In listview a pagebrowser and a searchfield
+makes book finding an ease.</p>
+
+            
+    <p>Books can have category, serie, number, title, author, ISBN-Number, Description,
+Cover and Extras.</p>
+
+            
+    <p>In listview number, title, author and isbn-number are possible sortfields.</p>
+
+            
+    <p>Searching books is done on fields title, author, isbn-number and description.</p>
+
+    </section>
+    </section>
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="installation-1" data-rst-anchor="installation">
+            <a id="installation"></a>
+            <h1>Installation<a class="headerlink" href="#installation-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="download-via-extension-manager">
+            <h2>Download via Extension Manager<a class="headerlink" href="#download-via-extension-manager" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>In the TYPO3 Backend go to Admin Tools &gt; Extensions. Change in the dropdown on
+the top left to &#039;Get Extensions&#039;, enter the extension key &#039;sf_books&#039; in the
+text field below the headline &#039;Get Extensions&#039; and hit go. In the result list
+install the extension by hitting the action for that.</p>
+
+    </section>
+            <section class="section" id="download-via-composer">
+            <h2>Download via Composer<a class="headerlink" href="#download-via-composer" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>Add evoweb/extender to the require in your composer.json.</p>
+
+                    <div class="code-block-caption">
+            <span class="caption-text">Enter on shell</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs bash">composer require evoweb/sf-books</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    </section>
+            <section class="section" id="include-typoscript">
+            <h2>Include TypoScript<a class="headerlink" href="#include-typoscript" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>Include static file &quot;Book Library&quot; in your typoscript record or import in your
+sitepackage and modify the constants to match the page setup you have added.</p>
+
+    </section>
+            <section class="section" id="include-routing-configuration">
+            <h2>Include Routing configuration<a class="headerlink" href="#include-routing-configuration" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>To have speaking urls you need to add the following import in your site config.
+This allows each of the plugins to render seo friendly urls.</p>
+
+                    <div class="code-block-caption">
+            <span class="caption-text">config/sites/[main]/config.yaml</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">imports:
+    - { resource: "<span class="hljs-bullet">EXT:sf_books/Configuration/Routes/Default.yaml</span>" }</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    </section>
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="configuration-1" data-rst-anchor="configuration">
+            <a id="configuration"></a>
+            <h1>Configuration<a class="headerlink" href="#configuration-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="introduction">
+            <h2>Introduction<a class="headerlink" href="#introduction" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>There are configurations for listView and singleView and more general parts
+like templateFile or pidList. In all fields related stdWraps fields from
+tx_sfbooks_books are available for field and data like uid.</p>
+
+    </section>
+            <section class="section" id="plugin-tx-sfbooks">
+            <h2>plugin.tx_sfbooks<a class="headerlink" href="#plugin-tx-sfbooks" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>Settings for all plugins</p>
+
+    </section>
+            <section class="section" id="plugin-tx-sfbooks-book-author-category-series-search">
+            <h2>plugin.tx_sfbooks_[book|author|category|series|search]<a class="headerlink" href="#plugin-tx-sfbooks-book-author-category-series-search" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>Settings specifically for each single plugins</p>
+
+    </section>
+            <section class="section" id="settings-and-view-in-both-plugin-configurations">
+            <h2>Settings and view in both plugin configurations<a class="headerlink" href="#settings-and-view-in-both-plugin-configurations" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            .. sfbooks-Configuration:: templateRootPaths
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p>array of file paths with stdWrap</p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>none</p>
+        </dd>
+    </dl>
+    <p>Used to define several paths for templates, which will be tried in reversed
+order (the paths are searched from bottom to top). The first folder where
+the desired layout is found, is used. If the array keys are numeric, they
+are first sorted and then tried in reversed order.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   view {
+      templateRootPaths {
+         <span class="hljs-title">10</span> = <span class="hljs-bullet">EXT:sitedesign/Resources/Private/Templates</span>
+         <span class="hljs-title">20</span> = <span class="hljs-bullet">EXT:sitemodification/Resources/Private/Templates</span>
+      }
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: pagination
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">string</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>none</p>
+        </dd>
+    </dl>
+    <p>Allows to configure what pagination class should be used. If no class name
+is given or the given class does not implement the PaginationInterface, the
+default SimplePagination gets used.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      pagination = TYPO3\CMS\Core\Pagination\SlidingWindowPagination
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: itemsPerPage
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">integer</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>10</p>
+        </dd>
+    </dl>
+    <p>Amount of list entries per page.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      itemsPerPage = 10
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: numberOfLinks
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">integer</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>5</p>
+        </dd>
+    </dl>
+    <p>If a SlidingWindowPagination or compatible pagination is used, this defines
+the amount of pages in the pagination list.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      numberOfLinks = 3
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: groupAuthors
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">boolean</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Choose weather to group the author list by first letter or not.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      groupAuthors = 1
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: groupSeries
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">boolean</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Choose weather to group the series list by first letter or not.</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      groupSeries = 1
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+            .. sfbooks-Configuration:: orderings
+
+<dl class="field-list simple ">
+            <dt class="field-odd">Data type</dt>
+
+        <dd class="field-odd">
+            
+    <p><code class="code-inline">array</code></p>
+        </dd>
+            <dt class="field-odd">Default</dt>
+
+        <dd class="field-odd">
+            
+    <p>1</p>
+        </dd>
+    </dl>
+    <p>Combinations of fields with order directions</p>
+
+    <p><strong>Example:</strong></p>
+        <div class="code-block-caption">
+            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+        </div><div class="code-block-wrapper" translate="no">
+                        
+        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+   settings {
+      orderings {
+        title = ASC
+      }
+   }
+}</code></pre>
+        <div>
+            <button class="code-block-copy" title="Copy to clipboard">
+                <i class="fa-regular fa-copy code-block-copy-icon"></i>
+                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+            </button>
+            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
+        </div>
+    </div>
+    </section>
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="breaking-changes-1" data-rst-anchor="breaking-changes">
+            <a id="breaking-changes"></a>
+            <h1>Breaking Changes<a class="headerlink" href="#breaking-changes-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="28-july-2023">
+            <h2>28. July 2023<a class="headerlink" href="#28-july-2023" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <section class="section" id="change-typoscript-parameter">
+            <h3>Change typoscript parameter<a class="headerlink" href="#change-typoscript-parameter" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>Rename TypoScript parameter settings.limit into settings.itemsPerPage.
+This also relates to the plugin settings where limit is renamed into itemsPerPage to.</p>
+
+    </section>
+            <section class="section" id="drop-viewhelper">
+            <h3>Drop ViewHelper<a class="headerlink" href="#drop-viewhelper" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>As of version 8.x the SortViewHelper is dropped because its never used.</p>
+
+    </section>
+    </section>
+            <section class="section" id="13-march-2021">
+            <h2>13. March 2021<a class="headerlink" href="#13-march-2021" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <section class="section" id="replace-pagination-widget-by-pagination-api">
+            <h3>Replace pagination widget by pagination API<a class="headerlink" href="#replace-pagination-widget-by-pagination-api" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>Usage of f:widget.paginate is replaced with paginator and pagination objects with usage of Paginator.html partials.</p>
+
+    </section>
+            <section class="section" id="routes-configuration">
+            <h3>Routes configuration<a class="headerlink" href="#routes-configuration" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>Routes configuration files are moved from /Configuration/Yaml to /Configuration/Routes</p>
+
+    </section>
+    </section>
+            <section class="section" id="03-may-2020">
+            <h2>03. May 2020<a class="headerlink" href="#03-may-2020" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <section class="section" id="cleanup-of-plugins">
+            <h3>Cleanup of plugins<a class="headerlink" href="#cleanup-of-plugins" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            
+    <p>Due to a more restricted handling of resolving controllers and actions in links every plugin is reduced to it&#039;s main
+data models. The following plugins are modified:</p>
+
+            <div class="table-responsive">
+    <table class="table table-bordered align-default">
+                            <thead>
+            <tr>
+                            <th>Plugin</th>
+                            <th>Controller before change</th>
+                            <th>after change</th>
+                    </tr>
+        </thead>
+        <tbody>
+    <tr>
+            <td>Book
+Category
+Series
+Search</td>            <td>BookController, CategoryController
+CategoryController, BookController
+SeriesController, BookController
+SearchController, BookController, AuthorController</td>            <td>BookController
+CategoryController
+SeriesController
+SearchController</td>    </tr>    <tr>
+            <td colspan="3">n consequence you need to check whether your pages are still displaying all informat
+here are settings for the link generation authorPageId, bookPageId, categoryPageId,
+educed flexibility. Have a look into the TypoScript constants editor.
+leanup of flexforms
+-------------------
+he field settings.templatePath got removed with view.templateRootPaths.200. By this
+emplates is necessary anymore. But the new field needs to be filled to get it workin
+7. April 2017
+=============
+emove viewhelper
+----------------
+n favor of the core the widget viewhelper was dropped. Please replace &#039;sfb:widget.pa
+nd check if configuration still works.
+emplate behaviour
+-----------------
+nly valid template file type since version 4 are html files. Every other template fi</td>    </tr></tbody>    </table>
+</div>
+    </section>
+    </section>
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="updating-1" data-rst-anchor="updating">
+            <a id="updating"></a>
+            <h1>Updating<a class="headerlink" href="#updating-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <section class="section" id="add-path-segment-information">
+            <h2>Add path_segment information<a class="headerlink" href="#add-path-segment-information" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            
+    <p>Since version 6.0 of sf_books the extension support route generation.</p>
+
+            
+    <p>There in the tables author, books, categories and series got path_segment fields
+added. These fields need to be filled for the url generation. To automatize this process
+there are four upgrade wizards available, which can be executed in the
+Admin Tools &gt; Upgrade &gt; Upgrade Wizard.</p>
+
+    </section>
+    </section>
+
+        </article>
+<article>
+            <section class="section" id="testing-1" data-rst-anchor="testing">
+            <a id="testing"></a>
+            <h1>Testing<a class="headerlink" href="#testing-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <figure>
+    <img
+    src="Images/phpstorm_configuration.png"
+                alt="Setting up configuration for Functional Testing in PhpStorm"        />
+
+
+            
+            </figure>
+    </section>
+
+        </article>
+<article>
+            
+<section class="section" id="sitemap">
+            <h1>Sitemap<a class="headerlink" href="#sitemap" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+    </section>
+
+        </article>
+<!-- content end -->
+                                                        </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
+    aria-hidden="true" data-current-filename="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkReferenceModalLabel">Reference to the headline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success d-none" id="permalink-alert-success" role="alert"></div>
+                <div class="mb-3">
+                    <label for="permalink-uri" class="col-form-label">Permalink</label>
+                    <div class="input-group">
+                        <input class="form-control code" id="permalink-uri" readonly>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p>Copy and freely share the link</p>
+                </div>
+                <div class="mb-3">
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    </div>
+                    <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-rst" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
+                    </div>
+                    <p>Copy this link into your TYPO3 manual. </p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-html" class="col-form-label">HTML:</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-html" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-html"><i class="far fa-clone"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+
+
+<footer class="page-footer">
+    <div class="frame frame-ruler-before frame-background-dark">
+        <div class="frame-container">
+            <div class="frame-inner">
+                                <div class="footer-additional">
+                    <p class="text-center">Last rendered: May 19, 2024 17:42</p>
+                </div>
+                <div class="footer-meta">
+                    <ul class="footer-meta-navigation">
+                        <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
+                        <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../_resources/js/popper.min.js"></script>
+<script src="../_resources/js/bootstrap.min.js"></script>
+<script src="../_resources/js/theme.min.js"></script>
+
+<!--
+ Locally rendered. No tracking embedded.
+-->
+</body>
+</html>

@@ -1,0 +1,254 @@
+{
+    "std:doc": {
+        "BreakingChanges\/Index": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html",
+            "Breaking Changes"
+        ],
+        "Configuration\/Index": [
+            "-",
+            "-",
+            "Configuration\/Index.html",
+            "Configuration"
+        ],
+        "Index": [
+            "-",
+            "-",
+            "Index.html",
+            "sf_books: Managing books the easy way"
+        ],
+        "Installation\/Index": [
+            "-",
+            "-",
+            "Installation\/Index.html",
+            "Installation"
+        ],
+        "Introduction\/Index": [
+            "-",
+            "-",
+            "Introduction\/Index.html",
+            "Introduction"
+        ],
+        "Sitemap": [
+            "-",
+            "-",
+            "Sitemap.html",
+            "Sitemap"
+        ],
+        "Testing\/Index": [
+            "-",
+            "-",
+            "Testing\/Index.html",
+            "Testing"
+        ],
+        "Updating\/Index": [
+            "-",
+            "-",
+            "Updating\/Index.html",
+            "Updating"
+        ]
+    },
+    "std:label": {
+        "breaking-changes": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#breaking-changes",
+            "Breaking Changes"
+        ],
+        "configuration": [
+            "-",
+            "-",
+            "Configuration\/Index.html#configuration",
+            "Configuration"
+        ],
+        "installation": [
+            "-",
+            "-",
+            "Installation\/Index.html#installation",
+            "Installation"
+        ],
+        "introduction": [
+            "-",
+            "-",
+            "Introduction\/Index.html#introduction",
+            "Introduction"
+        ],
+        "testing": [
+            "-",
+            "-",
+            "Testing\/Index.html#testing",
+            "Testing"
+        ],
+        "updating": [
+            "-",
+            "-",
+            "Updating\/Index.html#updating",
+            "Updating"
+        ]
+    },
+    "std:title": {
+        "breaking-changes-1": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#breaking-changes-1",
+            "Breaking Changes"
+        ],
+        "28-july-2023": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#28-july-2023",
+            "28. July 2023"
+        ],
+        "change-typoscript-parameter": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#change-typoscript-parameter",
+            "Change typoscript parameter"
+        ],
+        "drop-viewhelper": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#drop-viewhelper",
+            "Drop ViewHelper"
+        ],
+        "13-march-2021": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#13-march-2021",
+            "13. March 2021"
+        ],
+        "replace-pagination-widget-by-pagination-api": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#replace-pagination-widget-by-pagination-api",
+            "Replace pagination widget by pagination API"
+        ],
+        "routes-configuration": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#routes-configuration",
+            "Routes configuration"
+        ],
+        "03-may-2020": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#03-may-2020",
+            "03. May 2020"
+        ],
+        "cleanup-of-plugins": [
+            "-",
+            "-",
+            "BreakingChanges\/Index.html#cleanup-of-plugins",
+            "Cleanup of plugins"
+        ],
+        "configuration-1": [
+            "-",
+            "-",
+            "Configuration\/Index.html#configuration-1",
+            "Configuration"
+        ],
+        "introduction": [
+            "-",
+            "-",
+            "Configuration\/Index.html#introduction",
+            "Introduction"
+        ],
+        "plugin-tx-sfbooks": [
+            "-",
+            "-",
+            "Configuration\/Index.html#plugin-tx-sfbooks",
+            "plugin.tx_sfbooks"
+        ],
+        "plugin-tx-sfbooks-book-author-category-series-search": [
+            "-",
+            "-",
+            "Configuration\/Index.html#plugin-tx-sfbooks-book-author-category-series-search",
+            "plugin.tx_sfbooks_[bookauthorcategoryseriessearch]"
+        ],
+        "settings-and-view-in-both-plugin-configurations": [
+            "-",
+            "-",
+            "Configuration\/Index.html#settings-and-view-in-both-plugin-configurations",
+            "Settings and view in both plugin configurations"
+        ],
+        "sf-books-managing-books-the-easy-way": [
+            "-",
+            "-",
+            "Index.html#sf-books-managing-books-the-easy-way",
+            "sf_books: Managing books the easy way"
+        ],
+        "installation-1": [
+            "-",
+            "-",
+            "Installation\/Index.html#installation-1",
+            "Installation"
+        ],
+        "download-via-extension-manager": [
+            "-",
+            "-",
+            "Installation\/Index.html#download-via-extension-manager",
+            "Download via Extension Manager"
+        ],
+        "download-via-composer": [
+            "-",
+            "-",
+            "Installation\/Index.html#download-via-composer",
+            "Download via Composer"
+        ],
+        "include-typoscript": [
+            "-",
+            "-",
+            "Installation\/Index.html#include-typoscript",
+            "Include TypoScript"
+        ],
+        "include-routing-configuration": [
+            "-",
+            "-",
+            "Installation\/Index.html#include-routing-configuration",
+            "Include Routing configuration"
+        ],
+        "introduction-1": [
+            "-",
+            "-",
+            "Introduction\/Index.html#introduction-1",
+            "Introduction"
+        ],
+        "what-does-it-do": [
+            "-",
+            "-",
+            "Introduction\/Index.html#what-does-it-do",
+            "What does it do?"
+        ],
+        "managing-your-books": [
+            "-",
+            "-",
+            "Introduction\/Index.html#managing-your-books",
+            "Managing your books:"
+        ],
+        "sitemap": [
+            "-",
+            "-",
+            "Sitemap.html#sitemap",
+            "Sitemap"
+        ],
+        "testing-1": [
+            "-",
+            "-",
+            "Testing\/Index.html#testing-1",
+            "Testing"
+        ],
+        "updating-1": [
+            "-",
+            "-",
+            "Updating\/Index.html#updating-1",
+            "Updating"
+        ],
+        "add-path-segment-information": [
+            "-",
+            "-",
+            "Updating\/Index.html#add-path-segment-information",
+            "Add path_segment information"
+        ]
+    }
+}
