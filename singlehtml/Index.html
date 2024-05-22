@@ -11,9 +11,9 @@
 <meta content="" name="docsearch:package_type">
 <meta content="" name="docsearch:release">
 <meta content="" name="docsearch:version">
-<meta content="2024-05-19T17:42:54+00:00" name="docsearch:modified">
-<meta content="2024-05-19T17:42:54+00:00" name="dc.modified">
-<meta content="2024-05-19T17:42:54+00:00" property="article:modified_time">
+<meta content="2024-05-22T16:11:54+00:00" name="docsearch:modified">
+<meta content="2024-05-22T16:11:54+00:00" name="dc.modified">
+<meta content="2024-05-22T16:11:54+00:00" property="article:modified_time">
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="../_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
@@ -138,7 +138,7 @@ license.</p>
 
         <dd class="field-odd">
             
-    <p>Sun, 19 May 2024 17:42:54 +0000</p>
+    <p>Wed, 22 May 2024 16:11:54 +0000</p>
         </dd>
     </dl>
             <hr />
@@ -246,7 +246,7 @@ license.</p>
 
         <dd class="field-odd">
             
-    <p>Sun, 19 May 2024 17:42:54 +0000</p>
+    <p>Wed, 22 May 2024 16:11:54 +0000</p>
         </dd>
     </dl>
             <hr />
@@ -345,21 +345,20 @@ install the extension by hitting the action for that.</p>
             <section class="section" id="download-via-composer">
             <h2>Download via Composer<a class="headerlink" href="#download-via-composer" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
             
-    <p>Add evoweb/extender to the require in your composer.json.</p>
+    <p>Add evoweb/sf-books to the require in your composer.json.</p>
 
-                    <div class="code-block-caption">
-            <span class="caption-text">Enter on shell</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs bash">composer require evoweb/sf-books</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+                <div class="code-block-caption">
+        <span class="caption-text">Enter on shell</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs bash">composer require evoweb/sf-books</code></pre>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
     </section>
             <section class="section" id="include-typoscript">
             <h2>Include TypoScript<a class="headerlink" href="#include-typoscript" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
@@ -374,20 +373,19 @@ sitepackage and modify the constants to match the page setup you have added.</p>
     <p>To have speaking urls you need to add the following import in your site config.
 This allows each of the plugins to render seo friendly urls.</p>
 
-                    <div class="code-block-caption">
-            <span class="caption-text">config/sites/[main]/config.yaml</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">imports:
+                <div class="code-block-caption">
+        <span class="caption-text">config/sites/[main]/config.yaml</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">imports:
     - { resource: "<span class="hljs-bullet">EXT:sf_books/Configuration/Routes/Default.yaml</span>" }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
     </section>
     </section>
 
@@ -441,11 +439,11 @@ the desired layout is found, is used. If the array keys are numeric, they
 are first sorted and then tried in reversed order.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    view {
       templateRootPaths {
          <span class="hljs-title">10</span> = <span class="hljs-bullet">EXT:sitedesign/Resources/Private/Templates</span>
@@ -453,14 +451,13 @@ are first sorted and then tried in reversed order.</p>
       }
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: pagination
 
 <dl class="field-list simple ">
@@ -482,23 +479,22 @@ is given or the given class does not implement the PaginationInterface, the
 default SimplePagination gets used.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       pagination = TYPO3\CMS\Core\Pagination\SlidingWindowPagination
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: itemsPerPage
 
 <dl class="field-list simple ">
@@ -518,23 +514,22 @@ default SimplePagination gets used.</p>
     <p>Amount of list entries per page.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       itemsPerPage = 10
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: numberOfLinks
 
 <dl class="field-list simple ">
@@ -555,23 +550,22 @@ default SimplePagination gets used.</p>
 the amount of pages in the pagination list.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       numberOfLinks = 3
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: groupAuthors
 
 <dl class="field-list simple ">
@@ -591,23 +585,22 @@ the amount of pages in the pagination list.</p>
     <p>Choose weather to group the author list by first letter or not.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       groupAuthors = 1
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: groupSeries
 
 <dl class="field-list simple ">
@@ -627,23 +620,22 @@ the amount of pages in the pagination list.</p>
     <p>Choose weather to group the series list by first letter or not.</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       groupSeries = 1
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
             .. sfbooks-Configuration:: orderings
 
 <dl class="field-list simple ">
@@ -663,25 +655,24 @@ the amount of pages in the pagination list.</p>
     <p>Combinations of fields with order directions</p>
 
     <p><strong>Example:</strong></p>
-        <div class="code-block-caption">
-            <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
-        </div><div class="code-block-wrapper" translate="no">
-                        
-        <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
+    <div class="code-block-caption">
+        <span class="caption-text">EXT:site_package/Configuration/TypoScript/setup.typoscript</span>
+    </div><div class="code-block-wrapper" translate="no">
+            
+    <pre class="code-block"><code class="hljs typoscript">plugin.tx_sfbooks {
    settings {
       orderings {
         title = ASC
       }
    }
 }</code></pre>
-        <div>
-            <button class="code-block-copy" title="Copy to clipboard">
-                <i class="fa-regular fa-copy code-block-copy-icon"></i>
-                <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
-            </button>
-            <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
-        </div>
+    <div>        <button class="code-block-copy" title="Copy to clipboard">
+            <i class="icon fa-regular fa-copy code-block-copy-icon"></i>
+            <i class="fa-solid fa-check code-block-check-icon code-block-hide"></i>
+        </button>
+        <span class="code-block-check-tooltip code-block-hide" aria-live="polite">Copied!</span>
     </div>
+</div>
     </section>
     </section>
 
@@ -870,7 +861,7 @@ Admin Tools &gt; Upgrade &gt; Upgrade Wizard.</p>
         <div class="frame-container">
             <div class="frame-inner">
                                 <div class="footer-additional">
-                    <p class="text-center">Last rendered: May 19, 2024 17:42</p>
+                    <p class="text-center">Last rendered: May 22, 2024 16:11</p>
                 </div>
                 <div class="footer-meta">
                     <ul class="footer-meta-navigation">

@@ -19,7 +19,7 @@ install the extension by hitting the action for that.
 Download via Composer
 =====================
 
-Add evoweb/extender to the require in your composer.json.
+Add evoweb/sf-books to the require in your composer.json.
 
 .. code-block:: bash
    :caption: Enter on shell
