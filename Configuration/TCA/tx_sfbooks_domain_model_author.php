@@ -125,13 +125,13 @@ return [
                     'fields' => ['lastname', 'firstname'],
                     'fieldSeparator' => '-',
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInSite',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'capital_letter' => [
             'config' => [

@@ -1,5 +1,7 @@
 <?php
 
+use TYPO3\CMS\Core\Resource\File;
+
 defined('TYPO3') or die();
 
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
@@ -113,13 +115,13 @@ return [
                     'fields' => ['title', 'subtitle'],
                     'fieldSeparator' => '-',
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInSite',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'subtitle' => [
             'exclude' => 1,
@@ -305,7 +307,7 @@ return [
                     ],
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
+                    'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
@@ -323,7 +325,8 @@ return [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -335,27 +338,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -371,7 +374,8 @@ return [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -383,27 +387,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -419,7 +423,8 @@ return [
                 'type' => 'file',
                 'allowed' => 'pdf',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -431,27 +436,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        File::FILETYPE_TEXT => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        File::FILETYPE_IMAGE => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        File::FILETYPE_AUDIO => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        File::FILETYPE_VIDEO => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        File::FILETYPE_APPLICATION => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -493,7 +498,7 @@ return [
             ',
         ],
         'locations' => [
-            'showitem' => 'location2, location3'
+            'showitem' => 'location2, location3',
         ],
     ],
 ];

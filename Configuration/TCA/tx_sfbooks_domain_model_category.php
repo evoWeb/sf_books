@@ -111,13 +111,13 @@ return [
                 'generatorOptions' => [
                     'fields' => ['title'],
                     'replacements' => [
-                        '/' => ''
+                        '/' => '',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInSite',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'parent' => [
             'exclude' => 1,
@@ -160,7 +160,7 @@ return [
                         'hide' => false,
                         'delete' => false,
                         'localize' => false,
-                    ]
+                    ],
                 ],
                 'overrideChildTca' => [
                     'columns' => [
@@ -223,7 +223,7 @@ return [
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     --palette--;;hidden,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
-            '
+            ',
         ],
     ],
 

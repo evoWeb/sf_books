@@ -24,9 +24,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
 {
-    public function __construct(protected CategoryRepository $categoryRepository)
-    {
-    }
+    public function __construct(protected CategoryRepository $categoryRepository) {}
 
     protected function initializeAction(): void
     {

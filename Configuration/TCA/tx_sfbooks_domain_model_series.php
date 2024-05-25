@@ -111,13 +111,13 @@ return [
                 'generatorOptions' => [
                     'fields' => ['title'],
                     'replacements' => [
-                        '/' => ''
+                        '/' => '',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInSite',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'info' => [
             'exclude' => 1,

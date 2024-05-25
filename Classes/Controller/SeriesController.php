@@ -22,9 +22,7 @@ use TYPO3\CMS\Core\Http\HtmlResponse;
 
 class SeriesController extends AbstractController
 {
-    public function __construct(protected SeriesRepository $seriesRepository)
-    {
-    }
+    public function __construct(protected SeriesRepository $seriesRepository) {}
 
     protected function initializeAction(): void
     {

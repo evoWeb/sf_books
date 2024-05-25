@@ -2,7 +2,9 @@
 
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addStaticFile(
     'sf_books',
     'Configuration/TypoScript/',
     'Book Library'

@@ -110,7 +110,7 @@ abstract class AbstractController extends ActionController
             'Page Not Found',
             [
                 'The page did not exist or was inaccessible.',
-                ' Reason: ' . $type . ' not found!'
+                ' Reason: ' . $type . ' not found!',
             ]
         );
         throw new ImmediateResponseException($response);

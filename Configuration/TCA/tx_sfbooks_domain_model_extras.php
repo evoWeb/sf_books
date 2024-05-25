@@ -158,10 +158,10 @@ return [
                 'content' => [
                     'config' => [
                         'enableRichtext' => true,
-                        'richtextConfiguration' => 'default'
-                    ]
-                ]
-            ]
+                        'richtextConfiguration' => 'default',
+                    ],
+                ],
+            ],
         ],
     ],
 
