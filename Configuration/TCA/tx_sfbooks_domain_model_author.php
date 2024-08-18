@@ -30,88 +30,22 @@ return [
     ],
 
     'columns' => [
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-        'starttime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'endtime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-                'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
-                ],
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'fe_group' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'size' => 5,
-                'maxitems' => 20,
-                'items' => [
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        'value' => -1,
-                    ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        'value' => -2,
-                    ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        'value' => '--div--',
-                    ],
-                ],
-                'exclusiveKeys' => '-1,-2',
-                'foreign_table' => 'fe_groups',
-            ],
-        ],
-
         'lastname' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $languageFile . 'tx_sfbooks_domain_model_author.lastname',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'max' => 254,
+                'width' => 200,
                 'eval' => 'trim',
                 'required' => true,
             ],
         ],
         'firstname' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $languageFile . 'tx_sfbooks_domain_model_author.firstname',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'max' => 254,
+                'width' => 200,
                 'eval' => 'trim',
             ],
         ],
@@ -133,13 +67,8 @@ return [
                 'default' => '',
             ],
         ],
-        'capital_letter' => [
-            'config' => [
-                'type' => 'input',
-            ],
-        ],
         'description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $languageFile . 'tx_sfbooks_domain_model_author.description',
             'config' => [
                 'type' => 'text',
@@ -154,7 +83,7 @@ return [
             ],
         ],
         'books' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $languageFile . 'tx_sfbooks_domain_model_author.books',
             'config' => [
                 'type' => 'group',
@@ -165,6 +94,11 @@ return [
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',
                 'MM' => 'tx_sfbooks_domain_model_book_author_mm',
                 'MM_opposite_field' => 'author',
+            ],
+        ],
+        'capital_letter' => [
+            'config' => [
+                'type' => 'input',
             ],
         ],
     ],

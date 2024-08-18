@@ -30,72 +30,24 @@ return [
     ],
 
     'columns' => [
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-        'starttime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'endtime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-                'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
-                ],
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'fe_group' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
+        'book' => [
+            'label' => $languageFile . 'tx_sfbooks_domain_model_extras.book',
             'config' => [
                 'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'size' => 5,
-                'maxitems' => 20,
+                'renderType' => 'selectSingle',
+                'default' => 0,
+                'size' => 1,
+                'foreign_table' => 'tx_sfbooks_domain_model_book',
+                'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',
                 'items' => [
                     [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        'value' => -1,
+                        'label' => $languageFile . 'tx_sfbooks_domain_model_extras.book.I.0',
+                        'value' => 0,
                     ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        'value' => -2,
-                    ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        'value' => '--div--',
-                    ],
-                ],
-                'exclusiveKeys' => '-1,-2',
-                'foreign_table' => 'fe_groups',
+                ]
             ],
         ],
-
         'type' => [
-            'exclude' => 0,
             'label' => $languageFile . 'tx_sfbooks_domain_model_extras.type',
             'config' => [
                 'type' => 'select',
@@ -113,7 +65,6 @@ return [
             ],
         ],
         'label' => [
-            'exclude' => 0,
             'label' => $languageFile . 'tx_sfbooks_domain_model_extras.label',
             'config' => [
                 'type' => 'select',
@@ -126,7 +77,6 @@ return [
             ],
         ],
         'content' => [
-            'exclude' => 0,
             'label' => $languageFile . 'tx_sfbooks_domain_model_extras.content',
             'config' => [
                 'type' => 'text',
@@ -140,7 +90,10 @@ return [
         '0' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    type, label, content,
+                    book,
+                    type,
+                    label,
+                    content,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     --palette--;;hidden,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
@@ -149,7 +102,10 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    type, label, content,
+                    book,
+                    type,
+                    label,
+                    content,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                     --palette--;;hidden,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access

@@ -24,27 +24,13 @@ return [
     ],
 
     'columns' => [
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-
         'label' => [
             'exclude' => 1,
             'label' => $languageFile . 'tx_sfbooks_domain_model_extraslabels.label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'eval' => 'trim',
                 'required' => true,
             ],
         ],

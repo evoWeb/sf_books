@@ -162,6 +162,9 @@
 			<trans-unit id="tx_sfbooks_domain_model_extras">
 				<source>Extra</source>
 			</trans-unit>
+			<trans-unit id="tx_sfbooks_domain_model_extras.book">
+				<source>Book this extra belongs to</source>
+			</trans-unit>
 			<trans-unit id="tx_sfbooks_domain_model_extras.type">
 				<source>Typ</source>
 			</trans-unit>
