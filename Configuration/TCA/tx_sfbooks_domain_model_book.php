@@ -1,8 +1,9 @@
 <?php
 
-use TYPO3\CMS\Core\Resource\FileType;
-
 defined('TYPO3') or die();
+
+use Evoweb\SfBooks\User\IsbnEvaluation;
+use TYPO3\CMS\Core\Resource\FileType;
 
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 $languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
@@ -94,7 +95,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'max' => 17
+                'max' => 17,
+                'eval' => 'trim,' . IsbnEvaluation::class,
             ],
         ],
         'series' => [

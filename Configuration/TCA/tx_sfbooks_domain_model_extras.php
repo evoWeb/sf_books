@@ -37,6 +37,7 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'size' => 1,
+                'readOnly' => true,
                 'foreign_table' => 'tx_sfbooks_domain_model_book',
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',
                 'items' => [
