@@ -13,17 +13,6 @@
 
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
-/**
- * This file is developed by evoWeb.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
 use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
 use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
@@ -59,7 +48,7 @@ class AuthorRepositoryTest extends AbstractTestCase
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        self::assertEquals(
+        $this->assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,
@@ -86,7 +75,7 @@ class AuthorRepositoryTest extends AbstractTestCase
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        self::assertEquals(
+        $this->assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,

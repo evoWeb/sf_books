@@ -11,8 +11,7 @@
                     <settings.itemsPerPage>
                         <label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
                         <config type="array">
-                            <type>input</type>
-                            <eval>int</eval>
+                            <type>number</type>
                             <default>5</default>
                         </config>
                     </settings.itemsPerPage>

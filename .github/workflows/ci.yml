@@ -34,50 +34,26 @@ jobs:
     strategy:
       matrix:
         packages:
-          - php: '8.1'
-            core: '^12.4'
-            framework: '^8.0.2'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.1'
-            core: '^12.4'
-            framework: '^8.0.2'
-            prefer: '--prefer-lowest'
-            testpath: 'Tests/Functional'
-
           - php: '8.2'
-            core: '^12.4'
-            framework: '^8.0.2'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.2'
-            core: '^12.4'
-            framework: '^8.0.2'
-            prefer: '--prefer-lowest'
-            testpath: 'Tests/Functional'
-
-          - php: '8.2'
-            core: '^13.0'
+            core: '^13.2'
             framework: 'dev-main'
             prefer: ''
             testpath: 'Tests/Functional'
 
           - php: '8.2'
-            core: '^13.0'
+            core: '^13.2'
             framework: 'dev-main'
             prefer: '--prefer-lowest'
             testpath: 'Tests/Functional'
 
           - php: '8.3'
-            core: '^13.0'
+            core: '^13.2'
             framework: 'dev-main'
             prefer: ''
             testpath: 'Tests/Functional'
 
           - php: '8.3'
-            core: '^13.0'
+            core: '^13.2'
             framework: 'dev-main'
             prefer: '--prefer-lowest'
             testpath: 'Tests/Functional'

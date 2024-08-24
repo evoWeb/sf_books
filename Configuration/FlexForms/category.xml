@@ -11,8 +11,7 @@
                     <settings.itemsPerPage>
                         <label>LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.limit</label>
                         <config type="array">
-                            <type>input</type>
-                            <eval>int</eval>
+                            <type>number</type>
                             <default>5</default>
                         </config>
                     </settings.itemsPerPage>
@@ -27,8 +26,8 @@
                             <default>-1</default>
                             <items type="array">
                                 <numIndex index="0" type="array">
-                                    <numIndex index="0">LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.category.allCategories</numIndex>
-                                    <numIndex index="1">-1</numIndex>
+                                    <numIndex index="label">LLL:EXT:sf_books/Resources/Private/Language/locallang_be.xml:flexform.settings.category.allCategories</numIndex>
+                                    <numIndex index="value">-1</numIndex>
                                 </numIndex>
                             </items>
                             <maxitems>200</maxitems>
