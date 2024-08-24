@@ -1,87 +1,113 @@
-function getNextSibling(element, selector) {
-  // Get the next sibling element
-  let sibling = element.nextElementSibling;
+class EvowebBookAccordion {
+  /**
+   * @type {HTMLElement}
+   */
+  current = null;
 
-  // If there's no selector, return the first sibling
-  if (selector) {
-    // If the sibling matches our selector, use it
-    // If not, jump to the next sibling and continue the loop
-    while (sibling) {
-      if (sibling.matches(selector)) {
-        break;
+  constructor() {
+    this.initializeClickTriggers();
+    this.initializeAnchoredAccordion();
+  }
+
+  initializeClickTriggers() {
+    const triggers = [...document.querySelectorAll('.trigger')];
+    triggers.map(trigger => trigger.addEventListener('click', event => this.clickEventHandler(event)));
+  }
+
+  initializeAnchoredAccordion() {
+    if (window.location.hash) {
+      const hash = window.location.hash,
+        accordionToOpen = document.querySelector('.trigger' + hash);
+      if (accordionToOpen) {
+        this.current = accordionToOpen;
+        this.activate(this.current);
       }
-      sibling = sibling.nextElementSibling
     }
   }
 
-  return sibling;
-}
+  /**
+   * @param {PointerEvent} event
+   */
+  clickEventHandler(event) {
+    event.preventDefault();
+    const trigger = event.target;
 
-function emitEvent(element, type) {
-  let event = document.createEvent('HTMLEvents');
-  event.initEvent(type, true, true);
-  element.dispatchEvent(event);
-}
+    if (trigger === this.current) {
+      this.deactivate(this.current);
+    } else {
+      if (this.current != null) {
+        this.deactivate(this.current);
+      }
 
-function triggerClickHandler(event) {
-  event.preventDefault();
-
-  let trigger = event.target,
-    current = document.querySelector('.trigger_active');
-
-  if (trigger === current) {
-    current.classList.remove('trigger_active');
-    getNextSibling(current, '.toggle_container').classList.add('close');
-  } else {
-    if (current != null ) {
-      current.classList.remove('trigger_active');
-      getNextSibling(current, '.toggle_container').classList.add('close');
+      this.current = trigger;
+      this.activate(this.current);
     }
+  }
 
-    trigger.classList.add('trigger_active');
-    getNextSibling(trigger, '.toggle_container').classList.remove('close');
+  /**
+   * @param {HTMLElement} element
+   */
+  activate(element) {
+    element.classList.add('trigger_active');
+    this.getNextSibling(element, '.toggle_container').classList.remove('close');
+  }
+
+  /**
+   * @param {HTMLElement} element
+   */
+  deactivate(element) {
+    element.classList.remove('trigger_active');
+    this.getNextSibling(element, '.toggle_container').classList.add('close');
+  }
+
+  /**
+   * @param {HTMLElement} element
+   * @param {string} selector
+   */
+  getNextSibling(element, selector) {
+    // Get a sibling by selector
+    return element.parentElement.querySelector(selector);
   }
 }
 
-function initAccordion() {
-  let allTriggers = document.querySelectorAll('.trigger'),
-    accordionToOpen = null,
-    keepOpen;
+class EvowebBookLetters {
+  constructor() {
+    this.initializeClickTriggers();
+  }
 
-  allTriggers.forEach(function (trigger) {
-    trigger.addEventListener('click', triggerClickHandler);
-  })
+  initializeClickTriggers() {
+    const triggers = [...document.querySelectorAll('.tx-sfbooks .letters a')];
+    triggers.map(trigger => trigger.addEventListener('click', event => this.clickEventHandler(event)));
+  }
 
-  if (window.location.hash) {
-    accordionToOpen = document.querySelector('.trigger' + window.location.hash);
+  /**
+   * @param {PointerEvent} event
+   */
+  clickEventHandler(event) {
+    event.preventDefault();
 
-    keepOpen = accordionToOpen != null ? accordionToOpen : allTriggers[0];
-    keepOpen.classList.add('trigger_active');
-    getNextSibling(keepOpen, '.toggle_container').classList.remove('close');
+    const trigger = event.target,
+      hash = trigger.hash,
+      accordionToOpen = document.querySelector('.trigger' + hash);
+
+    this.emitEvent(accordionToOpen, 'click');
+
+    document.body.scrollBy({ top: accordionToOpen.top });
+    window.location.hash = hash;
+  }
+
+  emitEvent(element, type) {
+    element.dispatchEvent(new CustomEvent(type, true, true));
   }
 }
 
-function letterClickHandler(event) {
-  event.preventDefault();
-
-  let letter = event.target,
-    trigger = document.querySelector('.trigger' + letter.hash);
-
-  emitEvent(trigger, 'click');
-
-  document.body.scrollBy({ top: trigger.top });
-  window.location.hash = letter.hash;
+function evowebBookInitialization() {
+  new EvowebBookAccordion();
+  new EvowebBookLetters();
 }
 
-function initLetters() {
-  let letters = document.querySelectorAll('.tx-sfbooks .letters a');
-
-  letters.forEach(function (letter) {
-    letter.addEventListener('click', letterClickHandler);
-  });
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', evowebBookInitialization);
+} else {
+  evowebBookInitialization();
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  initAccordion();
-  initLetters();
-});
