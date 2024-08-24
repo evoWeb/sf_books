@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is copied from the TYPO3 CMS install tool package.
+ * This file is developed by evoWeb.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -11,8 +11,6 @@ declare(strict_types=1);
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 
 namespace Evoweb\SfBooks\Updates;
@@ -37,8 +35,7 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 
     protected string $fieldName = 'path_segment';
 
-    public function __construct(protected ConnectionPool $connectionPool) {
-    }
+    public function __construct(protected ConnectionPool $connectionPool) {}
 
     abstract public function getTitle(): string;
 
@@ -47,7 +44,7 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
     public function getPrerequisites(): array
     {
         return [
-            DatabaseUpdatedPrerequisite::class
+            DatabaseUpdatedPrerequisite::class,
         ];
     }
 

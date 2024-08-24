@@ -2,6 +2,9 @@
 
 defined('TYPO3') or die();
 
+use Evoweb\SfBooks\User\IsbnEvaluation;
+use TYPO3\CMS\Core\Resource\FileType;
+
 $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
 $languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
 $languageFileTca = 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:';
@@ -30,77 +33,21 @@ return [
     ],
 
     'columns' => [
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-        'starttime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'endtime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
-            'config' => [
-                'type' => 'datetime',
-                'default' => 0,
-                'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
-                ],
-            ],
-            'l10n_mode' => 'exclude',
-            'l10n_display' => 'defaultAsReadonly',
-        ],
-        'fe_group' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'size' => 5,
-                'maxitems' => 20,
-                'items' => [
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        'value' => -1,
-                    ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        'value' => -2,
-                    ],
-                    [
-                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        'value' => '--div--',
-                    ],
-                ],
-                'exclusiveKeys' => '-1,-2',
-                'foreign_table' => 'fe_groups',
-            ],
-        ],
-
         'title' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'required' => true,
+            ],
+        ],
+        'subtitle' => [
+            'exclude' => false,
+            'label' => $languageFile . 'tx_sfbooks_domain_model_book.subtitle',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
             ],
         ],
         'path_segment' => [
@@ -113,24 +60,16 @@ return [
                     'fields' => ['title', 'subtitle'],
                     'fieldSeparator' => '-',
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInSite',
-                'default' => ''
-            ]
-        ],
-        'subtitle' => [
-            'exclude' => 1,
-            'label' => $languageFile . 'tx_sfbooks_domain_model_book.subtitle',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
+                'default' => '',
             ],
         ],
         'author' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.author',
             'config' => [
                 'type' => 'group',
@@ -151,15 +90,17 @@ return [
             ],
         ],
         'isbn' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.isbn',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'max' => 17,
+                'eval' => 'trim,' . IsbnEvaluation::class,
             ],
         ],
         'series' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.series',
             'config' => [
                 'type' => 'select',
@@ -192,7 +133,7 @@ return [
             ],
         ],
         'number' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.number',
             'config' => [
                 'type' => 'input',
@@ -200,7 +141,7 @@ return [
             ],
         ],
         'category' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.category',
             'config' => [
                 'type' => 'select',
@@ -214,14 +155,14 @@ return [
                 'treeConfig' => [
                     'parentField' => 'parent',
                     'appearance' => [
-                        'expandAll' => 1,
-                        'showHeader' => 1,
+                        'expandAll' => true,
+                        'showHeader' => true,
                     ],
                 ],
             ],
         ],
         'location1' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.location1',
             'onChange' => 'reload',
             'config' => [
@@ -236,7 +177,7 @@ return [
             ],
         ],
         'location2' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.location2',
             'onChange' => 'reload',
             'displayCond' => 'FIELD:location1:REQ:true',
@@ -252,7 +193,7 @@ return [
             ],
         ],
         'location3' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.location3',
             'displayCond' => 'FIELD:location2:REQ:true',
             'config' => [
@@ -267,7 +208,7 @@ return [
             ],
         ],
         'description' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.description',
             'config' => [
                 'type' => 'text',
@@ -282,48 +223,40 @@ return [
             ],
         ],
         'extras' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.extras',
             'config' => [
                 'type' => 'inline',
-                'allowed' => 'tx_sfbooks_domain_model_extras',
                 'foreign_table' => 'tx_sfbooks_domain_model_extras',
-                'default' => 0,
-                'size' => 5,
-                'minitems' => 0,
+                'foreign_field' => 'book',
                 'maxitems' => 10,
                 'appearance' => [
-                    'collapseAll' => 1,
-                    'expandSingle' => 1,
-                    'levelLinksPosition' => 'bottom',
-                    'useSortable' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1,
-                    'showSynchronizationLink' => 1,
-                    'enabledControls' => [
-                        'info' => false,
-                    ],
+                    'collapseAll' => true,
+                    'expandSingle' => true,
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
+                    'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
         'year' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.year',
             'config' => [
                 'type' => 'input',
                 'size' => 4,
+                'max' => 4,
             ],
         ],
         'cover' => [
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover',
             'config' => [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -335,27 +268,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        FileType::TEXT->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        FileType::IMAGE->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        FileType::AUDIO->value => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        FileType::VIDEO->value => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        FileType::APPLICATION->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -365,13 +298,14 @@ return [
             ],
         ],
         'cover_large' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover_large',
             'config' => [
                 'type' => 'file',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -383,27 +317,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        FileType::TEXT->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        FileType::IMAGE->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        FileType::AUDIO->value => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        FileType::VIDEO->value => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        FileType::APPLICATION->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -413,13 +347,14 @@ return [
             ],
         ],
         'sample_pdf' => [
-            'exclude' => 1,
+            'exclude' => false,
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.sample_pdf',
             'config' => [
                 'type' => 'file',
                 'allowed' => 'pdf',
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' =>
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -431,27 +366,27 @@ return [
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        FileType::TEXT->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        FileType::IMAGE->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        FileType::AUDIO->value => [
                             'showitem' => '
                                 --palette--;;audioOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        FileType::VIDEO->value => [
                             'showitem' => '
                                 --palette--;;videoOverlayPalette,
                                 --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        FileType::APPLICATION->value => [
                             'showitem' => '
                                 --palette--;;imageoverlayPalette,
                                 --palette--;;filePalette',
@@ -493,7 +428,7 @@ return [
             ',
         ],
         'locations' => [
-            'showitem' => 'location2, location3'
+            'showitem' => 'location2, location3',
         ],
     ],
 ];

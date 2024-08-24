@@ -1,0 +1,31 @@
+settings:
+  evoweb.sf_books.bookPageId:
+    default: ''
+    label: 'Book plugin page id'
+    type: int
+    description: 'page id'
+  evoweb.sf_books.authorPageId:
+    default: ''
+    label: 'Author plugin page id'
+    type: int
+    description: 'page id'
+  evoweb.sf_books.categoryPageId:
+    default: ''
+    label: 'Category plugin page id'
+    type: int
+    description: 'page id'
+  evoweb.sf_books.seriesPageId:
+    default: ''
+    label: 'Series plugin page id'
+    type: int
+    description: 'page id'
+  evoweb.sf_books.searchPageId:
+    default: ''
+    label: 'Search plugin page id'
+    type: int
+    description: 'page id'
+  evoweb.sf_books.excludeCategories:
+    default: ''
+    label: 'Exclude category list'
+    type: string
+    description: 'List of category ids to be excluded'

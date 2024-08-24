@@ -110,7 +110,7 @@ abstract class AbstractController extends ActionController
             'Page Not Found',
             [
                 'The page did not exist or was inaccessible.',
-                ' Reason: ' . $type . ' not found!'
+                ' Reason: ' . $type . ' not found!',
             ]
         );
         throw new ImmediateResponseException($response);
@@ -138,7 +138,7 @@ abstract class AbstractController extends ActionController
 
         $paginatorClass = is_array($result) ? ArrayPaginator::class : QueryResultPaginator::class;
 
-        /** @var QueryResultPaginator $resultPaginator */
+        /** @var PaginatorInterface $resultPaginator */
         $resultPaginator = GeneralUtility::makeInstance(
             $paginatorClass,
             $result,

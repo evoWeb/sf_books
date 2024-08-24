@@ -1,10 +1,10 @@
 plugin.tx_sfbooks {
   settings {
-    authorPageId = {$plugin.tx_sfbooks_book.authorPageId}
-    bookPageId = {$plugin.tx_sfbooks_book.bookPageId}
-    categoryPageId = {$plugin.tx_sfbooks_book.categoryPageId}
-    searchPageId = {$plugin.tx_sfbooks_book.searchPageId}
-    seriesPageId = {$plugin.tx_sfbooks_book.seriesPageId}
+    authorPageId = {$plugin.tx_sfbooks_book.authorPageId ?? $sf_books.authorPageId}
+    bookPageId = {$plugin.tx_sfbooks_book.bookPageId ?? $sf_books.bookPageId}
+    categoryPageId = {$plugin.tx_sfbooks_book.categoryPageId ?? $sf_books.categoryPageId}
+    searchPageId = {$plugin.tx_sfbooks_book.searchPageId ?? $sf_books.searchPageId}
+    seriesPageId = {$plugin.tx_sfbooks_book.seriesPageId ?? $sf_books.seriesPageId}
 
     pagination =
     itemsPerPage = 10
@@ -45,7 +45,7 @@ plugin.tx_sfbooks_author {
 
 plugin.tx_sfbooks_category {
   settings {
-    excludeCategories = {$plugin.tx_sfbooks_book.excludeCategories}
+    excludeCategories = {$plugin.tx_sfbooks_book.excludeCategories ?? $sf_books.excludeCategories}
     allowedOrderBy = title, sorting
 
     orderings {

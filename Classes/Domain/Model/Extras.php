@@ -53,11 +53,13 @@ class Extras extends AbstractEntity
 
     public function setContent(string $content): void
     {
+        // @extensionScannerIgnoreLine
         $this->content = $content;
     }
 
     public function getContent(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->content;
     }
 }

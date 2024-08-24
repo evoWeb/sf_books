@@ -23,9 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AuthorController extends AbstractController
 {
-    public function __construct(protected AuthorRepository $authorRepository)
-    {
-    }
+    public function __construct(protected AuthorRepository $authorRepository) {}
 
     protected function initializeAction(): void
     {

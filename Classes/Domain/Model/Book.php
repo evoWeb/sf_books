@@ -223,11 +223,13 @@ class Book extends AbstractEntity
 
     public function setNumber(string $number): void
     {
+        // @extensionScannerIgnoreLine
         $this->number = $number;
     }
 
     public function getNumber(): string
     {
+        // @extensionScannerIgnoreLine
         return $this->number;
     }
 

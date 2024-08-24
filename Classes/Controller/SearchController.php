@@ -45,6 +45,7 @@ class SearchController extends AbstractController
                 }
 
                 if (!$pageId) {
+                    // @extensionScannerIgnoreLine
                     $pageId = $this->request->getAttribute('currentContentObject')->data['pid'];
                 }
 

@@ -24,9 +24,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class CategoryController extends AbstractController
 {
-    public function __construct(protected CategoryRepository $categoryRepository)
-    {
-    }
+    public function __construct(protected CategoryRepository $categoryRepository) {}
 
     protected function initializeAction(): void
     {
@@ -42,7 +40,10 @@ class CategoryController extends AbstractController
     {
         if (
             count($this->settings['category']) == 0
-            || (count($this->settings['category']) == 1 && reset($this->settings['category']) < 1)
+            || (
+                count($this->settings['category']) == 1
+                && reset($this->settings['category']) < 1
+            )
         ) {
             $categories = $this->categoryRepository->findAll();
         } else {

@@ -23,9 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BookController extends AbstractController
 {
-    public function __construct(protected BookRepository $bookRepository)
-    {
-    }
+    public function __construct(protected BookRepository $bookRepository) {}
 
     protected function initializeAction(): void
     {
