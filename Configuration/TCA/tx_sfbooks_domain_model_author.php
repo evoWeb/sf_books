@@ -23,7 +23,7 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-author',
         ],
-        'searchFields' => 'lastname, firstname, description',
+        'searchFields' => 'uid, lastname, firstname, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
@@ -94,6 +94,7 @@ return [
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',
                 'MM' => 'tx_sfbooks_domain_model_book_author_mm',
                 'MM_opposite_field' => 'author',
+                'relationship' => 'oneToMany',
             ],
         ],
         'capital_letter' => [
@@ -110,25 +111,27 @@ return [
                     lastname, firstname, path_segment, description,
                 --div--;' . $languageFile . 'div.references,
                     books,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden,
-                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+                    --palette--;;visibility,
+                    --palette--;;access,
             ',
         ],
     ],
 
     'palettes' => [
-        'hidden' => [
+        'visibility' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility',
             'showitem' => '
-                hidden;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:field.default.hidden
+                hidden;' . $languageFile . 'tx_sfbooks_domain_model_series.hidden
             ',
         ],
         'access' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access',
             'showitem' => '
-                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.endtime_formlabel,
                 --linebreak--,
-                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel
+                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.fe_group_formlabel
             ',
         ],
     ],

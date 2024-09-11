@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 class Extras extends AbstractEntity
 {
     #[Extbase\ORM\Lazy]
-    protected null|LazyLoadingProxy|ExtrasLabels $label = null;
+    protected ExtrasLabels|LazyLoadingProxy|null $label = null;
 
     protected int $type = 0;
 

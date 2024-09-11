@@ -129,6 +129,9 @@
 			<trans-unit id="tx_sfbooks_domain_model_series">
 				<source>Serie</source>
 			</trans-unit>
+			<trans-unit id="tx_sfbooks_domain_model_series.hidden">
+				<source>Serie visible</source>
+			</trans-unit>
 			<trans-unit id="tx_sfbooks_domain_model_series.title">
 				<source>Title</source>
 			</trans-unit>

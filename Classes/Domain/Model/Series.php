@@ -23,10 +23,10 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Series extends AbstractEntity
 {
     /**
-     * @var ObjectStorage|LazyObjectStorage<Book>
+     * @var ObjectStorage<Book>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $books;
+    protected ObjectStorage $books;
 
     protected string $title = '';
 
