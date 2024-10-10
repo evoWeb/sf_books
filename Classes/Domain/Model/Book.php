@@ -18,28 +18,27 @@ namespace Evoweb\SfBooks\Domain\Model;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Book extends AbstractEntity
 {
     /**
-     * @var ObjectStorage|LazyObjectStorage<Author>
+     * @var ObjectStorage<Author>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $author;
+    protected ObjectStorage $author;
 
     /**
-     * @var ObjectStorage|LazyObjectStorage<Category>
+     * @var ObjectStorage<Category>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $category;
+    protected ObjectStorage $category;
 
     /**
-     * @var ObjectStorage|LazyObjectStorage<Extras>
+     * @var ObjectStorage<Extras>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $extras;
+    protected ObjectStorage $extras;
 
     /**
      * @var ObjectStorage<FileReference>

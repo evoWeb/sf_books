@@ -17,16 +17,15 @@ namespace Evoweb\SfBooks\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Series extends AbstractEntity
 {
     /**
-     * @var ObjectStorage|LazyObjectStorage<Book>
+     * @var ObjectStorage<Book>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $books;
+    protected ObjectStorage $books;
 
     protected string $title = '';
 

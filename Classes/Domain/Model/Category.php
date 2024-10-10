@@ -18,25 +18,24 @@ namespace Evoweb\SfBooks\Domain\Model;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Category extends AbstractEntity
 {
     /**
-     * @var ObjectStorage|LazyObjectStorage<Category>
+     * @var ObjectStorage<Category>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $children;
+    protected ObjectStorage $children;
 
     /**
-     * @var ObjectStorage|LazyObjectStorage<Book>
+     * @var ObjectStorage<Book>
      */
     #[Extbase\ORM\Lazy]
-    protected ObjectStorage|LazyObjectStorage $books;
+    protected ObjectStorage $books;
 
     #[Extbase\ORM\Lazy]
-    protected null|LazyLoadingProxy|Category $parent = null;
+    protected Category|LazyLoadingProxy|null $parent = null;
 
     protected string $title = '';
 
