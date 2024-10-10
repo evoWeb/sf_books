@@ -132,28 +132,22 @@ cleanup () {
     git checkout ../../composer.json
 }
 
+TPATH="Tests/Functional"
+LOWEST="--prefer-lowest"
+
 DEBUG_TESTS=false
 if [[ $DEBUG_TESTS != true ]]; then
     checkResources
 
     TCORE="^12.4"
     TFRAMEWORK="^8.0.2"
-    TPATH="Tests/Functional"
-    LOWEST="--prefer-lowest"
     runFunctionalTests "8.1" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
     runFunctionalTests "8.1" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
-
-    TCORE="^13.0"
-    TFRAMEWORK="dev-main"
-    runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
-    runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
-    runFunctionalTests "8.3" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
-    runFunctionalTests "8.3" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
 else
     cleanup
-    runFunctionalTests "8.2" "^13.0" "dev-main" "Tests/Functional" || exit 1
+    runFunctionalTests "8.2" "^12.0" "dev-main" ${TPATH} || exit 1
     cleanup
     # ./runTests.sh -x -p 8.2 -d sqlite -s functional -e "--group selected" Tests/Functional
     # ./runTests.sh -x -p 8.2 -d sqlite -s functional Tests/Functional

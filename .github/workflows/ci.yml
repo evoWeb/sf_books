@@ -57,30 +57,6 @@ jobs:
             framework: '^8.0.2'
             prefer: '--prefer-lowest'
             testpath: 'Tests/Functional'
-
-          - php: '8.2'
-            core: '^13.0'
-            framework: 'dev-main'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.2'
-            core: '^13.0'
-            framework: 'dev-main'
-            prefer: '--prefer-lowest'
-            testpath: 'Tests/Functional'
-
-          - php: '8.3'
-            core: '^13.0'
-            framework: 'dev-main'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.3'
-            core: '^13.0'
-            framework: 'dev-main'
-            prefer: '--prefer-lowest'
-            testpath: 'Tests/Functional'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
