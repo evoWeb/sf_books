@@ -39,6 +39,7 @@ class SeriesRepositoryTest extends AbstractTestCase
     #[Test]
     public function findByUidReturnsOneSeries()
     {
+        /** @var Series $series */
         $series = $this->subject->findByUid(1);
         $properties = [
             'uid' => $series->getUid(),
