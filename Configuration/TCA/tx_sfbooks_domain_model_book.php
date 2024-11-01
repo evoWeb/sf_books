@@ -26,7 +26,7 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-book',
         ],
-        'searchFields' => 'title, subtitle, isbn, description',
+        'searchFields' => 'uid, title, subtitle, isbn, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
@@ -76,6 +76,7 @@ return [
                 'allowed' => 'tx_sfbooks_domain_model_author',
                 'foreign_table' => 'tx_sfbooks_domain_model_author',
                 'MM' => 'tx_sfbooks_domain_model_book_author_mm',
+                'relationship' => 'oneToMany',
                 'fieldControl' => [
                     'editPopup' => [
                         'disabled' => false,
@@ -113,6 +114,7 @@ return [
                 'foreign_table_where' => 'AND tx_sfbooks_domain_model_series.pid = ###CURRENT_PID###
                     ORDER BY tx_sfbooks_domain_model_series.uid',
                 'MM' => 'tx_sfbooks_domain_model_book_series_mm',
+                'relationship' => 'oneToOne',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -149,6 +151,7 @@ return [
                 'foreign_table' => 'tx_sfbooks_domain_model_category',
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_category.title',
                 'MM' => 'tx_sfbooks_domain_model_book_category_mm',
+                'relationship' => 'oneToMany',
                 'minitems' => 0,
                 'maxitems' => 100,
                 'size' => 10,
@@ -229,6 +232,7 @@ return [
                 'type' => 'inline',
                 'foreign_table' => 'tx_sfbooks_domain_model_extras',
                 'foreign_field' => 'book',
+                'relationship' => 'oneToMany',
                 'maxitems' => 10,
                 'appearance' => [
                     'collapseAll' => true,
@@ -253,6 +257,7 @@ return [
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover',
             'config' => [
                 'type' => 'file',
+                'relationship' => 'oneToMany',
                 'allowed' => 'common-image-types',
                 'appearance' => [
                     'createNewRelationLinkTitle' =>
@@ -302,6 +307,7 @@ return [
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.cover_large',
             'config' => [
                 'type' => 'file',
+                'relationship' => 'oneToMany',
                 'allowed' => 'common-image-types',
                 'appearance' => [
                     'createNewRelationLinkTitle' =>
@@ -351,6 +357,7 @@ return [
             'label' => $languageFile . 'tx_sfbooks_domain_model_book.sample_pdf',
             'config' => [
                 'type' => 'file',
+                'relationship' => 'oneToMany',
                 'allowed' => 'pdf',
                 'appearance' => [
                     'createNewRelationLinkTitle' =>
@@ -406,25 +413,27 @@ return [
                     isbn, series, number, category, location1, --palette--;;locations,
                 --div--;' . $languageFile . 'tx_sfbooks_domain_model_book.div_content,
                     year, description, extras, cover, cover_large, sample_pdf,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden,
-                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+                    --palette--;;visibility,
+                    --palette--;;access,
             ',
         ],
     ],
 
     'palettes' => [
-        'hidden' => [
+        'visibility' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility',
             'showitem' => '
-                hidden;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:field.default.hidden
+                hidden;' . $languageFile . 'tx_sfbooks_domain_model_series.hidden
             ',
         ],
         'access' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access',
             'showitem' => '
-                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.endtime_formlabel,
                 --linebreak--,
-                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel
+                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.fe_group_formlabel
             ',
         ],
         'locations' => [

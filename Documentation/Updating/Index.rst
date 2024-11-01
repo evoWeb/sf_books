@@ -1,11 +1,10 @@
-.. include:: /Includes.rst.txt
-
+..  include:: /Includes.rst.txt
+..  index:: Updating
 .. _updating:
 
 ========
 Updating
 ========
-
 
 Add path_segment information
 ============================

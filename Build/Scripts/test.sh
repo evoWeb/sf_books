@@ -24,7 +24,7 @@ checkResources () {
     EXIT_CODE_DOCUMENTATION=$?
 
     echo "#################################################################" >&2
-    echo "Checked documentation, TypeScript and Scss files" >&2
+    echo " Checked documentation, TypeScript and Scss files" >&2
     if [[ ${EXIT_CODE_SCSS} -eq 0 ]] && \
         [[ ${EXIT_CODE_TYPESCRIPT} -eq 0 ]] && \
         [[ ${EXIT_CODE_XLIFF} -eq 0 ]] && \
@@ -37,7 +37,7 @@ checkResources () {
     echo "#################################################################" >&2
     echo "" >&2
 
-    ./additionalTests.sh -s clean
+    cleanup
 }
 
 #################################################
@@ -67,10 +67,15 @@ runFunctionalTests () {
 
     ./runTests.sh -s cleanTests
 
-    ./additionalTests.sh \
+    ./runTests.sh \
         -p ${PHP_VERSION} \
         -s lintPhp || exit 1 ; \
         EXIT_CODE_LINT=$?
+
+    ./runTests.sh \
+        -p ${PHP_VERSION} \
+        -s composerInstall || exit 1 ; \
+        EXIT_CODE_CORE=$?
 
     ./additionalTests.sh \
         -p ${PHP_VERSION} \
@@ -116,7 +121,7 @@ runFunctionalTests () {
         echo -e "${RED}FAILURE${NC}" >&2
         exit 1
     fi
-    echo "###########################################################################" >&2
+    echo "#################################################################" >&2
     echo "" >&2
     cleanup
 }
@@ -129,8 +134,11 @@ runFunctionalTests () {
 cleanup () {
     ./runTests.sh -s clean
     ./additionalTests.sh -s clean
-    git checkout ../../composer.json
+    echo "Cleaned up all test related files"
 }
+
+LOWEST="--prefer-lowest"
+TPATH="Tests/Functional"
 
 DEBUG_TESTS=false
 if [[ $DEBUG_TESTS != true ]]; then
@@ -138,16 +146,14 @@ if [[ $DEBUG_TESTS != true ]]; then
 
     TCORE="^13.2"
     TFRAMEWORK="dev-main"
-    TPATH="Tests/Functional"
-    LOWEST="--prefer-lowest"
+
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
     runFunctionalTests "8.3" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
     runFunctionalTests "8.3" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
 else
-    cleanup
-    runFunctionalTests "8.2" "^13.2" "dev-main" "Tests/Functional" || exit 1
-    cleanup
+    #cleanup
+    runFunctionalTests "8.2" "^13.2" "dev-main" ${TPATH} ${LOWEST} || exit 1
     # ./runTests.sh -x -p 8.2 -d sqlite -s functional -e "--group selected" Tests/Functional
     # ./runTests.sh -x -p 8.2 -d sqlite -s functional Tests/Functional
 fi

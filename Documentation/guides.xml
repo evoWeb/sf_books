@@ -16,8 +16,8 @@
                interlink-shortcode="evoweb/sf-books"
     />
     <project title="sf_books"
-             release="9.0.1"
-             version="9.0.1"
+             release="10.0.0"
+             version="10.0.0"
              copyright="since 2004 by evoWeb"
     />
     <inventory id="t3tsref" url="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/"/>

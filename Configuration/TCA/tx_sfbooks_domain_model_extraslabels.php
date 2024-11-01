@@ -18,6 +18,7 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-extraslabels',
         ],
+        'searchFields' => 'uid, label',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
@@ -41,16 +42,17 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     label,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+                    --palette--;;visibility
             ',
         ],
     ],
 
     'palettes' => [
-        'hidden' => [
+        'visibility' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility',
             'showitem' => '
-                hidden;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:field.default.hidden
+                hidden;' . $languageFile . 'tx_sfbooks_domain_model_series.hidden
             ',
         ],
     ],

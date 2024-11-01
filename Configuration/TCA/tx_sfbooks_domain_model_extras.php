@@ -23,7 +23,7 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-extras',
         ],
-        'searchFields' => 'uid,label,content',
+        'searchFields' => 'uid, label, content',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
@@ -37,9 +37,11 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'size' => 1,
+                'maxitems' => 1,
                 'readOnly' => true,
                 'foreign_table' => 'tx_sfbooks_domain_model_book',
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_book.title',
+                'relationship' => 'oneToOne',
                 'items' => [
                     [
                         'label' => $languageFile . 'tx_sfbooks_domain_model_extras.book.I.0',
@@ -72,8 +74,8 @@ return [
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_sfbooks_domain_model_extraslabels',
                 'foreign_table_where' => 'ORDER BY tx_sfbooks_domain_model_extraslabels.uid',
+                'relationship' => 'oneToOne',
                 'size' => 1,
-                'minitems' => 0,
                 'maxitems' => 1,
             ],
         ],
@@ -95,9 +97,9 @@ return [
                     type,
                     label,
                     content,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden,
-                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+                    --palette--;;visibility,
+                    --palette--;;access,
             ',
         ],
         '1' => [
@@ -107,9 +109,9 @@ return [
                     type,
                     label,
                     content,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden,
-                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.access,
+                    --palette--;;visibility,
+                    --palette--;;access,
             ',
             'columnsOverrides' => [
                 'content' => [
@@ -123,17 +125,19 @@ return [
     ],
 
     'palettes' => [
-        'hidden' => [
+        'visibility' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.visibility',
             'showitem' => '
-                hidden;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:field.default.hidden
+                hidden;' . $languageFile . 'tx_sfbooks_domain_model_series.hidden
             ',
         ],
         'access' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.access',
             'showitem' => '
-                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.endtime_formlabel,
                 --linebreak--,
-                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel
+                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.fe_group_formlabel
             ',
         ],
     ],
