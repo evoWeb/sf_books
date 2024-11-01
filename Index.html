@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>sf_books: Managing books the easy way documentation</title>
+    <title>sf_books: Managing books the easy way — sf_books 10.0.0 documentation</title>
 
     
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="phpdocumentor/guides" name="generator">
-<meta content="" name="docsearch:name">
+<meta content="sf_books" name="docsearch:name">
 <meta content="" name="docsearch:package_type">
-<meta content="" name="docsearch:release">
-<meta content="" name="docsearch:version">
-<meta content="2024-09-13T20:25:39+00:00" name="docsearch:modified">
-<meta content="2024-09-13T20:25:39+00:00" name="dc.modified">
-<meta content="2024-09-13T20:25:39+00:00" property="article:modified_time">
+<meta content="10.0.0" name="docsearch:release">
+<meta content="10.0.0" name="docsearch:version">
+<meta content="2024-11-01T19:37:50+00:00" name="docsearch:modified">
+<meta content="2024-11-01T19:37:50+00:00" name="dc.modified">
+<meta content="2024-11-01T19:37:50+00:00" property="article:modified_time">
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
@@ -36,24 +36,27 @@
     <div class="page-header">
         <div class="page-header-inner">
             <div class="row">
-                <div class="col-sm-3 col-md-4 col-lg-6">
+                <div class="col-md-2 col-lg-4">
                     <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
                         <img alt="TYPO3 Logo" class="logo-image" src="_resources/img/typo3-logo.svg" width="484" height="130">
                     </a>
                 </div>
-                <div class="col-sm-9 col-md-8 col-lg-6">
-                    <search role="search">
-                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-			                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                            <div class="input-group mb-3 mt-sm-3">
-                                <select class="form-select search__scope" id="searchscope" name="scope">
-                                    <option value="">Search all</option>
-                                </select>
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light search__submit" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                            </div>
-                        </form>
-                    </search>
+                <div class="col-md-10 col-lg-8">
+                    <div class="menu-search-wrapper">
+                        <all-documentations-menu data-override-url="https://render-guides.ddev.site/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light search__submit" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                        </search>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,8 +70,22 @@
                     
 <div class="toc-header">
     <div class="toc-title">
-        <a class="toc-title-project" href="#"></a>
-            </div>
+        <a class="toc-title-project" href="#">sf_books</a>
+            <div class="toc-version-wrapper" id="toc-version-wrapper">
+                <!--
+                    LOCAL RENDERING NOTICE:
+                    https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/AjaxVersions.html
+                -->
+
+                <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
+                
+                    <span class="toc-version-prefix">Release:</span>
+                    <span class="toc-version-number">10.0.0</span>
+                </div>
+                <div id="toc-version-options" class="toc-version-options">
+                    <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
+                </div>
+            </div></div>
     <div class="toc-actions">
         <label class="toc-toggle" for="toggleToc">
             Menu
@@ -77,8 +94,7 @@
 </div>                    <div class="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
-        
-    <ul class="menu-level-1">
+            <ul class="menu-level-1">
     <li class="">
     <a href="Introduction/Index.html">
         Introduction
@@ -97,8 +113,7 @@
     </a></li>    <li class="">
     <a href="Testing/Index.html">
         Testing
-    </a></li>    </ul>
-    <ul class="menu-level-1">
+    </a></li>    </ul>    <ul class="menu-level-1">
     <li class="">
     <a href="Sitemap.html">
         Sitemap
@@ -113,6 +128,9 @@
                     <li><a href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" rel="nofollow noopener" target="_blank">
                     How to edit
             </a></li>
+                    <li><a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Index.rst" rel="nofollow noopener" target="_blank">
+                    Edit current document on GitHub
+            </a></li>
         </ul>
 </div>
                         </div>
@@ -125,7 +143,11 @@
 <ol class="breadcrumb">
                 <li aria-current="page"  class="breadcrumb-item  active">sf_books: Managing books the easy way</li>
         </ol>
-        <div class="breadcrumb-additions">    <a class="btn btn-sm btn-light" href="_sources/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <div class="breadcrumb-additions">        <a class="btn btn-sm btn-light" href="https://github.com/evoweb/sf_books/issues/new/choose?title=Problem+on+https%3A%2F%2Fgithub.com%2Fevoweb%2Fsf_books%2FIndex.html" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+            <span class="btn-icon"><i class="fas fa-bug"></i></span>
+            <span class="btn-text">Report issue</span>
+        </a>
+        <a class="btn btn-sm btn-light" href="_sources/Index.rst.txt" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
     </a>
@@ -133,14 +155,19 @@
         <span class="btn-icon"><span class="fas fa-info-circle"></span></span>
         <span class="btn-text">How to edit</span>
     </a>
+        <a class="btn btn-sm btn-secondary" href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+        <span class="btn-icon"><span class="fab fa-github"></span></span>
+        <span class="btn-text">Edit on GitHub</span>
+    </a>
     </div>    </nav>
                     
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
     <div itemprop="articleBody">
         <!-- content start -->
                 
-<section class="section" id="sf-books-managing-books-the-easy-way">
-            <h1>sf_books: Managing books the easy way<a class="headerlink" href="#sf-books-managing-books-the-easy-way" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+<section class="section" id="sf-books-managing-books-the-easy-way" data-rst-anchor="start">
+            <a id="start"></a>
+            <h1>sf_books: Managing books the easy way<a class="headerlink" href="#sf-books-managing-books-the-easy-way" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h1>
             <dl class="field-list simple ">
             <dt class="field-odd">Extension key</dt>
 
@@ -158,24 +185,13 @@
 
         <dd class="field-odd">
             
+    <p>10.0.0</p>
         </dd>
             <dt class="field-odd">Language</dt>
 
         <dd class="field-odd">
             
     <p>en</p>
-        </dd>
-            <dt class="field-odd">Description</dt>
-
-        <dd class="field-odd">
-            
-    <p>Helps managing books in your library by providing organization options</p>
-        </dd>
-            <dt class="field-odd">Copyright</dt>
-
-        <dd class="field-odd">
-            
-    <p>2004-2024</p>
         </dd>
             <dt class="field-odd">Author</dt>
 
@@ -195,10 +211,19 @@ license.</p>
 
         <dd class="field-odd">
             
-    <p>Fri, 13 Sep 2024 20:25:39 +0000</p>
+    <p>Fri, 01 Nov 2024 19:37:50 +0000</p>
+        </dd>
+            <dt class="field-odd">Copyright</dt>
+
+        <dd class="field-odd">
+            
+    <p>2004-2024</p>
         </dd>
     </dl>
             <hr />
+            
+    <p>Helps managing books in your library by providing organization options</p>
+
             
     <p>The content of this document is related to TYPO3,
 a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.org</a></p>
@@ -262,7 +287,7 @@ a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.o
     </main>
 
     <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
-    aria-hidden="true" data-current-filename="Index">
+    aria-hidden="true" data-current-filename="Index" data-interlink-shortcode="evoweb/sf-books">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -280,7 +305,8 @@ a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.o
                     <p>Copy and freely share the link</p>
                 </div>
                 <div class="mb-3">
-                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.                        You can make a <a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Index.rst">pull request on GitHub</a> to suggest an anchor.
+                        The link below can be used, but is prone to change if the page gets moved.
                     </div>
                     <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
                     <div class="input-group">
@@ -329,10 +355,18 @@ a GNU/GPL CMS/Framework available from <a href="http://typo3.org">http://typo3.o
     <div class="frame frame-ruler-before frame-background-dark">
         <div class="frame-container">
             <div class="frame-inner">
-                                <div class="footer-additional">
-                    <p class="text-center">Last rendered: Sep 13, 2024 20:25</p>
+                <ul class="footer-simplemenu">
+                        <li><a href="https://github.com/evoweb/sf_books" title="Home" rel="nofollow noopener"><span>Home</span></a></li>
+                                                <li><a href="sf-books@evoweb.de" title="Contact" rel="nofollow noopener"><span>Contact</span></a></li>
+                                                <li><a href="https://github.com/evoweb/sf_books/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
+                                                <li><a href="https://github.com/evoweb/sf_books" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                                            </ul>                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Nov 01, 2024 19:37</p>
                 </div>
                 <div class="footer-meta">
+                                        <div class="footer-meta-copyright">
+                        &copy; since 2004 by evoWeb
+                    </div>
                     <ul class="footer-meta-navigation">
                         <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
                         <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>

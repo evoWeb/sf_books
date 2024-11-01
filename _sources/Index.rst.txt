@@ -1,4 +1,6 @@
-.. include:: /Includes.rst.txt
+..  include:: /Includes.rst.txt
+
+..  _start:
 
 =====================================
 sf_books: Managing books the easy way
@@ -16,12 +18,6 @@ sf_books: Managing books the easy way
 :Language:
     en
 
-:Description:
-    Helps managing books in your library by providing organization options
-
-:Copyright:
-    2004-2024
-
 :Author:
     Sebastian Fischer
 
@@ -33,7 +29,12 @@ sf_books: Managing books the easy way
 :Rendered:
     |today|
 
+:Copyright:
+    2004-2024
+
 ----
+
+Helps managing books in your library by providing organization options
 
 The content of this document is related to TYPO3,
 a GNU/GPL CMS/Framework available from http://typo3.org

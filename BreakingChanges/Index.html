@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>Breaking Changes documentation</title>
+    <title>Breaking Changes — sf_books 10.0.0 documentation</title>
 
     
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="phpdocumentor/guides" name="generator">
-<meta content="" name="docsearch:name">
+<meta content="sf_books" name="docsearch:name">
 <meta content="" name="docsearch:package_type">
-<meta content="" name="docsearch:release">
-<meta content="" name="docsearch:version">
-<meta content="2024-09-13T20:25:39+00:00" name="docsearch:modified">
-<meta content="2024-09-13T20:25:39+00:00" name="dc.modified">
-<meta content="2024-09-13T20:25:39+00:00" property="article:modified_time">
+<meta content="10.0.0" name="docsearch:release">
+<meta content="10.0.0" name="docsearch:version">
+<meta content="2024-11-01T19:37:50+00:00" name="docsearch:modified">
+<meta content="2024-11-01T19:37:50+00:00" name="dc.modified">
+<meta content="2024-11-01T19:37:50+00:00" property="article:modified_time">
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="../_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
@@ -37,24 +37,27 @@
     <div class="page-header">
         <div class="page-header-inner">
             <div class="row">
-                <div class="col-sm-3 col-md-4 col-lg-6">
+                <div class="col-md-2 col-lg-4">
                     <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
                         <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
                     </a>
                 </div>
-                <div class="col-sm-9 col-md-8 col-lg-6">
-                    <search role="search">
-                        <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
-			                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
-                            <div class="input-group mb-3 mt-sm-3">
-                                <select class="form-select search__scope" id="searchscope" name="scope">
-                                    <option value="">Search all</option>
-                                </select>
-                                <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                <button class="btn btn-light search__submit" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
-                            </div>
-                        </form>
-                    </search>
+                <div class="col-md-10 col-lg-8">
+                    <div class="menu-search-wrapper">
+                        <all-documentations-menu data-override-url="https://render-guides.ddev.site/menu-proxy.php"></all-documentations-menu>
+                                                <search role="search">
+                            <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
+                                <div class="sr-only"><label for="globalsearchinput">TYPO3 documentation...</label></div>
+                                <div class="input-group mb-3 mt-sm-3">
+                                    <select class="form-select search__scope" id="searchscope" name="scope">
+                                        <option value="">Search all</option>
+                                    </select>
+                                    <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
+                                    <button class="btn btn-light search__submit" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                </div>
+                            </form>
+                        </search>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,8 +71,22 @@
                     
 <div class="toc-header">
     <div class="toc-title">
-        <a class="toc-title-project" href="../Index.html"></a>
-            </div>
+        <a class="toc-title-project" href="../Index.html">sf_books</a>
+            <div class="toc-version-wrapper" id="toc-version-wrapper">
+                <!--
+                    LOCAL RENDERING NOTICE:
+                    https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/AjaxVersions.html
+                -->
+
+                <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
+                
+                    <span class="toc-version-prefix">Release:</span>
+                    <span class="toc-version-number">10.0.0</span>
+                </div>
+                <div id="toc-version-options" class="toc-version-options">
+                    <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
+                </div>
+            </div></div>
     <div class="toc-actions">
         <label class="toc-toggle" for="toggleToc">
             Menu
@@ -78,8 +95,7 @@
 </div>                    <div class="toc-collapse">
                                                 <div aria-label="main navigation" class="toc" role="navigation">
                                 <div aria-label="Main navigation" class="main_menu" role="navigation">
-        
-    <ul class="menu-level-1">
+            <ul class="menu-level-1">
     <li class="">
     <a href="../Introduction/Index.html">
         Introduction
@@ -98,8 +114,7 @@
     </a></li>    <li class="">
     <a href="../Testing/Index.html">
         Testing
-    </a></li>    </ul>
-    <ul class="menu-level-1">
+    </a></li>    </ul>    <ul class="menu-level-1">
     <li class="">
     <a href="../Sitemap.html">
         Sitemap
@@ -114,6 +129,9 @@
                     <li><a href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" rel="nofollow noopener" target="_blank">
                     How to edit
             </a></li>
+                    <li><a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/BreakingChanges/Index.rst" rel="nofollow noopener" target="_blank">
+                    Edit current document on GitHub
+            </a></li>
         </ul>
 </div>
                         </div>
@@ -127,13 +145,21 @@
     <li class="breadcrumb-item"><a href="../Index.html">sf_books: Managing books the easy way</a></li>
                     <li aria-current="page"  class="breadcrumb-item  active">Breaking Changes</li>
         </ol>
-        <div class="breadcrumb-additions">    <a class="btn btn-sm btn-light" href="../_sources/BreakingChanges/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <div class="breadcrumb-additions">        <a class="btn btn-sm btn-light" href="https://github.com/evoweb/sf_books/issues/new/choose?title=Problem+on+https%3A%2F%2Fgithub.com%2Fevoweb%2Fsf_books%2FBreakingChanges%2FIndex.html" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+            <span class="btn-icon"><i class="fas fa-bug"></i></span>
+            <span class="btn-text">Report issue</span>
+        </a>
+        <a class="btn btn-sm btn-light" href="../_sources/BreakingChanges/Index.rst.txt" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fas fa-code"></span></span>
         <span class="btn-text">View source</span>
     </a>
         <a class="btn btn-sm btn-light" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
         <span class="btn-icon"><span class="fas fa-info-circle"></span></span>
         <span class="btn-text">How to edit</span>
+    </a>
+        <a class="btn btn-sm btn-secondary" href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/BreakingChanges/Index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+        <span class="btn-icon"><span class="fab fa-github"></span></span>
+        <span class="btn-text">Edit on GitHub</span>
     </a>
     </div>    </nav>
                     
@@ -143,42 +169,52 @@
                 
 <section class="section" id="breaking-changes-1" data-rst-anchor="breaking-changes">
             <a id="breaking-changes"></a>
-            <h1>Breaking Changes<a class="headerlink" href="#breaking-changes-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h1>
+            <h1>Breaking Changes<a class="headerlink" href="#breaking-changes-1" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h1>
+            <section class="section" id="01-november-2024">
+            <h2>01. November 2024<a class="headerlink" href="#01-november-2024" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+            <section class="section" id="content-registration">
+            <h3>Content registration<a class="headerlink" href="#content-registration" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            
+    <p>Plugins are now registered with CType and not list_type anymore. Migration for
+existing content elements is provided.</p>
+
+    </section>
+    </section>
             <section class="section" id="28-july-2023">
-            <h2>28. July 2023<a class="headerlink" href="#28-july-2023" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <h2>28. July 2023<a class="headerlink" href="#28-july-2023" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
             <section class="section" id="change-typoscript-parameter">
-            <h3>Change typoscript parameter<a class="headerlink" href="#change-typoscript-parameter" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            <h3>Change typoscript parameter<a class="headerlink" href="#change-typoscript-parameter" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             
     <p>Rename TypoScript parameter settings.limit into settings.itemsPerPage.
 This also relates to the plugin settings where limit is renamed into itemsPerPage to.</p>
 
     </section>
             <section class="section" id="drop-viewhelper">
-            <h3>Drop ViewHelper<a class="headerlink" href="#drop-viewhelper" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            <h3>Drop ViewHelper<a class="headerlink" href="#drop-viewhelper" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             
     <p>As of version 8.x the SortViewHelper is dropped because its never used.</p>
 
     </section>
     </section>
             <section class="section" id="13-march-2021">
-            <h2>13. March 2021<a class="headerlink" href="#13-march-2021" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <h2>13. March 2021<a class="headerlink" href="#13-march-2021" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
             <section class="section" id="replace-pagination-widget-by-pagination-api">
-            <h3>Replace pagination widget by pagination API<a class="headerlink" href="#replace-pagination-widget-by-pagination-api" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            <h3>Replace pagination widget by pagination API<a class="headerlink" href="#replace-pagination-widget-by-pagination-api" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             
     <p>Usage of f:widget.paginate is replaced with paginator and pagination objects with usage of Paginator.html partials.</p>
 
     </section>
             <section class="section" id="routes-configuration">
-            <h3>Routes configuration<a class="headerlink" href="#routes-configuration" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            <h3>Routes configuration<a class="headerlink" href="#routes-configuration" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             
     <p>Routes configuration files are moved from /Configuration/Yaml to /Configuration/Routes</p>
 
     </section>
     </section>
             <section class="section" id="03-may-2020">
-            <h2>03. May 2020<a class="headerlink" href="#03-may-2020" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h2>
+            <h2>03. May 2020<a class="headerlink" href="#03-may-2020" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
             <section class="section" id="cleanup-of-plugins">
-            <h3>Cleanup of plugins<a class="headerlink" href="#cleanup-of-plugins" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline">¶</a></h3>
+            <h3>Cleanup of plugins<a class="headerlink" href="#cleanup-of-plugins" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
             
     <p>Due to a more restricted handling of resolving controllers and actions in links every plugin is reduced to it&#039;s main
 data models. The following plugins are modified:</p>
@@ -194,33 +230,41 @@ data models. The following plugins are modified:</p>
         </thead>
         <tbody>
     <tr>
-            <td>Book
-Category
-Series
-Search</td>            <td>BookController, CategoryController
-CategoryController, BookController
-SeriesController, BookController
-SearchController, BookController, AuthorController</td>            <td>BookController
-CategoryController
-SeriesController
-SearchController</td>    </tr>    <tr>
-            <td colspan="3">n consequence you need to check whether your pages are still displaying all informat
-here are settings for the link generation authorPageId, bookPageId, categoryPageId,
-educed flexibility. Have a look into the TypoScript constants editor.
-leanup of flexforms
--------------------
-he field settings.templatePath got removed with view.templateRootPaths.200. By this
-emplates is necessary anymore. But the new field needs to be filled to get it workin
-7. April 2017
-=============
-emove viewhelper
-----------------
-n favor of the core the widget viewhelper was dropped. Please replace &#039;sfb:widget.pa
-nd check if configuration still works.
-emplate behaviour
------------------
-nly valid template file type since version 4 are html files. Every other template fi</td>    </tr></tbody>    </table>
+            <td>Book</td>            <td>BookController, CategoryController</td>            <td>BookController</td>    </tr>    <tr>
+            <td>Category</td>            <td>CategoryController, BookController</td>            <td>CategoryController</td>    </tr>    <tr>
+            <td>Series</td>            <td>SeriesController, BookController</td>            <td>SeriesController</td>    </tr>    <tr>
+            <td>Search</td>            <td>SearchController, BookController, AuthorController</td>            <td>SearchController</td>    </tr></tbody>    </table>
 </div>
+            
+    <p>In consequence you need to check whether your pages are still displaying all information after upgrade.</p>
+
+            
+    <p>There are settings for the link generation authorPageId, bookPageId, categoryPageId, seriesPageId to compensate
+reduced flexibility. Have a look into the TypoScript constants editor.</p>
+
+    </section>
+            <section class="section" id="cleanup-of-flexforms">
+            <h3>Cleanup of flexforms<a class="headerlink" href="#cleanup-of-flexforms" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            
+    <p>The field settings.templatePath got removed with view.templateRootPaths.200. By this no extra handling for overriding
+templates is necessary anymore. But the new field needs to be filled to get it working again.</p>
+
+    </section>
+    </section>
+            <section class="section" id="27-april-2017">
+            <h2>27. April 2017<a class="headerlink" href="#27-april-2017" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h2>
+            <section class="section" id="remove-viewhelper">
+            <h3>Remove ViewHelper<a class="headerlink" href="#remove-viewhelper" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            
+    <p>In favor of the core the widget ViewHelper was dropped. Please replace &#039;sfb:widget.paginate&#039; with &#039;f:widget.paginate&#039;
+and check if configuration still works.</p>
+
+    </section>
+            <section class="section" id="template-behaviour">
+            <h3>Template behaviour<a class="headerlink" href="#template-behaviour" data-bs-toggle="modal" data-bs-target="#linkReferenceModal"  title="Reference this headline"><i class="fa-solid fa-paragraph"></i></a></h3>
+            
+    <p>Only valid template file type since version 4 are html files. Every other template file needs to be reuploaded.</p>
+
     </section>
     </section>
     </section>
@@ -249,7 +293,7 @@ nly valid template file type since version 4 are html files. Every other templat
     </main>
 
     <div class="modal fade" id="linkReferenceModal" tabindex="-1" aria-labelledby="linkReferenceModalLabel"
-    aria-hidden="true" data-current-filename="BreakingChanges/Index">
+    aria-hidden="true" data-current-filename="BreakingChanges/Index" data-interlink-shortcode="evoweb/sf-books">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -267,7 +311,8 @@ nly valid template file type since version 4 are html files. Every other templat
                     <p>Copy and freely share the link</p>
                 </div>
                 <div class="mb-3">
-                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.The link below can be used, but is prone to change if the page gets moved.
+                    <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.                        You can make a <a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/BreakingChanges/Index.rst">pull request on GitHub</a> to suggest an anchor.
+                        The link below can be used, but is prone to change if the page gets moved.
                     </div>
                     <label for="permalink-rst" class="col-form-label">reStructuredText (reST):</label>
                     <div class="input-group">
@@ -316,10 +361,18 @@ nly valid template file type since version 4 are html files. Every other templat
     <div class="frame frame-ruler-before frame-background-dark">
         <div class="frame-container">
             <div class="frame-inner">
-                                <div class="footer-additional">
-                    <p class="text-center">Last rendered: Sep 13, 2024 20:25</p>
+                <ul class="footer-simplemenu">
+                        <li><a href="https://github.com/evoweb/sf_books" title="Home" rel="nofollow noopener"><span>Home</span></a></li>
+                                                <li><a href="sf-books@evoweb.de" title="Contact" rel="nofollow noopener"><span>Contact</span></a></li>
+                                                <li><a href="https://github.com/evoweb/sf_books/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
+                                                <li><a href="https://github.com/evoweb/sf_books" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
+                                            </ul>                <div class="footer-additional">
+                    <p class="text-center">Last rendered: Nov 01, 2024 19:37</p>
                 </div>
                 <div class="footer-meta">
+                                        <div class="footer-meta-copyright">
+                        &copy; since 2004 by evoWeb
+                    </div>
                     <ul class="footer-meta-navigation">
                         <li><a href="https://typo3.org/legal-notice" rel="nofollow" target="_blank" title="Legal Notice">Legal Notice</a></li>
                         <li><a href="https://typo3.org/privacy-policy" rel="nofollow" target="_blank" title="Privacy Policy">Privacy Policy</a></li>
