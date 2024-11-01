@@ -1,11 +1,10 @@
-.. include:: /Includes.rst.txt
-
-.. _installation:
+..  include:: /Includes.rst.txt
+..  index:: Installation
+..  _installation:
 
 ============
 Installation
 ============
-
 
 Download via Extension Manager
 ==============================
@@ -15,17 +14,15 @@ the top left to 'Get Extensions', enter the extension key 'sf_books' in the
 text field below the headline 'Get Extensions' and hit go. In the result list
 install the extension by hitting the action for that.
 
-
 Download via Composer
 =====================
 
 Add evoweb/sf-books to the require in your composer.json.
 
-.. code-block:: bash
-   :caption: Enter on shell
+..  code-block:: bash
+    :caption: Enter on shell
 
-   composer require evoweb/sf-books
-
+    composer require evoweb/sf-books
 
 Include TypoScript
 ==================
@@ -33,15 +30,14 @@ Include TypoScript
 Include static file "Book Library" in your typoscript record or import in your
 sitepackage and modify the constants to match the page setup you have added.
 
-
 Include Routing configuration
 =============================
 
 To have speaking urls you need to add the following import in your site config.
 This allows each of the plugins to render seo friendly urls.
 
-.. code-block:: typoscript
-   :caption: config/sites/[main]/config.yaml
+..  code-block:: typoscript
+    :caption: config/sites/[main]/config.yaml
 
     imports:
         - { resource: "EXT:sf_books/Configuration/Routes/Default.yaml" }

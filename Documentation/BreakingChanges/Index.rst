@@ -1,6 +1,6 @@
-.. include:: /Includes.rst.txt
-
-.. _breaking-changes:
+..  include:: /Includes.rst.txt
+..  index:: Breaking Changes
+..  _breaking-changes:
 
 ================
 Breaking Changes
@@ -18,7 +18,6 @@ Drop ViewHelper
 ---------------
 As of version 8.x the SortViewHelper is dropped because its never used.
 
-
 13. March 2021
 ==============
 
@@ -30,7 +29,6 @@ Routes configuration
 --------------------
 Routes configuration files are moved from /Configuration/Yaml to /Configuration/Routes
 
-
 03. May 2020
 ============
 
@@ -39,14 +37,14 @@ Cleanup of plugins
 Due to a more restricted handling of resolving controllers and actions in links every plugin is reduced to it's main
 data models. The following plugins are modified:
 
-+----------+----------------------------------------------------+--------------------+
-| Plugin   | Controller before change                           | after change       |
-+==========+====================================================+====================+
-| Book     | BookController, CategoryController                 | BookController     |
-| Category | CategoryController, BookController                 | CategoryController |
-| Series   | SeriesController, BookController                   | SeriesController   |
-| Search   | SearchController, BookController, AuthorController | SearchController   |
-+----------|----------------------------------------------------+--------------------+
+========= ================================================== ==================
+Plugin    Controller before change                           after change
+========= ================================================== ==================
+Book      BookController, CategoryController                 BookController
+Category  CategoryController, BookController                 CategoryController
+Series    SeriesController, BookController                   SeriesController
+Search    SearchController, BookController, AuthorController SearchController
+========= ================================================== ==================
 
 In consequence you need to check whether your pages are still displaying all information after upgrade.
 
@@ -58,13 +56,12 @@ Cleanup of flexforms
 The field settings.templatePath got removed with view.templateRootPaths.200. By this no extra handling for overriding
 templates is necessary anymore. But the new field needs to be filled to get it working again.
 
-
 27. April 2017
 ==============
 
-Remove viewhelper
+Remove ViewHelper
 -----------------
-In favor of the core the widget viewhelper was dropped. Please replace 'sfb:widget.paginate' with 'f:widget.paginate'
+In favor of the core the widget ViewHelper was dropped. Please replace 'sfb:widget.paginate' with 'f:widget.paginate'
 and check if configuration still works.
 
 Template behaviour
