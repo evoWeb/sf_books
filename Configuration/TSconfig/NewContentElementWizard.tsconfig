@@ -7,8 +7,7 @@ mod.wizards.newContentElement.wizardItems.sf_books {
       title = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_book
       description = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_book_description
       tt_content_defValues {
-        CType = list
-        list_type = sfbooks_book
+        CType = sfbooks_book
       }
     }
 
@@ -17,8 +16,7 @@ mod.wizards.newContentElement.wizardItems.sf_books {
       title = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_author
       description = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_author_description
       tt_content_defValues {
-        CType = list
-        list_type = sfbooks_author
+        CType = sfbooks_author
       }
     }
 
@@ -27,8 +25,7 @@ mod.wizards.newContentElement.wizardItems.sf_books {
       title = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_category
       description = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_category_description
       tt_content_defValues {
-        CType = list
-        list_type = sfbooks_category
+        CType = sfbooks_category
       }
     }
 
@@ -37,8 +34,7 @@ mod.wizards.newContentElement.wizardItems.sf_books {
       title = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_search
       description = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_search_description
       tt_content_defValues {
-        CType = list
-        list_type = sfbooks_search
+        CType = sfbooks_search
       }
     }
 
@@ -47,10 +43,10 @@ mod.wizards.newContentElement.wizardItems.sf_books {
       title = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_series
       description = LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xml:tt_content.list_type_series_description
       tt_content_defValues {
-        CType = list
-        list_type = sfbooks_series
+        CType = sfbooks_series
       }
     }
   }
+
   show = *
 }

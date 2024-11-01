@@ -6,6 +6,15 @@
 Breaking Changes
 ================
 
+01. November 2024
+=================
+
+Content registration
+--------------------
+
+Plugins are now registered with CType and not list_type anymore. Migration for
+existing content elements is provided.
+
 28. July 2023
 =============
 
