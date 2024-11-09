@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:fluid_styled_content/Configuration/Sets/FluidStyledContent/labels.xlf" date="2024-09-05T08:00:00Z" product-name="fluid_styled_content">
+		<header/>
+		<body>
+			<trans-unit id="label" resname="label">
+				<source>Book Libraries</source>
+			</trans-unit>
+
+			<trans-unit id="categories.sf-books" resname="categories.sf-books">
+				<source>Book Libraries</source>
+			</trans-unit>
+
+			<trans-unit id="settings.evoweb.sf_books.bookPageId" resname="settings.evoweb.sf_books.bookPageId">
+				<source>Book plugin page id</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.bookPageId" resname="settings.description.evoweb.sf_books.bookPageId">
+				<source>page id</source>
+			</trans-unit>
+			<trans-unit id="settings.evoweb.sf_books.authorPageId" resname="settings.evoweb.sf_books.authorPageId">
+				<source>Author plugin page id</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.authorPageId" resname="settings.description.evoweb.sf_books.authorPageId">
+				<source>page id</source>
+			</trans-unit>
+			<trans-unit id="settings.evoweb.sf_books.categoryPageId" resname="settings.evoweb.sf_books.categoryPageId">
+				<source>Category plugin page id</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.categoryPageId" resname="settings.description.evoweb.sf_books.categoryPageId">
+				<source>page id</source>
+			</trans-unit>
+			<trans-unit id="settings.evoweb.sf_books.seriesPageId" resname="settings.evoweb.sf_books.seriesPageId">
+				<source>Series plugin page id</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.seriesPageId" resname="settings.description.evoweb.sf_books.seriesPageId">
+				<source>page id</source>
+			</trans-unit>
+			<trans-unit id="settings.evoweb.sf_books.searchPageId" resname="settings.evoweb.sf_books.searchPageId">
+				<source>Search plugin page id</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.searchPageId" resname="settings.description.evoweb.sf_books.searchPageId">
+				<source>page id</source>
+			</trans-unit>
+			<trans-unit id="settings.evoweb.sf_books.excludeCategories" resname="settings.evoweb.sf_books.excludeCategories">
+				<source>Exclude category list</source>
+			</trans-unit>
+			<trans-unit id="settings.description.evoweb.sf_books.excludeCategories" resname="settings.description.evoweb.sf_books.excludeCategories">
+				<source>List of category ids to be excluded</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
