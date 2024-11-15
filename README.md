@@ -1,6 +1,6 @@
 # TYPO3 Extension ``sf_books``
 
-![build](https://github.com/evoWeb/sf_books/workflows/build/badge.svg?branch=develop)
+![build](https://github.com/evoWeb/sf_books/actions/workflows/ci.yml/badge.svg?branch=develop)
 [![Latest Stable Version](https://poser.pugx.org/evoweb/sf-books/v/stable)](https://packagist.org/packages/evoweb/sf-books)
 [![Monthly Downloads](https://poser.pugx.org/evoweb/sf-books/d/monthly)](https://packagist.org/packages/evoweb/sf-books)
 [![Total Downloads](https://poser.pugx.org/evoweb/sf-books/downloads)](https://packagist.org/packages/evoweb/sf-books)
