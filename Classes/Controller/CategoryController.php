@@ -57,6 +57,10 @@ class CategoryController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
+    /**
+     * @param QueryResultInterface<int, Category> $categories
+     * @return QueryResultInterface<int, Category>
+     */
     protected function removeExcludeCategories(QueryResultInterface $categories): QueryResultInterface
     {
         $excludeCategories = GeneralUtility::intExplode(',', $this->settings['excludeCategories'], true);

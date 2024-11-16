@@ -15,6 +15,14 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Controller;
 
+use Evoweb\SfBooks\Domain\Model\Author;
+use Evoweb\SfBooks\Domain\Model\Book;
+use Evoweb\SfBooks\Domain\Model\Category;
+use Evoweb\SfBooks\Domain\Model\Series;
+use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
+use Evoweb\SfBooks\Domain\Repository\BookRepository;
+use Evoweb\SfBooks\Domain\Repository\CategoryRepository;
+use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
@@ -24,18 +32,19 @@ use TYPO3\CMS\Core\Pagination\PaginatorInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3Fluid\Fluid\View\ViewInterface;
 
 abstract class AbstractController extends ActionController
 {
-    protected function setDefaultOrderings(Repository $repository): Repository
-    {
+    protected function setDefaultOrderings(
+        AuthorRepository|BookRepository|CategoryRepository|SeriesRepository $repository
+    ): AuthorRepository|BookRepository|CategoryRepository|SeriesRepository {
         $orderField = $this->getOrderField();
         if ($orderField !== '') {
             $orderings = [$orderField => $this->getOrderDirection()];
@@ -116,6 +125,9 @@ abstract class AbstractController extends ActionController
         throw new ImmediateResponseException($response);
     }
 
+    /**
+     * @param QueryResultInterface<int, Author>|QueryResultInterface<int, Book>|QueryResultInterface<int, Category>|array<int, Series> $result
+     */
     protected function addPaginatorToView(QueryResultInterface|array $result): void
     {
         $paginator = $this->getPaginator($result);
@@ -130,6 +142,9 @@ abstract class AbstractController extends ActionController
         );
     }
 
+    /**
+     * @param QueryResultInterface<int, AbstractEntity>|array<int, AbstractEntity> $result
+     */
     protected function getPaginator(QueryResultInterface|array $result): PaginatorInterface
     {
         $currentPage = $this->request->hasArgument('currentPage')

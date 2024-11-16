@@ -13,12 +13,12 @@
 
 namespace Evoweb\SfBooks\Tests\Functional;
 
+use Doctrine\DBAL\Exception;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Http\ServerRequest;
-use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -40,7 +40,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
         $GLOBALS['TYPO3_REQUEST'] = $request;
     }
 
-    private function createServerRequest(string $url, string $method = 'GET'): ServerRequestInterface
+    private function createServerRequest(string $url): ServerRequestInterface
     {
         $requestUrlParts = parse_url($url);
         $docRoot = $this->instancePath;
@@ -58,7 +58,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
             'PATH_TRANSLATED' => $docRoot . '/index.php',
             'QUERY_STRING' => $requestUrlParts['query'] ?? '',
             'REQUEST_URI' => $requestUrlParts['path'] . (isset($requestUrlParts['query']) ? '?' . $requestUrlParts['query'] : ''),
-            'REQUEST_METHOD' => $method,
+            'REQUEST_METHOD' => 'GET',
         ];
         // Define HTTPS and server port
         if (isset($requestUrlParts['scheme'])) {
@@ -75,7 +75,7 @@ abstract class AbstractTestCase extends FunctionalTestCase
             $serverParams['SERVER_PORT'] = $requestUrlParts['port'];
         }
         // set up normalizedParams
-        $request = new ServerRequest($url, $method, null, [], $serverParams);
+        $request = new ServerRequest($url, 'GET', null, [], $serverParams);
         $request = $request->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_BE);
         return $request->withAttribute('normalizedParams', NormalizedParams::createFromRequest($request));
     }
@@ -101,9 +101,13 @@ abstract class AbstractTestCase extends FunctionalTestCase
         }
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     protected function getLogEntries(): array
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_log');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_log');
         $result = $queryBuilder
             ->select('*')
             ->from('sys_log')
@@ -113,8 +117,11 @@ abstract class AbstractTestCase extends FunctionalTestCase
                     [1, 2]
                 )
             )
-            ->executeQuery()
-            ->fetchAllAssociative();
+            ->executeQuery();
+        try {
+            $result = $result->fetchAllAssociative();
+        } catch (Exception) {
+        }
         return is_array($result) ? $result : [];
     }
 }

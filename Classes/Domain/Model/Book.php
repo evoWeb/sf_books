@@ -91,61 +91,97 @@ class Book extends AbstractEntity
         $this->samplePdf = new ObjectStorage();
     }
 
+    /**
+     * @param ObjectStorage<Author> $author
+     */
     public function setAuthor(ObjectStorage $author): void
     {
         $this->author = $author;
     }
 
+    /**
+     * @return ObjectStorage<Author>
+     */
     public function getAuthor(): ObjectStorage
     {
         return $this->author;
     }
 
+    /**
+     * @param ObjectStorage<Category> $category
+     */
     public function setCategory(ObjectStorage $category): void
     {
         $this->category = $category;
     }
 
+    /**
+     * @return ObjectStorage<Category>
+     */
     public function getCategory(): ObjectStorage
     {
         return $this->category;
     }
 
+    /**
+     * @param ObjectStorage<Extras> $extras
+     */
     public function setExtras(ObjectStorage $extras): void
     {
         $this->extras = $extras;
     }
 
+    /**
+     * @return ObjectStorage<Extras>
+     */
     public function getExtras(): ObjectStorage
     {
         return $this->extras;
     }
 
+    /**
+     * @param ObjectStorage<FileReference> $cover
+     */
     public function setCover(ObjectStorage $cover): void
     {
         $this->cover = $cover;
     }
 
+    /**
+     * @return ObjectStorage<FileReference>
+     */
     public function getCover(): ObjectStorage
     {
         return $this->cover;
     }
 
+    /**
+     * @param ObjectStorage<FileReference> $coverLarge
+     */
     public function setCoverLarge(ObjectStorage $coverLarge): void
     {
         $this->coverLarge = $coverLarge;
     }
 
+    /**
+     * @return ObjectStorage<FileReference>
+     */
     public function getCoverLarge(): ObjectStorage
     {
         return $this->coverLarge;
     }
 
+    /**
+     * @param ObjectStorage<FileReference> $samplePdf
+     */
     public function setSamplePdf(ObjectStorage $samplePdf): void
     {
         $this->samplePdf = $samplePdf;
     }
 
+    /**
+     * @return ObjectStorage<FileReference>
+     */
     public function getSamplePdf(): ObjectStorage
     {
         return $this->samplePdf;

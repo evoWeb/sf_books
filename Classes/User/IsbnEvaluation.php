@@ -34,22 +34,24 @@ class IsbnEvaluation
     /**
      * Server-side validation/evaluation on saving the record
      *
-     * @param array $parameters The parameters value, is_in and set
+     * @param string[] $parameters The parameters value, is_in and set
      * @return string Evaluated field value
      */
     public function evaluateFieldValue(...$parameters): string
     {
-        return preg_replace('/[^0-9X\-]/i', '', $parameters[0]);
+        $parameter = $parameters[0] ?? '';
+        return preg_replace('/[^0-9X\-]/i', '', $parameter);
     }
 
     /**
      * Server-side validation/evaluation on opening the record
      *
-     * @param array $parameters Array with key 'value' containing the field value from the database
+     * @param array<string, string> $parameters Array with key 'value' containing the field value from the database
      * @return string Evaluated field value
      */
     public function deevaluateFieldValue(array $parameters): string
     {
-        return preg_replace('/[^0-9X\-]/i', '', $parameters['value']);
+        $value = $parameters['value'] ?? '';
+        return preg_replace('/[^0-9X\-]/i', '', $value);
     }
 }

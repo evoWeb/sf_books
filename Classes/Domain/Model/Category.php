@@ -53,21 +53,33 @@ class Category extends AbstractEntity
         $this->books = new ObjectStorage();
     }
 
+    /**
+     * @param ObjectStorage<Category> $children
+     */
     public function setChildren(ObjectStorage $children): void
     {
         $this->children = $children;
     }
 
+    /**
+     * @return ObjectStorage<Category>
+     */
     public function getChildren(): ObjectStorage
     {
         return $this->children;
     }
 
+    /**
+     * @param ObjectStorage<Book> $books
+     */
     public function setBooks(ObjectStorage $books): void
     {
         $this->books = $books;
     }
 
+    /**
+     * @return ObjectStorage<Book>
+     */
     public function getBooks(): ObjectStorage
     {
         return $this->books;

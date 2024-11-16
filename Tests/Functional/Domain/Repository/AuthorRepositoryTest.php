@@ -37,7 +37,7 @@ class AuthorRepositoryTest extends AbstractTestCase
     }
 
     #[Test]
-    public function findByUidReturnsOneAuthor()
+    public function findByUidReturnsOneAuthor(): void
     {
         $author = $this->subject->findByUid(1);
         $properties = [
@@ -62,7 +62,7 @@ class AuthorRepositoryTest extends AbstractTestCase
     }
 
     #[Test]
-    public function findAuthorGroupedByLetters()
+    public function findAuthorGroupedByLetters(): void
     {
         $result = $this->subject->findAuthorGroupedByLetters();
         /** @var Author $author */

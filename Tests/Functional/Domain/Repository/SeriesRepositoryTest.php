@@ -37,7 +37,7 @@ class SeriesRepositoryTest extends AbstractTestCase
     }
 
     #[Test]
-    public function findByUidReturnsOneSeries()
+    public function findByUidReturnsOneSeries(): void
     {
         /** @var Series $series */
         $series = $this->subject->findByUid(1);
@@ -63,7 +63,7 @@ class SeriesRepositoryTest extends AbstractTestCase
     }
 
     #[Test]
-    public function findSeriesGroupedByLetters()
+    public function findSeriesGroupedByLetters(): void
     {
         $result = $this->subject->findSeriesGroupedByLetters();
         /** @var Series $series */

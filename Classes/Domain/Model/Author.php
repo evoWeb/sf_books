@@ -45,11 +45,17 @@ class Author extends AbstractEntity
         $this->books = new ObjectStorage();
     }
 
+    /**
+     * @param ObjectStorage<Book> $books
+     */
     public function setBooks(ObjectStorage $books): void
     {
         $this->books = $books;
     }
 
+    /**
+     * @return ObjectStorage<Book>
+     */
     public function getBooks(): ObjectStorage
     {
         return $this->books;
