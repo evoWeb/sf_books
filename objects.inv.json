@@ -91,13 +91,61 @@
             "10.0.0",
             "Updating\/Index.html#updating",
             "Updating"
+        ],
+        "confval-menu-settings-reference": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-menu-settings-reference",
+            ""
+        ],
+        "confval-templaterootpaths": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-templaterootpaths",
+            "templateRootPaths"
+        ],
+        "confval-pagination": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-pagination",
+            "pagination"
+        ],
+        "confval-itemsperpage": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-itemsperpage",
+            "itemsPerPage"
+        ],
+        "confval-numberoflinks": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-numberoflinks",
+            "numberOfLinks"
+        ],
+        "confval-groupauthors": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-groupauthors",
+            "groupAuthors"
+        ],
+        "confval-groupseries": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-groupseries",
+            "groupSeries"
+        ],
+        "confval-orderings": [
+            "sf_books",
+            "10.0.0",
+            "Configuration\/Index.html#confval-orderings",
+            "orderings"
         ]
     },
     "std:title": {
         "breaking-changes-1": [
             "sf_books",
             "10.0.0",
-            "BreakingChanges\/Index.html#breaking-changes-1",
+            "BreakingChanges\/Index.html#breaking-changes",
             "Breaking Changes"
         ],
         "01-november-2024": [
@@ -187,7 +235,7 @@
         "configuration-1": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#configuration-1",
+            "Configuration\/Index.html#configuration",
             "Configuration"
         ],
         "introduction": [
@@ -211,13 +259,13 @@
         "sf-books-managing-books-the-easy-way": [
             "sf_books",
             "10.0.0",
-            "Index.html#sf-books-managing-books-the-easy-way",
+            "Index.html#start",
             "sf_books: Managing books the easy way"
         ],
         "installation-1": [
             "sf_books",
             "10.0.0",
-            "Installation\/Index.html#installation-1",
+            "Installation\/Index.html#installation",
             "Installation"
         ],
         "download-via-extension-manager": [
@@ -247,7 +295,7 @@
         "introduction-1": [
             "sf_books",
             "10.0.0",
-            "Introduction\/Index.html#introduction-1",
+            "Introduction\/Index.html#introduction",
             "Introduction"
         ],
         "what-does-it-do": [
@@ -271,13 +319,13 @@
         "testing-1": [
             "sf_books",
             "10.0.0",
-            "Testing\/Index.html#testing-1",
+            "Testing\/Index.html#testing",
             "Testing"
         ],
         "updating-1": [
             "sf_books",
             "10.0.0",
-            "Updating\/Index.html#updating-1",
+            "Updating\/Index.html#updating",
             "Updating"
         ],
         "add-path-segment-information": [
@@ -291,7 +339,7 @@
         "settings-reference": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#settings-reference",
+            "Configuration\/Index.html#confval-menu-settings-reference",
             ""
         ]
     },
@@ -299,43 +347,43 @@
         "templaterootpaths": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#templaterootpaths",
+            "Configuration\/Index.html#confval-templaterootpaths",
             "templateRootPaths"
         ],
         "pagination": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#pagination",
+            "Configuration\/Index.html#confval-pagination",
             "pagination"
         ],
         "itemsperpage": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#itemsperpage",
+            "Configuration\/Index.html#confval-itemsperpage",
             "itemsPerPage"
         ],
         "numberoflinks": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#numberoflinks",
+            "Configuration\/Index.html#confval-numberoflinks",
             "numberOfLinks"
         ],
         "groupauthors": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#groupauthors",
+            "Configuration\/Index.html#confval-groupauthors",
             "groupAuthors"
         ],
         "groupseries": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#groupseries",
+            "Configuration\/Index.html#confval-groupseries",
             "groupSeries"
         ],
         "orderings": [
             "sf_books",
             "10.0.0",
-            "Configuration\/Index.html#orderings",
+            "Configuration\/Index.html#confval-orderings",
             "orderings"
         ]
     }

@@ -12,22 +12,21 @@
 <meta content="" name="docsearch:package_type">
 <meta content="10.0.0" name="docsearch:release">
 <meta content="10.0.0" name="docsearch:version">
-<meta content="2024-11-17T11:35:23+00:00" name="docsearch:modified">
-<meta content="2024-11-17T11:35:23+00:00" name="dc.modified">
-<meta content="2024-11-17T11:35:23+00:00" property="article:modified_time">
+<meta content="2025-07-09T17:13:39+00:00" name="docsearch:modified">
+<meta content="2025-07-09T17:13:39+00:00" name="dc.modified">
+<meta content="2025-07-09T17:13:39+00:00" property="article:modified_time">
     <link href="http://purl.org/dc/elements/1.1/" rel="schema.dc">
 <link href="../_resources/css/theme.css" rel="stylesheet">
 <link href="https://docs.typo3.org/search/" rel="search" title="Search">
-<script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
-<script src="https://typo3.azureedge.net/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/webcomponents-loader.js"></script>
+<script src="https://cdn.typo3.com/typo3infrastructure/universe/dist/typo3-universe.js" type="module"></script>
                         <link href="../Installation/Index.html" rel="prev" title="Installation"/>
             <link href="../BreakingChanges/Index.html" rel="next" title="Breaking Changes"/>
             <link href="../Index.html" rel="top" title="sf_books: Managing books the easy way"/>
     </head>
 <body>
 <div class="page">
-    
-<header>
+    <header>
     <div class="page-topbar">
         <div class="page-topbar-inner">
             <typo3-universe active="documentation">
@@ -37,14 +36,36 @@
     </div>
     <div class="page-header">
         <div class="page-header-inner">
-            <div class="row">
-                <div class="col-md-2 col-lg-4">
+            <div class="d-flex flex-wrap">
+                <div class="logo-wrapper">
                     <a class="logo" href="https://docs.typo3.org/" title="TYPO3 Documentation">
                         <img alt="TYPO3 Logo" class="logo-image" src="../_resources/img/typo3-logo.svg" width="484" height="130">
                     </a>
                 </div>
-                <div class="col-md-10 col-lg-8">
+                <div class="align-self-center order-lg-2 order-last">
+                    
+<div class="toc-header">
+    <div class="toc-title pe-3">
+                            <a class="toc-title-project" href="../Index.html">sf_books: Managing books the easy way</a>
+            </div>
+    <label for="languageSelect" class="visually-hidden">Select language</label>
+        <select id="languageSelect" class="form-select d-none">
+        </select>
+
+                                    
+        <label for="versionSelect" class="visually-hidden">Select version</label>
+        <select id="versionSelect" class="form-select"
+                data-current-version="10.0.0"
+            data-override-url-proxy="https://render-guides.ddev.site/_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html"
+        >
+            <option disabled selected>Loading versions...</option>
+        </select>
+    </div>                </div>
+                <div class="ms-auto order-lg-3 d-flex">
                     <div class="menu-search-wrapper">
+                        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
+                            <i class="fas fa-bars"></i> <span class="visually-hidden">Mobile Menu</span>
+                        </button>
                         <all-documentations-menu data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu>
                                                 <search role="search">
                             <form action="https://docs.typo3.org/search/search" id="global-search-form" method="get">
@@ -54,10 +75,44 @@
                                         <option value="">Search all</option>
                                     </select>
                                     <input autocomplete="off" class="form-control shadow-none" id="globalsearchinput" name="q" placeholder="TYPO3 documentation..." type="text" value="">
-                                    <button class="btn btn-light search__submit" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
+                                    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i>&nbsp;<span class="d-none d-md-inline">Search</span></button>
                                 </div>
                             </form>
+                            <div id="global-search-root"></div>
                         </search>
+                        <div class="position-relative d-inline-block">
+                            <button id="options-toggle" class="btn btn-light d-block" type="button" aria-expanded="false">
+                                <i class="fas fa-cog"></i> <span class="visually-hidden">Options</span>
+                            </button>
+
+                            <div id="options-panel"
+                                 class="shadow p-3"
+                                 role="menu"
+                                 aria-hidden="true">
+                                <h6 class="dropdown-header text-muted text-uppercase small mb-2">Options</h6>
+
+                                                                                                            <a class="dropdown-item d-flex align-items-center gap-2" href="https://github.com/evoweb/sf_books/issues/new/choose?title=Problem+on+https%3A%2F%2Fgithub.com%2Fevoweb%2Fsf_books%2FConfiguration%2FIndex.html" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-comment-dots"></i>
+        Give feedback
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="../_sources/Configuration/Index.rst.txt" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-code"></i>
+        View source
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
+        <i class="fas fa-info-circle"></i>
+        How to edit
+    </a>
+    <a class="dropdown-item d-flex align-items-center gap-2" href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Configuration/Index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+        <i class="fab fa-github"></i>
+        Edit on GitHub
+    </a>
+                                                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="../singlehtml/Index.html" target="_blank" rel="noopener">
+                                            <i class="fas fa-print"></i>
+                                            Full documentation (single file)
+                                        </a>
+                                                                                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,34 +122,14 @@
         <div class="page-main-inner">
             <div class="page-main-navigation">
                 <nav>
-                    
-<div class="toc-header">
-    <div class="toc-title">
-        <a class="toc-title-project" href="../Index.html">sf_books</a>
-            <div class="toc-version-wrapper" id="toc-version-wrapper">
-                <!--
-                    LOCAL RENDERING NOTICE:
-                    https://docs.typo3.org/other/t3docs/render-guides/main/en-us/Developer/AjaxVersions.html
-                -->
 
-                <div id="toc-version" class="toc-version" data-override-url-proxy="https://render-guides.ddev.site/_resources/js/versions-proxy.php?url=" data-override-url-self="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/Concepts/Index.html">
-                
-                    <span class="toc-version-prefix">Release:</span>
-                    <span class="toc-version-number" tabindex="0">10.0.0</span>
-                </div>
-                <div id="toc-version-options" class="toc-version-options">
-                    <p><span class="fa fa-spinner fa-spin"></span> Loading data.</p>
-                </div>
-            </div></div>
-    <div class="toc-actions">
-        <button id="toc-toggle" class="btn btn-light d-block d-lg-none" tabindex="0" aria-controls="toc-collapse" aria-expanded="false">
-            Menu
-        </button>
-    </div>
-</div>                    <div id="toc-collapse">
+                    <div id="toc-collapse">
                                                 <div aria-label="main navigation" class="toc"
                              role="navigation">
-                                <div aria-label="Main navigation" class="main_menu" role="navigation">
+                                <all-documentations-menu-mobile
+        data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
+    <div aria-label="Main navigation" class="main_menu" role="navigation">
+                <p class="caption">sf_books: Managing books the easy way</p>
             <ul class="menu-level-1" role="menubar">
     <li class="" role="menuitem">
     <a href="../Introduction/Index.html">
@@ -120,22 +155,6 @@
         Sitemap
     </a></li>    </ul>
     </div>
-    <div aria-label="Meta navigation" class="main_menu  d-block d-lg-none" role="navigation">
-    <hr/>
-    <p class="caption">Contributors Corner</p>
-    <ul class="menu-level-1">            <li><a href="../_sources/Configuration/Index.rst.txt" rel="nofollow noopener" target="_blank">
-                    View source of current document
-            </a></li>
-                    <li><a href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" rel="nofollow noopener" target="_blank">
-                    How to edit
-            </a></li>
-                    <li><a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Configuration/Index.rst" rel="nofollow noopener" target="_blank">
-                    Edit current document on GitHub
-            </a></li>
-        </ul>
-</div>
-    <all-documentations-menu-mobile
-        data-override-url="https://render-guides.ddev.site/_resources/js/menu-proxy.php"></all-documentations-menu-mobile>
                         </div>
                     </div>
                 </nav>
@@ -147,23 +166,16 @@
     <li class="breadcrumb-item"><a href="../Index.html">sf_books: Managing books the easy way</a></li>
                     <li aria-current="page"  class="breadcrumb-item  active">Configuration</li>
         </ol>
-        <div class="breadcrumb-additions">        <a class="btn btn-sm btn-light" href="https://github.com/evoweb/sf_books/issues/new/choose?title=Problem+on+https%3A%2F%2Fgithub.com%2Fevoweb%2Fsf_books%2FConfiguration%2FIndex.html" id="btnReportIssue" rel="nofollow noopener" target="_blank">
-            <span class="btn-icon"><i class="fas fa-bug"></i></span>
-            <span class="btn-text">Report issue</span>
-        </a>
-        <a class="btn btn-sm btn-light" href="../_sources/Configuration/Index.rst.txt" rel="nofollow noopener" target="_blank">
-        <span class="btn-icon"><span class="fas fa-code"></span></span>
-        <span class="btn-text">View source</span>
-    </a>
-        <a class="btn btn-sm btn-light" href="https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html" id="btnHowToEdit" rel="nofollow noopener" target="_blank">
-        <span class="btn-icon"><span class="fas fa-info-circle"></span></span>
-        <span class="btn-text">How to edit</span>
-    </a>
-        <a class="btn btn-sm btn-secondary" href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Configuration/Index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
-        <span class="btn-icon"><span class="fab fa-github"></span></span>
-        <span class="btn-text">Edit on GitHub</span>
-    </a>
-    </div>    </nav>
+        <div class="breadcrumb-additions">                <a class="btn btn-sm btn-light" href="https://github.com/evoweb/sf_books/issues/new/choose?title=Problem+on+https%3A%2F%2Fgithub.com%2Fevoweb%2Fsf_books%2FConfiguration%2FIndex.html" id="btnReportIssue" rel="nofollow noopener" target="_blank">
+                    <span class="btn-icon"><i class="fas fa-comment-dots"></i></span>
+                    <span class="btn-text">Give feedback</span>
+                </a>
+                            <a class="btn btn-sm btn-secondary" href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Configuration/Index.rst" id="btnEditOnGitHub" rel="nofollow noopener" target="_blank">
+                    <span class="btn-icon"><span class="fab fa-github"></span></span>
+                    <span class="btn-text">Edit on GitHub</span>
+                </a>
+            </div>
+    </nav>
                     
 <article class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
     <div itemprop="articleBody">
@@ -195,8 +207,8 @@ tx_sfbooks_books are available for field and data like uid.</p>
 
 
 
-
-<div class="table-responsive confval-table" id="confval-menu-settings-reference">
+<a id="confval-menu-settings-reference"></a>
+<div class="table-responsive confval-table">
     <table class="table table-hover caption-top">        <thead>
         <tr>
             <th scope="col">Name</th>
@@ -209,7 +221,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-templaterootpaths">template<wbr>Root<wbr>Paths</a></div></td>
                     <td>
-                            array of <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-path">path</a>
+                            array of <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-path">path</a>
                         </td>
                     <td>
                                     none
@@ -219,7 +231,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-pagination">pagination</a></div></td>
                     <td>
-                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-string">string</a>
+                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-string">string</a>
                         </td>
                     <td>
                                     none
@@ -229,7 +241,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-itemsperpage">items<wbr>Per<wbr>Page</a></div></td>
                     <td>
-                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-integer">integer</a>
+                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-integer">integer</a>
                         </td>
                     <td>
                                     10
@@ -239,7 +251,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-numberoflinks">number<wbr>Of<wbr>Links</a></div></td>
                     <td>
-                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-integer">integer</a>
+                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-integer">integer</a>
                         </td>
                     <td>
                                     5
@@ -249,7 +261,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-groupauthors">group<wbr>Authors</a></div></td>
                     <td>
-                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-boolean">boolean</a>
+                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-boolean">boolean</a>
                         </td>
                     <td>
                                     1
@@ -259,7 +271,7 @@ tx_sfbooks_books are available for field and data like uid.</p>
                         <tr>
         <td><div class="confval-label ps-0"><a href="#confval-groupseries">group<wbr>Series</a></div></td>
                     <td>
-                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-boolean">boolean</a>
+                            <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-boolean">boolean</a>
                         </td>
                     <td>
                                     1
@@ -278,32 +290,33 @@ tx_sfbooks_books are available for field and data like uid.</p>
                                         
             </table>
 </div>
-            <section data-search-title="templateRootPaths"
+                <section data-search-title="templateRootPaths"
          data-search-id="confval-templaterootpaths"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-templaterootpaths"
 >
     <h3 class="sr-only">templateRootPaths</h3>
     <dl class="confval">
-        <dt id="confval-templaterootpaths"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">template<wbr>Root<wbr>Paths</span></code>
                                     <a class="headerlink" href="#confval-templaterootpaths"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-templaterootpaths"
-                       data-rstCode=":confval:`templateRootPaths &lt;evoweb/sf-books:templaterootpaths&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even">array of <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-path">path</a>
+                        <dd class="field-even">array of <a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-path">path</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">none
@@ -340,32 +353,33 @@ are first sorted and then tried in reversed order.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="pagination"
+                        <section data-search-title="pagination"
          data-search-id="confval-pagination"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-pagination"
 >
     <h3 class="sr-only">pagination</h3>
     <dl class="confval">
-        <dt id="confval-pagination"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">pagination</span></code>
                                     <a class="headerlink" href="#confval-pagination"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-pagination"
-                       data-rstCode=":confval:`pagination &lt;evoweb/sf-books:pagination&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-string">string</a>
+                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-string">string</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">none
@@ -398,32 +412,33 @@ default SimplePagination gets used.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="itemsPerPage"
+                        <section data-search-title="itemsPerPage"
          data-search-id="confval-itemsperpage"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-itemsperpage"
 >
     <h3 class="sr-only">itemsPerPage</h3>
     <dl class="confval">
-        <dt id="confval-itemsperpage"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">items<wbr>Per<wbr>Page</span></code>
                                     <a class="headerlink" href="#confval-itemsperpage"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-itemsperpage"
-                       data-rstCode=":confval:`itemsPerPage &lt;evoweb/sf-books:itemsperpage&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-integer">integer</a>
+                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-integer">integer</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">10
@@ -454,32 +469,33 @@ default SimplePagination gets used.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="numberOfLinks"
+                        <section data-search-title="numberOfLinks"
          data-search-id="confval-numberoflinks"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-numberoflinks"
 >
     <h3 class="sr-only">numberOfLinks</h3>
     <dl class="confval">
-        <dt id="confval-numberoflinks"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">number<wbr>Of<wbr>Links</span></code>
                                     <a class="headerlink" href="#confval-numberoflinks"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-numberoflinks"
-                       data-rstCode=":confval:`numberOfLinks &lt;evoweb/sf-books:numberoflinks&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-integer">integer</a>
+                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-integer">integer</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">5
@@ -511,32 +527,33 @@ the amount of pages in the pagination list.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="groupAuthors"
+                        <section data-search-title="groupAuthors"
          data-search-id="confval-groupauthors"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-groupauthors"
 >
     <h3 class="sr-only">groupAuthors</h3>
     <dl class="confval">
-        <dt id="confval-groupauthors"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">group<wbr>Authors</span></code>
                                     <a class="headerlink" href="#confval-groupauthors"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-groupauthors"
-                       data-rstCode=":confval:`groupAuthors &lt;evoweb/sf-books:groupauthors&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-boolean">boolean</a>
+                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-boolean">boolean</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">1
@@ -567,32 +584,33 @@ the amount of pages in the pagination list.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="groupSeries"
+                        <section data-search-title="groupSeries"
          data-search-id="confval-groupseries"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-groupseries"
 >
     <h3 class="sr-only">groupSeries</h3>
     <dl class="confval">
-        <dt id="confval-groupseries"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">group<wbr>Series</span></code>
                                     <a class="headerlink" href="#confval-groupseries"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-groupseries"
-                       data-rstCode=":confval:`groupSeries &lt;evoweb/sf-books:groupseries&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
-                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataTypes/Index.html#data-type-boolean">boolean</a>
+                        <dd class="field-even"><a href="https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Syntax/StringFormats/Index.html#data-type-boolean">boolean</a>
                         </dd>
                                                 <dt class="field-even">Default</dt>
                             <dd class="field-even">1
@@ -623,28 +641,29 @@ the amount of pages in the pagination list.</p>
         </dd>
     </dl>
 </section>
-                <section data-search-title="orderings"
+                        <section data-search-title="orderings"
          data-search-id="confval-orderings"
          data-search-facet="Option"
          class="confval-section"
+         id="confval-orderings"
 >
     <h3 class="sr-only">orderings</h3>
     <dl class="confval">
-        <dt id="confval-orderings"            class="d-flex justify-content-between">
-            <div class="confval-header">
+        <dt             class="d-flex justify-content-between">
+            <div class="confval-header flex-grow-1">
                 <code class="sig-name descname"><span
                         class="pre">orderings</span></code>
                                     <a class="headerlink" href="#confval-orderings"
                        data-bs-toggle="modal"
                        data-bs-target="#linkReferenceModal"
                        data-id="confval-orderings"
-                       data-rstCode=":confval:`orderings &lt;evoweb/sf-books:orderings&gt;`"
                        title="Reference this configuration value"><i
                             class="fa-solid fa-paragraph"></i></a>
                 </div>
-            <div class="confval-back-to-top">                    <a href="#" class="backToTop" title="Back to top"><i
-                            class="fa-solid fa-arrow-up fa-xs"></i></a>            </div>
-        </dt>
+            <div class="confval-back-to-top">                    <a href="#confval-menu-settings-reference" class="backToList"
+                       title="Back to list"><i
+                            class="fa-solid fa-angles-up fa-xs"></i></a>
+                            </div>        </dt>
         <dd>
                             <dl class="field-list simple">
                                             <dt class="field-even">Type</dt>
@@ -681,7 +700,7 @@ the amount of pages in the pagination list.</p>
         </dd>
     </dl>
 </section>
-    
+        
     </section>
     </section>
         <!-- content end -->
@@ -692,13 +711,13 @@ the amount of pages in the pagination list.</p>
             <ul class="pagination justify-content-center"><li class="page-item">
                             <a class="page-link" href="../Installation/Index.html"
                                title="Accesskey Alt(+Shift)+p">
-                                Previous
+                                <i class="fa-solid fa-chevron-left"></i> Previous
                             </a>
                         </li>
                     <li class="page-item">
                             <a class="page-link" href="../BreakingChanges/Index.html"
                                title="Accesskey Alt(+Shift)+n">
-                                Next
+                                Next <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </li>
                     </ul>
@@ -724,12 +743,14 @@ the amount of pages in the pagination list.</p>
                         <input class="form-control code" id="permalink-uri" readonly>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-uri"><i class="far fa-clone"></i></button>
                     </div>
-                    <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
-                    <div class="input-group">
-                        <input class="form-control code" id="permalink-short" readonly>
-                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                    <div class="permalink-short-wrapper">
+                        <label for="permalink-short" class="col-form-label">Permalink (Shortlink)</label>
+                        <div class="input-group">
+                            <input class="form-control code" id="permalink-short" readonly>
+                            <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-short"><i class="far fa-clone"></i></button>
+                        </div>
+                        <p><em>Copy and freely share the link</em></p>
                     </div>
-                    <p><em>Copy and freely share the link</em></p>
                 </div>
                 <div class="mb-3">
                     <div class="alert alert-warning alert-permalink-rst" role="alert">This link target has no permanent anchor assigned.                        You can make a <a href="https://github.com/evoWeb/sf_books/edit/develop/Documentation/Configuration/Index.rst">pull request on GitHub</a> to suggest an anchor.
@@ -741,6 +762,13 @@ the amount of pages in the pagination list.</p>
                         <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-rst"><i class="far fa-clone"></i></button>
                     </div>
                     <p><em>Copy this link into your TYPO3 manual.</em></p>
+                </div>
+                <div class="mb-3">
+                    <label for="permalink-md" class="col-form-label">Link in Markdown</label>
+                    <div class="input-group">
+                        <textarea class="form-control code" id="permalink-md" readonly></textarea>
+                        <button type="button" class="btn btn-outline-secondary copy-button" data-target="permalink-md"><i class="far fa-clone"></i></button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="permalink-html" class="col-form-label">Link in HTML</label>
@@ -788,7 +816,7 @@ the amount of pages in the pagination list.</p>
                                                 <li><a href="https://github.com/evoweb/sf_books/issues" rel="nofollow noopener" title="Issues"><span>Issues</span></a></li>
                                                 <li><a href="https://github.com/evoweb/sf_books" rel="nofollow noopener" title="Repository"><span>Repository</span></a></li>
                                             </ul>                <div class="footer-additional">
-                    <p class="text-center">Last rendered: Nov 17, 2024 11:35</p>
+                    <p class="text-center">Last rendered: Jul 09, 2025 17:13</p>
                 </div>
                 <div class="footer-meta">
                                         <div class="footer-meta-copyright">
