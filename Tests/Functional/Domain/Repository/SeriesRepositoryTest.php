@@ -15,13 +15,15 @@ namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
 use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
-use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class SeriesRepositoryTest extends AbstractTestCase
+class SeriesRepositoryTest extends FunctionalTestCase
 {
+    protected array $testExtensionsToLoad = ['sf_books'];
+
     private SeriesRepository $subject;
 
     protected function setUp(): void

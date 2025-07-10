@@ -35,25 +35,25 @@ jobs:
       matrix:
         packages:
           - php: '8.2'
-            core: '^13.2'
+            core: '^13.4'
             framework: 'dev-main'
             prefer: ''
             testpath: 'Tests/Functional'
 
           - php: '8.2'
-            core: '^13.2'
+            core: '^13.4'
             framework: 'dev-main'
             prefer: '--prefer-lowest'
             testpath: 'Tests/Functional'
 
           - php: '8.3'
-            core: '^13.2'
+            core: '^13.4'
             framework: 'dev-main'
             prefer: ''
             testpath: 'Tests/Functional'
 
           - php: '8.3'
-            core: '^13.2'
+            core: '^13.4'
             framework: 'dev-main'
             prefer: '--prefer-lowest'
             testpath: 'Tests/Functional'
