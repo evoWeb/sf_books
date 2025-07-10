@@ -13,29 +13,39 @@
 
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
+use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
-use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class AuthorRepositoryTest extends FunctionalTestCase
+class AuthorRepositoryTest extends AbstractTestBase
 {
-    protected array $testExtensionsToLoad = ['sf_books'];
-
     private AuthorRepository $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.csv');
+
+        $this->initializeRequest();
+        $this->initializeFrontendTypoScript([
+            'plugin.' => [
+                'tx_sfbooks.' => [
+                    'settings.' => [
+                        'fields' => [
+                            'selected' => 'username',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
 
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setStoragePageIds([2]);
         $this->subject = GeneralUtility::makeInstance(AuthorRepository::class);
         $this->subject->setDefaultQuerySettings($querySettings);
-
-        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.csv');
     }
 
     #[Test]
