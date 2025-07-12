@@ -28,11 +28,14 @@ class SearchController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
+    /**
+     * @param array<string, mixed> $search
+     */
     public function startSearchAction(array $search): ResponseInterface
     {
         if (($search['query'] ?? '') != '') {
             if (isset($search['searchBy'])) {
-                switch ((string)$search['searchFor'] ?? '') {
+                switch ((string)($search['searchFor'] ?? '')) {
                     case 'author':
                         $controller = 'Author';
                         $pageId = (int)$this->settings['authorPageId'];
@@ -49,7 +52,7 @@ class SearchController extends AbstractController
                     $pageId = $this->request->getAttribute('currentContentObject')->data['pid'];
                 }
 
-                $this->redirect('search', $controller, null, $search, $pageId, $controller);
+                return $this->redirect('search', $controller, null, $search, $pageId);
             }
             $response = new HtmlResponse($this->view->render());
         } else {
@@ -59,6 +62,9 @@ class SearchController extends AbstractController
         return $response;
     }
 
+    /**
+     * @param ?array<string, mixed> $arguments
+     */
     protected function redirect(
         $actionName,
         $controllerName = null,

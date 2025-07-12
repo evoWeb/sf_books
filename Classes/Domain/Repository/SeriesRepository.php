@@ -18,10 +18,17 @@ namespace Evoweb\SfBooks\Domain\Repository;
 use Evoweb\SfBooks\Domain\Model\Series;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception;
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * A repository for series
+ *
+ * @extends Repository<Series>
+ */
 class SeriesRepository extends Repository
 {
     public function __construct(
@@ -32,8 +39,13 @@ class SeriesRepository extends Repository
         parent::__construct();
     }
 
+    /**
+     * @return array<string, array<Series>>
+     * @throws Exception
+     */
     public function findSeriesGroupedByLetters(): array
     {
+        /** @var Query<Series> $query */
         $query = $this->createQuery();
 
         $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_series');
@@ -56,7 +68,7 @@ class SeriesRepository extends Repository
         /** @var Series $series */
         foreach ($result as $series) {
             $letter = $series->getCapitalLetter();
-            if (!isset($groupedSeries[$letter]) || !is_array($groupedSeries[$letter])) {
+            if (!is_array($groupedSeries[$letter] ?? '')) {
                 $groupedSeries[$letter] = [];
             }
 
@@ -66,6 +78,10 @@ class SeriesRepository extends Repository
         return $groupedSeries;
     }
 
+    /**
+     * @param int[] $series
+     * @return QueryResultInterface<int, Series>
+     */
     public function findBySeries(array $series): QueryResultInterface
     {
         $query = $this->createQuery();

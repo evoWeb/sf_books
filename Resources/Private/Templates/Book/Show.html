@@ -55,14 +55,13 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <!-- release year -->
             <td>{book.year}</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td>
                 <span class="highlight">{f:translate(key: 'description')}</span><br/><br/>
-                <f:format.html parseFuncTSPath="">{book.description}</f:format.html>
+                <f:format.html>{book.description}</f:format.html>
             </td>
         </tr>
     </table>

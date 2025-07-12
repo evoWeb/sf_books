@@ -19,10 +19,18 @@ use Evoweb\SfBooks\Domain\Model\Author;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception;
+use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * A repository for authors
+ *
+ * @extends Repository<Author>
+ */
 class AuthorRepository extends Repository
 {
     public function __construct(
@@ -33,8 +41,13 @@ class AuthorRepository extends Repository
         parent::__construct();
     }
 
+    /**
+     * @return array<string, mixed>
+     * @throws Exception
+     */
     public function findAuthorGroupedByLetters(): array
     {
+        /** @var Query<Author> $query */
         $query = $this->createQuery();
 
         $queryBuilder = $this->getQueryBuilderForTable('tx_sfbooks_domain_model_author');
@@ -57,7 +70,7 @@ class AuthorRepository extends Repository
         /** @var Author $author */
         foreach ($result as $author) {
             $letter = $author->getCapitalLetter();
-            if (!isset($groupedAuthors[$letter]) || !is_array($groupedAuthors[$letter])) {
+            if (!is_array($groupedAuthors[$letter] ?? '')) {
                 $groupedAuthors[$letter] = [];
             }
 
@@ -67,6 +80,11 @@ class AuthorRepository extends Repository
         return $groupedAuthors;
     }
 
+    /**
+     * @param string[] $searchFields
+     * @return QueryResultInterface<int, Author>
+     * @throws InvalidQueryException
+     */
     public function findBySearch(string $searchString, array $searchFields): QueryResultInterface
     {
         $query = $this->createQuery();

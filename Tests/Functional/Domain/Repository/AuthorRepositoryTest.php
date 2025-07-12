@@ -13,31 +13,43 @@
 
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
+use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
-use Evoweb\SfBooks\Tests\Functional\AbstractTestCase;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
-class AuthorRepositoryTest extends AbstractTestCase
+class AuthorRepositoryTest extends AbstractTestBase
 {
     private AuthorRepository $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.csv');
+
+        $this->initializeRequest();
+        $this->initializeFrontendTypoScript([
+            'plugin.' => [
+                'tx_sfbooks.' => [
+                    'settings.' => [
+                        'fields' => [
+                            'selected' => 'username',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
 
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setStoragePageIds([2]);
         $this->subject = GeneralUtility::makeInstance(AuthorRepository::class);
         $this->subject->setDefaultQuerySettings($querySettings);
-
-        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_sfbooks_domain_model_author.csv');
     }
 
     #[Test]
-    public function findByUidReturnsOneAuthor()
+    public function findByUidReturnsOneAuthor(): void
     {
         $author = $this->subject->findByUid(1);
         $properties = [
@@ -62,7 +74,7 @@ class AuthorRepositoryTest extends AbstractTestCase
     }
 
     #[Test]
-    public function findAuthorGroupedByLetters()
+    public function findAuthorGroupedByLetters(): void
     {
         $result = $this->subject->findAuthorGroupedByLetters();
         /** @var Author $author */

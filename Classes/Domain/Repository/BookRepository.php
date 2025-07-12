@@ -15,11 +15,23 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Repository;
 
+use Evoweb\SfBooks\Domain\Model\Book;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * A repository for books
+ *
+ * @extends Repository<Book>
+ */
 class BookRepository extends Repository
 {
+    /**
+     * @param int[] $categories
+     * @return QueryResultInterface<int, Book>
+     * @throws InvalidQueryException
+     */
     public function findByCategories(array $categories): QueryResultInterface
     {
         $query = $this->createQuery();
@@ -35,6 +47,11 @@ class BookRepository extends Repository
         return $query->execute();
     }
 
+    /**
+     * @param string[] $searchFields
+     * @return QueryResultInterface<int, Book>
+     * @throws InvalidQueryException
+     */
     public function findBySearch(string $searchString, array $searchFields): QueryResultInterface
     {
         $query = $this->createQuery();
