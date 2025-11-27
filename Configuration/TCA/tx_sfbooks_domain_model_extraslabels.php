@@ -18,7 +18,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-extraslabels',
         ],
-        'searchFields' => 'uid, label',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],

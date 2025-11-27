@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -43,10 +43,10 @@ class SeriesController extends AbstractController
         return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(Series $series = null): ResponseInterface
+    protected function showAction(?Series $series = null): ResponseInterface
     {
         if ($series == null) {
-            $this->displayError('Series');
+            return $this->displayError('Series');
         }
 
         $this->setPageTitle($series->getTitle());

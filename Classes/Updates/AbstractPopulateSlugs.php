@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -22,12 +22,12 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
-use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
+use TYPO3\CMS\Core\Upgrades\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
 
 /**
  * Fills [table].path_segment with a proper value for pages that do not have a slug updater.
- * Does not take "deleted" authors into account, but respects workspace records.
+ * Does not take "deleted" authors into account but respects workspace records.
  */
 abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
@@ -122,7 +122,7 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
                     $expression->isNull($this->fieldName)
                 )
             )
-            // Ensure that all pages are run through "per parent page" field, and in the correct sorting values
+            // Ensure that all pages are run through the "per parent page" field and in the correct sorting values
             ->addOrderBy('pid', 'asc')
             ->executeQuery();
     }

@@ -23,7 +23,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-extras',
         ],
-        'searchFields' => 'uid, label, content',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],

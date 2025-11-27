@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -34,7 +34,7 @@ class IsbnEvaluation
     /**
      * Server-side validation/evaluation on saving the record
      *
-     * @param string[] $parameters The parameters value, is_in and set
+     * @param string[] $parameters The parameters are value, is_in and set
      * @return string Evaluated field value
      */
     public function evaluateFieldValue(...$parameters): string
@@ -46,7 +46,7 @@ class IsbnEvaluation
     /**
      * Server-side validation/evaluation on opening the record
      *
-     * @param array<string, string> $parameters Array with key 'value' containing the field value from the database
+     * @param array<string, string> $parameters Array with the key 'value' containing the field value from the database
      * @return string Evaluated field value
      */
     public function deevaluateFieldValue(array $parameters): string

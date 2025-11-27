@@ -26,7 +26,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-book',
         ],
-        'searchFields' => 'uid, title, subtitle, isbn, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],

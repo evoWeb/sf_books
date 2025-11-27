@@ -21,7 +21,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-author',
         ],
-        'searchFields' => 'uid, title, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],

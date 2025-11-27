@@ -23,7 +23,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-author',
         ],
-        'searchFields' => 'uid, lastname, firstname, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
