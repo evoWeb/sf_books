@@ -87,21 +87,20 @@ abstract class AbstractController extends ActionController
 
     protected function initializeView(ViewInterface $view): void
     {
-        if (method_exists($view, 'getTemplateRootPaths') && method_exists($view, 'setTemplateRootPaths')) {
-            $paths = $view->getTemplateRootPaths();
-            foreach ($paths as &$path) {
-                if (str_contains($path, ':/')) {
-                    preg_match('@(?<folder>\d:/.+)@', $path, $matches);
-                    if (!empty($matches['folder'] ?? '')) {
-                        /** @var ResourceFactory $resourceFactory */
-                        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-                        $folder = $resourceFactory->getFolderObjectFromCombinedIdentifier($matches['folder']);
-                        $path = Environment::getPublicPath() . $folder->getPublicUrl();
-                    }
+        $templatePaths = $view->getRenderingContext()->getTemplatePaths();
+        $paths = $templatePaths->getTemplateRootPaths();
+        foreach ($paths as &$path) {
+            if (str_contains($path, ':/')) {
+                preg_match('@(?<folder>\d:/.+)@', $path, $matches);
+                if (!empty($matches['folder'] ?? '')) {
+                    /** @var ResourceFactory $resourceFactory */
+                    $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                    $folder = $resourceFactory->getFolderObjectFromCombinedIdentifier($matches['folder']);
+                    $path = Environment::getPublicPath() . $folder->getPublicUrl();
                 }
             }
-            $view->setTemplateRootPaths($paths);
         }
+        $templatePaths->setTemplateRootPaths($paths);
     }
 
     protected function setPageTitle(string $title): void

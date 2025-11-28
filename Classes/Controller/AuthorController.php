@@ -36,9 +36,9 @@ class AuthorController extends AbstractController
             $authors = $this->authorRepository->findAuthorGroupedByLetters();
         } else {
             $authors = $this->authorRepository->findAll();
+            $authors = $authors->toArray();
         }
 
-        $authors->rewind();
         $this->view->assign('authorGroups', $authors);
         $this->addPaginatorToView($authors);
 

@@ -15,12 +15,14 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Updates;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 
 /**
  * Fills tx_sfbooks_domain_model_category.path_segment with a proper value for pages that do not have a slug updater.
  * Does not take "deleted" categories into account but respects workspace records.
  */
+#[Autoconfigure(public: true)]
 #[UpgradeWizard('sfBooksCategoriesSlugs')]
 class PopulateCategorySlugs extends AbstractPopulateSlugs
 {
