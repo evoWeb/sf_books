@@ -5,9 +5,7 @@ defined('TYPO3') or die();
 use Evoweb\SfBooks\User\IsbnEvaluation;
 use TYPO3\CMS\Core\Resource\FileType;
 
-$languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
-$languageFileTtc = 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:';
-$languageFileTca = 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:';
+$languageFile = 'sf_books.db:';
 
 return [
     'ctrl' => [

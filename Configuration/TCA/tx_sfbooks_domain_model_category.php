@@ -2,7 +2,7 @@
 
 defined('TYPO3') or die();
 
-$languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
+$languageFile = 'sf_books.db:';
 
 return [
     'ctrl' => [

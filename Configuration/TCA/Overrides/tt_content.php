@@ -8,7 +8,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 defined('TYPO3') or die();
 
 call_user_func(static function () {
-    $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
+    $languageFile = 'sf_books.db:';
     $GLOBALS['TCA']['tt_content']['palettes']['storefinder-frames'] = [
         'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames',
         'showitem' => '
