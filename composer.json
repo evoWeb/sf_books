@@ -1,7 +1,7 @@
 {
 	"name": "evoweb/sf-books",
 	"type": "typo3-cms-extension",
-	"description": "Managing lots of books is not easy without a good tool. The book library tries to help you keeping an overview your books and to search easily information about each book.",
+	"description": "Book library",
 	"homepage": "https://www.evoweb.de",
 	"license": [
 		"GPL-2.0-or-later"
@@ -24,10 +24,12 @@
 		}
 	},
 	"require": {
-		"typo3/cms-core": "^13.2 || 13.2.x-dev || dev-main",
-		"typo3/cms-extbase": "^13.2 || 13.2.x-dev || dev-main",
-		"typo3/cms-fluid": "^13.2 || 13.2.x-dev || dev-main",
-		"typo3/cms-install": "^13.2 || 13.2.x-dev || dev-main",
+		"symfony/dependency-injection": "~7.3.0",
+
+		"typo3/cms-core": "^13.2 || ^14.0 || 14.*.*@dev || dev-main",
+		"typo3/cms-extbase": "^13.2 || ^14.0 || 14.*.*@dev || dev-main",
+		"typo3/cms-fluid": "^13.2 || ^14.0 || 14.*.*@dev || dev-main",
+		"typo3/cms-install": "^13.2 || ^14.0 || 14.*.*@dev || dev-main",
 		"psr/http-message": "^1.1 || ^2.0",
 		"doctrine/dbal": "^3.7.2 || ^4.0",
 		"webmozart/assert": "^1.11.0"

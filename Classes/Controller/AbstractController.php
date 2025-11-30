@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -24,6 +24,7 @@ use Evoweb\SfBooks\Domain\Repository\BookRepository;
 use Evoweb\SfBooks\Domain\Repository\CategoryRepository;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
@@ -86,21 +87,20 @@ abstract class AbstractController extends ActionController
 
     protected function initializeView(ViewInterface $view): void
     {
-        if (method_exists($view, 'getTemplateRootPaths') && method_exists($view, 'setTemplateRootPaths')) {
-            $paths = $view->getTemplateRootPaths();
-            foreach ($paths as &$path) {
-                if (str_contains($path, ':/')) {
-                    preg_match('@(?<folder>\d:/.+)@', $path, $matches);
-                    if (!empty($matches['folder'] ?? '')) {
-                        /** @var ResourceFactory $resourceFactory */
-                        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-                        $folder = $resourceFactory->getFolderObjectFromCombinedIdentifier($matches['folder']);
-                        $path = Environment::getPublicPath() . $folder->getPublicUrl();
-                    }
+        $templatePaths = $view->getRenderingContext()->getTemplatePaths();
+        $paths = $templatePaths->getTemplateRootPaths();
+        foreach ($paths as &$path) {
+            if (str_contains($path, ':/')) {
+                preg_match('@(?<folder>\d:/.+)@', $path, $matches);
+                if (!empty($matches['folder'] ?? '')) {
+                    /** @var ResourceFactory $resourceFactory */
+                    $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                    $folder = $resourceFactory->getFolderObjectFromCombinedIdentifier($matches['folder']);
+                    $path = Environment::getPublicPath() . $folder->getPublicUrl();
                 }
             }
-            $view->setTemplateRootPaths($paths);
         }
+        $templatePaths->setTemplateRootPaths($paths);
     }
 
     protected function setPageTitle(string $title): void
@@ -110,11 +110,11 @@ abstract class AbstractController extends ActionController
         $provider->setTitle($title);
     }
 
-    protected function displayError(string $type): void
+    protected function displayError(string $type): ResponseInterface
     {
         /** @var ErrorController $errorController */
         $errorController = GeneralUtility::makeInstance(ErrorController::class);
-        $response = $errorController->pageNotFoundAction(
+        return $errorController->pageNotFoundAction(
             $this->request,
             'Page Not Found',
             [
@@ -122,7 +122,6 @@ abstract class AbstractController extends ActionController
                 ' Reason: ' . $type . ' not found!',
             ]
         );
-        throw new ImmediateResponseException($response);
     }
 
     /**

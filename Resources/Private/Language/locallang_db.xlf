@@ -15,16 +15,31 @@
 			<trans-unit id="tt_content.list_type_book">
 				<source>Book</source>
 			</trans-unit>
+			<trans-unit id="tt_content.list_type_book_description">
+				<source>Book</source>
+			</trans-unit>
 			<trans-unit id="tt_content.list_type_author">
+				<source>Author</source>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type_author_description">
 				<source>Author</source>
 			</trans-unit>
 			<trans-unit id="tt_content.list_type_category">
 				<source>Category</source>
 			</trans-unit>
+			<trans-unit id="tt_content.list_type_category_description">
+				<source>Category</source>
+			</trans-unit>
 			<trans-unit id="tt_content.list_type_search">
 				<source>Search</source>
 			</trans-unit>
+			<trans-unit id="tt_content.list_type_search_description">
+				<source>Search</source>
+			</trans-unit>
 			<trans-unit id="tt_content.list_type_series">
+				<source>Series</source>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type_series_description">
 				<source>Series</source>
 			</trans-unit>
 			<trans-unit id="tx_sfbooks_domain_model_book">

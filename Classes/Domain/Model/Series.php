@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -15,9 +15,8 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Domain\Model;
 
-use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Attribute as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Series extends AbstractEntity
@@ -29,8 +28,6 @@ class Series extends AbstractEntity
     protected ObjectStorage $books;
 
     protected string $title = '';
-
-    protected string $capitalLetter = '';
 
     protected string $info = '';
 

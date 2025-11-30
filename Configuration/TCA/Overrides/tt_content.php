@@ -7,8 +7,8 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die();
 
-(static function () {
-    $languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
+call_user_func(static function () {
+    $languageFile = 'sf_books.db:';
     $GLOBALS['TCA']['tt_content']['palettes']['storefinder-frames'] = [
         'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames',
         'showitem' => '
@@ -42,83 +42,23 @@ defined('TYPO3') or die();
 
     ExtensionManagementUtility::addTcaSelectItemGroup(
         'tt_content',
-        'list_type',
+        'CType',
         'sf_books',
         $languageFile . 'tt_content.list_type_group'
     );
 
-    ExtensionUtility::registerPlugin(
-        'sf_books',
-        'Book',
-        $languageFile . 'tt_content.list_type_book',
-        'content-plugin-sfbooks-book',
-        'sf_books'
-    );
-    $GLOBALS['TCA']['tt_content']['types']['sfbooks_book']['showitem'] = $showItems;
-
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:sf_books/Configuration/FlexForms/book.xml',
-        'sfbooks_book'
-    );
-
-    ExtensionUtility::registerPlugin(
-        'sf_books',
-        'Author',
-        $languageFile . 'tt_content.list_type_author',
-        'content-plugin-sfbooks-author',
-        'sf_books'
-    );
-    $GLOBALS['TCA']['tt_content']['types']['sfbooks_author']['showitem'] = $showItems;
-
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:sf_books/Configuration/FlexForms/author.xml',
-        'sfbooks_author'
-    );
-
-    ExtensionUtility::registerPlugin(
-        'sf_books',
-        'Category',
-        $languageFile . 'tt_content.list_type_category',
-        'content-plugin-sfbooks-category',
-        'sf_books'
-    );
-    $GLOBALS['TCA']['tt_content']['types']['sfbooks_category']['showitem'] = $showItems;
-
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:sf_books/Configuration/FlexForms/category.xml',
-        'sfbooks_category'
-    );
-
-    ExtensionUtility::registerPlugin(
-        'sf_books',
-        'Search',
-        $languageFile . 'tt_content.list_type_search',
-        'content-plugin-sfbooks-search',
-        'sf_books'
-    );
-    $GLOBALS['TCA']['tt_content']['types']['sfbooks_search']['showitem'] = $showItems;
-
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:sf_books/Configuration/FlexForms/search.xml',
-        'sfbooks_search'
-    );
-
-    ExtensionUtility::registerPlugin(
-        'sf_books',
-        'Series',
-        $languageFile . 'tt_content.list_type_series',
-        'content-plugin-sfbooks-series',
-        'sf_books'
-    );
-    $GLOBALS['TCA']['tt_content']['types']['sfbooks_series']['showitem'] = $showItems;
-
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:sf_books/Configuration/FlexForms/series.xml',
-        'sfbooks_series'
-    );
-})();
+    foreach (['Book', 'Author', 'Category', 'Search', 'Series'] as $cType) {
+        $lowerCType = strtolower($cType);
+        $signature = ExtensionUtility::registerPlugin(
+            'sf_books',
+            $cType,
+            $languageFile . 'tt_content.list_type_' . $lowerCType,
+            'content-plugin-sfbooks-' . $lowerCType,
+            'sf_books',
+            $languageFile . 'tt_content.list_type_' . $lowerCType . '_description',
+        );
+        $GLOBALS['TCA']['tt_content']['types'][$signature]['showitem'] = $showItems;
+        $GLOBALS['TCA']['tt_content']['types'][$signature]['columnsOverrides']['pi_flexform']['config']['ds'] =
+            'FILE:EXT:sf_books/Configuration/FlexForms/' . $lowerCType . '.xml';
+    }
+});

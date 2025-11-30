@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * of the License or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -36,19 +36,19 @@ class AuthorController extends AbstractController
             $authors = $this->authorRepository->findAuthorGroupedByLetters();
         } else {
             $authors = $this->authorRepository->findAll();
+            $authors = $authors->toArray();
         }
 
-        $authors->rewind();
         $this->view->assign('authorGroups', $authors);
         $this->addPaginatorToView($authors);
 
         return new HtmlResponse($this->view->render());
     }
 
-    protected function showAction(Author $author = null): ResponseInterface
+    protected function showAction(?Author $author = null): ResponseInterface
     {
         if ($author == null) {
-            $this->displayError('Author');
+            return $this->displayError('Author');
         }
 
         $this->setPageTitle($author->getLastname() . ', ' . $author->getFirstname());

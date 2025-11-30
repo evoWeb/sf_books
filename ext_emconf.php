@@ -10,10 +10,10 @@ $EM_CONF['sf_books'] = [
     'author_email' => 'typo3@evoweb.de',
     'author_company' => 'evoWeb',
     'state' => 'stable',
-    'version' => '10.0.1',
+    'version' => '11.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '13.4.0-13.4.99',
+            'typo3' => '14.0.0-14.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -2,7 +2,7 @@
 
 defined('TYPO3') or die();
 
-$languageFile = 'LLL:EXT:sf_books/Resources/Private/Language/locallang_db.xlf:';
+$languageFile = 'sf_books.db:';
 
 return [
     'ctrl' => [
@@ -23,7 +23,6 @@ return [
         'typeicon_classes' => [
             'default' => 'sf-books-author',
         ],
-        'searchFields' => 'uid, lastname, firstname, description',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
