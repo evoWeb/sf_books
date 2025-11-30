@@ -32,24 +32,6 @@ jobs:
       matrix:
         packages:
           - php: '8.2'
-            core: '^13.4'
-            framework: '^9.2.0'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.3'
-            core: '^13.4'
-            framework: '^9.2.0'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.4'
-            core: '^13.4'
-            framework: '^9.2.0'
-            prefer: ''
-            testpath: 'Tests/Functional'
-
-          - php: '8.2'
             core: '^14.0'
             framework: 'dev-main'
             prefer: ''

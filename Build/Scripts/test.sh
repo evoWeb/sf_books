@@ -140,11 +140,6 @@ if [[ $DEBUG_TESTS != true ]]; then
 
     TCORE="^14.0"
     TFRAMEWORK="dev-main"
-
-    runFunctionalTests "8.2" "^13.4" "^9.2.0" ${TPATH} || exit 1
-    runFunctionalTests "8.3" "^13.4" "^9.2.0" ${TPATH} || exit 1
-    runFunctionalTests "8.4" "^13.4" "^9.2.0" ${TPATH} || exit 1
-
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
     runFunctionalTests "8.2" ${TCORE} ${TFRAMEWORK} ${TPATH} ${LOWEST} || exit 1
     runFunctionalTests "8.3" ${TCORE} ${TFRAMEWORK} ${TPATH} || exit 1
