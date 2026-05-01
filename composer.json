@@ -24,15 +24,12 @@
 		}
 	},
 	"require": {
-		"symfony/dependency-injection": "~7.3.0",
-
-		"typo3/cms-core": "^14.0 || 14.*.*@dev || dev-main",
-		"typo3/cms-extbase": "^14.0 || 14.*.*@dev || dev-main",
-		"typo3/cms-fluid": "^14.0 || 14.*.*@dev || dev-main",
-		"typo3/cms-install": "^14.0 || 14.*.*@dev || dev-main",
+		"typo3/cms-core": "^14.3 || 14.*.*@dev || dev-main",
+		"typo3/cms-extbase": "^14.3 || 14.*.*@dev || dev-main",
+		"typo3/cms-fluid": "^14.3 || 14.*.*@dev || dev-main",
+		"typo3/cms-install": "^14.3 || 14.*.*@dev || dev-main",
 		"psr/http-message": "^1.1 || ^2.0",
-		"doctrine/dbal": "^3.7.2 || ^4.0",
-		"webmozart/assert": "^1.11.0"
+		"doctrine/dbal": "^3.7.2 || ^4.0"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.64.0",
@@ -40,7 +37,8 @@
 		"phpstan/phpdoc-parser": "^1.30.0",
 		"phpstan/phpstan": "^1.12.5",
 		"phpunit/phpunit": "^11.0.3",
-		"typo3/testing-framework": "dev-main"
+		"typo3/testing-framework": "dev-main",
+		"webmozart/assert": "^1.11.0 || ^2.0"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
