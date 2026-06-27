@@ -43,7 +43,11 @@
 	"prefer-stable": true,
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "sf_books"
+			"extension-key": "sf_books",
+			"version": "11.0.1",
+			"Package": {
+				"providesPackages": {}
+			}
 		}
 	},
 	"scripts": {
