@@ -94,7 +94,7 @@ jobs:
           Build/Scripts/runTests.sh \
             -p ${{ matrix.php }} \
             -d sqlite \
-            -s functional ${{ matrix.packages.testpath }}
+            -s functional Tests/Functional
 
   TERUpload:
     needs: [ resources, testsuite ]

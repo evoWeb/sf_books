@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace Evoweb\SfBooks\Tests\Functional;
 
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Cache\Backend\NullBackend;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
@@ -32,6 +33,28 @@ abstract class AbstractTestBase extends FunctionalTestCase
             'id' => 0,
             'title' => 'English',
             'locale' => 'en_US.UTF8',
+        ],
+    ];
+
+    protected array $coreExtensionsToLoad = ['install'];
+
+    /**
+     * Use a NullBackend for the extbase (reflection) cache. Otherwise the
+     * ReflectionService persists its cache in __destruct() at PHP shutdown,
+     * where $GLOBALS['TYPO3_CONF_VARS'] is already torn down by the testing
+     * framework, triggering HashService warnings about a missing encryptionKey.
+     *
+     * @var array<string, mixed>
+     */
+    protected array $configurationToUseInTestInstance = [
+        'SYS' => [
+            'caching' => [
+                'cacheConfigurations' => [
+                    'extbase' => [
+                        'backend' => NullBackend::class,
+                    ],
+                ],
+            ],
         ],
     ];
 
