@@ -46,7 +46,7 @@ return [
                         'label' => $languageFile . 'tx_sfbooks_domain_model_extras.book.I.0',
                         'value' => 0,
                     ],
-                ]
+                ],
             ],
         ],
         'type' => [

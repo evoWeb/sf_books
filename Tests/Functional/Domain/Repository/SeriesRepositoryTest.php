@@ -13,9 +13,9 @@
 
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
-use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
+use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
@@ -61,7 +61,7 @@ class SeriesRepositoryTest extends AbstractTestBase
             'description' => $series->getDescription(),
             'capitalLetter' => $series->getCapitalLetter(),
         ];
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,
@@ -88,7 +88,7 @@ class SeriesRepositoryTest extends AbstractTestBase
             'description' => $series->getDescription(),
             'capitalLetter' => $series->getCapitalLetter(),
         ];
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,

@@ -13,9 +13,9 @@
 
 namespace Evoweb\SfBooks\Tests\Functional\Domain\Repository;
 
-use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use Evoweb\SfBooks\Domain\Model\Author;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
+use Evoweb\SfBooks\Tests\Functional\AbstractTestBase;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
@@ -61,7 +61,7 @@ class AuthorRepositoryTest extends AbstractTestBase
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,
@@ -88,7 +88,7 @@ class AuthorRepositoryTest extends AbstractTestBase
             'description' => $author->getDescription(),
             'capitalLetter' => $author->getCapitalLetter(),
         ];
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'uid' => 1,
                 'pid' => 2,

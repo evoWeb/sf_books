@@ -16,7 +16,6 @@ declare(strict_types=1);
 namespace Evoweb\SfBooks\Controller;
 
 use Evoweb\SfBooks\Domain\Model\Author;
-use Evoweb\SfBooks\Domain\Model\Book;
 use Evoweb\SfBooks\Domain\Model\Category;
 use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
@@ -26,7 +25,6 @@ use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Evoweb\SfBooks\TitleTagProvider\TitleTagProvider;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\PaginationInterface;
 use TYPO3\CMS\Core\Pagination\PaginatorInterface;

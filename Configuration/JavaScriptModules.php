@@ -9,7 +9,7 @@ return [
         'backend.form',
     ],
     'imports' => [
-        '@evoweb/sf-books/form-engine-evaluation.js' =>
-            'EXT:sf_books/Resources/Public/JavaScript/form-engine-evaluation.js',
+        '@evoweb/sf-books/form-engine-evaluation.js'
+            => 'EXT:sf_books/Resources/Public/JavaScript/form-engine-evaluation.js',
     ],
 ];

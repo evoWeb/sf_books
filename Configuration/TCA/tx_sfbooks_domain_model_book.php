@@ -257,8 +257,8 @@ return [
                 'relationship' => 'oneToMany',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' =>
-                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle'
+                        => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -307,8 +307,8 @@ return [
                 'relationship' => 'oneToMany',
                 'allowed' => 'common-image-types',
                 'appearance' => [
-                    'createNewRelationLinkTitle' =>
-                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle'
+                        => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table
@@ -357,8 +357,8 @@ return [
                 'relationship' => 'oneToMany',
                 'allowed' => 'pdf',
                 'appearance' => [
-                    'createNewRelationLinkTitle' =>
-                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle'
+                        => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
                 ],
                 // custom configuration for displaying fields in the overlay/reference table

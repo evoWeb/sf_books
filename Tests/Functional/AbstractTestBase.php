@@ -25,11 +25,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 abstract class AbstractTestBase extends FunctionalTestCase
 {
     /**
-     * @var array<non-empty-string>
-     */
-    protected array $testExtensionsToLoad = ['sf_books'];
-
-    /**
      * @var array<string, array<string, string|int>>
      */
     protected const LANGUAGE_PRESETS = [
@@ -39,6 +34,11 @@ abstract class AbstractTestBase extends FunctionalTestCase
             'locale' => 'en_US.UTF8',
         ],
     ];
+
+    /**
+     * @var array<non-empty-string>
+     */
+    protected array $testExtensionsToLoad = ['sf_books'];
 
     protected ServerRequestInterface $request;
 
