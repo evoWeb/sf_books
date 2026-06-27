@@ -81,7 +81,7 @@ jobs:
         run: |
           Build/Scripts/runTests.sh \
             -p ${{ matrix.php }} \
-            -s composer require --dev ${{ matrix.packages.prefer }} "typo3/testing-framework:${{ matrix.packages.framework }}"
+            -s composer require --dev ${{ matrix.prefer }} "typo3/testing-framework:${{ matrix.packages.framework }}"
 
       - name: Composer validate
         run: |
