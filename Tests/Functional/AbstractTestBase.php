@@ -16,7 +16,6 @@ declare(strict_types=1);
 namespace Evoweb\SfBooks\Tests\Functional;
 
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Cache\Backend\NullBackend;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
@@ -39,31 +38,28 @@ abstract class AbstractTestBase extends FunctionalTestCase
     protected array $coreExtensionsToLoad = ['install'];
 
     /**
-     * Use a NullBackend for the extbase (reflection) cache. Otherwise the
-     * ReflectionService persists its cache in __destruct() at PHP shutdown,
-     * where $GLOBALS['TYPO3_CONF_VARS'] is already torn down by the testing
-     * framework, triggering HashService warnings about a missing encryptionKey.
-     *
-     * @var array<string, mixed>
-     */
-    protected array $configurationToUseInTestInstance = [
-        'SYS' => [
-            'caching' => [
-                'cacheConfigurations' => [
-                    'extbase' => [
-                        'backend' => NullBackend::class,
-                    ],
-                ],
-            ],
-        ],
-    ];
-
-    /**
      * @var array<non-empty-string>
      */
     protected array $testExtensionsToLoad = ['sf_books'];
 
     protected ServerRequestInterface $request;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // The Extbase ReflectionService persists its cache in __destruct() at PHP
+        // shutdown. The cache is HMAC-signed via HashService, which reads
+        // $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']. At shutdown the
+        // testing framework has already torn down $GLOBALS['TYPO3_CONF_VARS'],
+        // producing "Undefined global variable" warnings. Shutdown functions run
+        // before object destructors, so restoring the snapshot taken here keeps the
+        // destructor working without a warning.
+        $configurationSnapshot = $GLOBALS['TYPO3_CONF_VARS'] ?? null;
+        register_shutdown_function(static function () use ($configurationSnapshot): void {
+            $GLOBALS['TYPO3_CONF_VARS'] = $configurationSnapshot;
+        });
+    }
 
     public function initializeRequest(): void
     {
