@@ -31,9 +31,9 @@ use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
  */
 abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 {
-    protected string $table = '';
+    protected string $tablename = '';
 
-    protected string $fieldName = 'path_segment';
+    protected string $slugField = 'path_segment';
 
     public function __construct(protected ConnectionPool $connectionPool) {}
 
@@ -55,25 +55,30 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
 
     public function executeUpdate(): bool
     {
-        $connection = $this->connectionPool->getConnectionForTable($this->table);
+        $connection = $this->connectionPool->getConnectionForTable($this->tablename);
 
-        $fieldConfig = $GLOBALS['TCA'][$this->table]['columns'][$this->fieldName]['config'];
-        $evalInfo = !empty($fieldConfig['eval']) ? GeneralUtility::trimExplode(',', $fieldConfig['eval'], true) : [];
+        $tca = is_array($GLOBALS['TCA'] ?? null) ? $GLOBALS['TCA'] : [];
+        $tca = is_array($tca[$this->tablename] ?? null) ? $tca[$this->tablename] : [];
+        $columns = is_array($tca['columns'] ?? null) ? $tca['columns'] : [];
+        $column = is_array($columns[$this->slugField] ?? null) ? $columns[$this->slugField] : [];
+        $fieldConfig = is_array($column['config'] ?? null) ? $column['config'] : [];
+        $eval = is_string($fieldConfig['eval']) ? $fieldConfig['eval'] : '';
+        $evalInfo = !empty($fieldConfig['eval']) ? GeneralUtility::trimExplode(',', $eval, true) : [];
         $hasToBeUniqueInDb = in_array('unique', $evalInfo, true);
         $hasToBeUniqueInSite = in_array('uniqueInSite', $evalInfo, true);
         $hasToBeUniqueInPid = in_array('uniqueInPid', $evalInfo, true);
 
         /** @var SlugHelper $slug */
-        $slug = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
+        $slug = GeneralUtility::makeInstance(SlugHelper::class, $this->tablename, $this->slugField, $fieldConfig);
 
         $records = $this->getRecordsToUpdate();
         while ($recordData = $records->fetchAssociative()) {
-            $recordId = (int)$recordData['uid'];
-            $pid = (int)$recordData['pid'];
+            $recordId = is_int($recordData['uid']) ? $recordData['uid'] : 0;
+            $pid = is_int($recordData['pid']) ? $recordData['pid'] : 0;
 
             $proposal = $slug->generate($recordData, $pid);
 
-            $state = RecordStateFactory::forName($this->table)
+            $state = RecordStateFactory::forName($this->tablename)
                 ->fromArray($recordData, $pid, $recordId);
             if ($hasToBeUniqueInDb && !$slug->isUniqueInTable($proposal, $state)) {
                 $proposal = $slug->buildSlugForUniqueInTable($proposal, $state);
@@ -86,8 +91,8 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
             }
 
             $connection->update(
-                $this->table,
-                [$this->fieldName => $proposal],
+                $this->tablename,
+                [$this->slugField => $proposal],
                 ['uid' => $recordId]
             );
         }
@@ -102,8 +107,8 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
             ->count('uid')
             ->where(
                 $expression->or(
-                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
-                    $expression->isNull($this->fieldName)
+                    $expression->eq($this->slugField, $queryBuilder->quote('')),
+                    $expression->isNull($this->slugField)
                 )
             )
             ->executeQuery()
@@ -118,8 +123,8 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
             ->select('*')
             ->where(
                 $expression->or(
-                    $expression->eq($this->fieldName, $queryBuilder->quote('')),
-                    $expression->isNull($this->fieldName)
+                    $expression->eq($this->slugField, $queryBuilder->quote('')),
+                    $expression->isNull($this->slugField)
                 )
             )
             // Ensure that all pages are run through the "per parent page" field and in the correct sorting values
@@ -131,13 +136,13 @@ abstract class AbstractPopulateSlugs implements UpgradeWizardInterface
     {
         $queryBuilder = $this
             ->connectionPool
-            ->getQueryBuilderForTable($this->table);
+            ->getQueryBuilderForTable($this->tablename);
         $queryBuilder
             ->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
         $queryBuilder
-            ->from($this->table);
+            ->from($this->tablename);
 
         return $queryBuilder;
     }

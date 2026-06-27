@@ -20,6 +20,7 @@ use Evoweb\SfBooks\Domain\Repository\AuthorRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class AuthorController extends AbstractController
 {
@@ -35,8 +36,8 @@ class AuthorController extends AbstractController
         if ($this->settings['groupAuthors'] ?? false) {
             $authors = $this->authorRepository->findAuthorGroupedByLetters();
         } else {
+            /** @var QueryResultInterface<int, Author> $authors */
             $authors = $this->authorRepository->findAll();
-            $authors = $authors->toArray();
         }
 
         $this->view->assign('authorGroups', $authors);

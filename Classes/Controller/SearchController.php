@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class SearchController extends AbstractController
 {
@@ -35,7 +36,8 @@ class SearchController extends AbstractController
     {
         if (($search['query'] ?? '') != '') {
             if (isset($search['searchBy'])) {
-                switch ((string)($search['searchFor'] ?? '')) {
+                $searchFor = is_string($search['searchFor'] ?? '') ? $search['searchFor'] : '';
+                switch ($searchFor) {
                     case 'author':
                         $controller = 'Author';
                         $pageId = (int)$this->settings['authorPageId'];
@@ -49,7 +51,9 @@ class SearchController extends AbstractController
 
                 if (!$pageId) {
                     // @extensionScannerIgnoreLine
-                    $pageId = $this->request->getAttribute('currentContentObject')->data['pid'];
+                    /** @var ContentObjectRenderer $currentContentObject */
+                    $currentContentObject = $this->request->getAttribute('currentContentObject');
+                    $pageId = $currentContentObject->data['pid'];
                 }
 
                 return $this->redirect('search', $controller, null, $search, $pageId);

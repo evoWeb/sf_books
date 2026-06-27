@@ -45,6 +45,7 @@ class CategoryController extends AbstractController
                 && reset($this->settings['category']) < 1
             )
         ) {
+            /** @var QueryResultInterface<int, Category> $categories */
             $categories = $this->categoryRepository->findAll();
         } else {
             $categories = $this->categoryRepository->findByUids($this->settings['category']);

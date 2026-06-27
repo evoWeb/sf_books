@@ -36,7 +36,12 @@ class Extras extends AbstractEntity
     public function getLabel(): ?ExtrasLabels
     {
         if ($this->label instanceof LazyLoadingProxy) {
-            $this->label = $this->label->_loadRealInstance();
+            $label = $this->label->_loadRealInstance();
+            if ($label instanceof ExtrasLabels) {
+                $this->label = $label;
+            } else {
+                $this->label = null;
+            }
         }
         return $this->label;
     }

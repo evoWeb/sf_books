@@ -40,7 +40,8 @@ class IsbnEvaluation
     public function evaluateFieldValue(...$parameters): string
     {
         $parameter = $parameters[0] ?? '';
-        return preg_replace('/[^0-9X\-]/i', '', $parameter);
+        $result = preg_replace('/[^0-9X\-]/i', '', $parameter);
+        return is_string($result) ? $result : '';
     }
 
     /**
@@ -52,6 +53,7 @@ class IsbnEvaluation
     public function deevaluateFieldValue(array $parameters): string
     {
         $value = $parameters['value'] ?? '';
-        return preg_replace('/[^0-9X\-]/i', '', $value);
+        $result = preg_replace('/[^0-9X\-]/i', '', $value);
+        return is_string($result) ? $result : '';
     }
 }

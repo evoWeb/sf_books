@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 #[UpgradeWizard('sfBooksCategoriesSlugs')]
 class PopulateCategorySlugs extends AbstractPopulateSlugs
 {
-    protected string $table = 'tx_sfbooks_domain_model_category';
+    protected string $tablename = 'tx_sfbooks_domain_model_category';
 
     /**
      * Title of this updater

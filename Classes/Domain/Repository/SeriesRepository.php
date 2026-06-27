@@ -18,7 +18,8 @@ namespace Evoweb\SfBooks\Domain\Repository;
 use Evoweb\SfBooks\Domain\Model\Series;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Extbase\Persistence\Generic\Exception;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrderingInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\PropertyValueInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -40,8 +41,7 @@ class SeriesRepository extends Repository
     }
 
     /**
-     * @return array<string, array<Series>>
-     * @throws Exception
+     * @return array<string, array<int, Series>>
      */
     public function findSeriesGroupedByLetters(): array
     {
@@ -58,12 +58,23 @@ class SeriesRepository extends Repository
             $queryBuilder->where($queryBuilder->expr()->in('pid', $storagePageIds));
         }
 
-        foreach ($query->getOrderings() as $fieldName => $direction) {
-            $queryBuilder->addOrderBy($fieldName, $direction);
+        foreach ($query->getOrderings() as $ordering) {
+            if ($ordering instanceof OrderingInterface) {
+                $operand = $ordering->getOperand();
+                $queryBuilder->addOrderBy(
+                    $operand instanceof PropertyValueInterface
+                        ? $operand->getPropertyName()
+                        : '',
+                    $ordering->getOrder()
+                );
+            } elseif (is_array($ordering)) {
+                $queryBuilder->addOrderBy(array_key_first($ordering) ?? '', array_values($ordering)[0]);
+            }
         }
 
         $result = $query->statement($queryBuilder)->execute();
 
+        /** @var array<string, array<int, Series>> $groupedSeries */
         $groupedSeries = [];
         /** @var Series $series */
         foreach ($result as $series) {

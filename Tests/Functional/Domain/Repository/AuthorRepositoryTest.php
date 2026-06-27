@@ -52,6 +52,7 @@ class AuthorRepositoryTest extends AbstractTestBase
     public function findByUidReturnsOneAuthor(): void
     {
         $author = $this->subject->findByUid(1);
+        assert($author instanceof Author);
         $properties = [
             'uid' => $author->getUid(),
             'pid' => $author->getPid(),

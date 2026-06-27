@@ -39,6 +39,7 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
+use TYPO3Fluid\Fluid\View\AbstractTemplateView;
 use TYPO3Fluid\Fluid\View\ViewInterface;
 
 abstract class AbstractController extends ActionController
@@ -54,6 +55,7 @@ abstract class AbstractController extends ActionController
                 ? $this->settings['orderings']
                 : [];
         }
+        /** @var array<non-empty-string, 'ASC'|'DESC'> $orderings */
         if (!empty($orderings)) {
             $repository->setDefaultOrderings($orderings);
         }
@@ -85,8 +87,12 @@ abstract class AbstractController extends ActionController
         return $orderDirection;
     }
 
+    /**
+     * @param ViewInterface $view
+     */
     protected function initializeView(ViewInterface $view): void
     {
+        /** @var AbstractTemplateView $view */
         $templatePaths = $view->getRenderingContext()->getTemplatePaths();
         $paths = $templatePaths->getTemplateRootPaths();
         foreach ($paths as &$path) {
@@ -125,7 +131,8 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param QueryResultInterface<int, Author>|QueryResultInterface<int, Book>|QueryResultInterface<int, Category>|array<int, Series> $result
+     * @template T of AbstractEntity
+     * @param QueryResultInterface<int, T>|array<int|string, array<Author|Category|Series>> $result
      */
     protected function addPaginatorToView(QueryResultInterface|array $result): void
     {
@@ -142,13 +149,15 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * @param QueryResultInterface<int, AbstractEntity>|array<int, AbstractEntity> $result
+     * @template T of AbstractEntity
+     * @param QueryResultInterface<int, T>|array<int|string, array<Author|Category|Series>> $result
      */
     protected function getPaginator(QueryResultInterface|array $result): PaginatorInterface
     {
         $currentPage = $this->request->hasArgument('currentPage')
             ? $this->request->getArgument('currentPage')
             : 1;
+        $currentPage = is_int($currentPage) ? $currentPage : 1;
 
         $paginatorClass = is_array($result) ? ArrayPaginator::class : QueryResultPaginator::class;
 
@@ -156,7 +165,7 @@ abstract class AbstractController extends ActionController
         $resultPaginator = GeneralUtility::makeInstance(
             $paginatorClass,
             $result,
-            (int)$currentPage,
+            $currentPage,
             (int)($this->settings['itemsPerPage'] ?? 10)
         );
         return $resultPaginator;

@@ -20,6 +20,7 @@ use Evoweb\SfBooks\Domain\Repository\BookRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class BookController extends AbstractController
 {
@@ -44,6 +45,7 @@ class BookController extends AbstractController
                 && reset($this->settings['category']) < 1
             )
         ) {
+            /** @var QueryResultInterface<int, Book> $books */
             $books = $this->bookRepository->findAll();
         } else {
             $books = $this->bookRepository->findByCategories($this->settings['category']);

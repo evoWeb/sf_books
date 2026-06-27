@@ -19,6 +19,7 @@ use Evoweb\SfBooks\Domain\Model\Series;
 use Evoweb\SfBooks\Domain\Repository\SeriesRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 class SeriesController extends AbstractController
 {
@@ -34,6 +35,7 @@ class SeriesController extends AbstractController
         if ($this->settings['groupSeries'] ?? false) {
             $series = $this->seriesRepository->findSeriesGroupedByLetters();
         } else {
+            /** @var QueryResultInterface<int, Series> $series */
             $series = $this->seriesRepository->findAll();
         }
 

@@ -15,7 +15,6 @@ declare(strict_types=1);
 
 namespace Evoweb\SfBooks\Tests\Functional;
 
-use Evoweb\SfBooks\Tests\Functional\Traits\SiteBasedTestTrait;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
@@ -25,8 +24,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 abstract class AbstractTestBase extends FunctionalTestCase
 {
-    use SiteBasedTestTrait;
-
     /**
      * @var array<non-empty-string>
      */
@@ -56,6 +53,7 @@ abstract class AbstractTestBase extends FunctionalTestCase
 
     /**
      * @param array<string, mixed> $setup
+     * @param array<string, mixed> $config
      */
     public function initializeFrontendTypoScript(array $setup = [], array $config = []): void
     {
