@@ -36,7 +36,7 @@ jobs:
             -p 8.4 \
             -s cgl
 
-      - name: Run the cgl lint
+      - name: Run the xliff lint
         run: |
           Build/Scripts/runTests.sh \
             -p 8.4 \
